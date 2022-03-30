@@ -85,6 +85,7 @@
             vertical-align: middle;
         }
 
+
        details {
         position: absolute;
         top: 0;
@@ -92,13 +93,13 @@
         margin: 1em 0;
         padding: 10px;
         background: #fff;
-        background:  rgba(155,155,155,0.1);
-        border: 1px solid rgba(0,0,0,0.3);
+        /*background:  rgba(155,155,155,0.1);*/
+        border: 1px solid rgb(255,255,255);
         border-radius: 5px;
         max-width: 600px;
-        font-size: 10pt;
+        /*font-size: 10pt;*/
         z-index: 100;
-        background-color:rgba(247,247,247,0.8);
+        background-color:rgb(30,30,30);
       }
       details > div {
         margin: 10px 0;
@@ -110,6 +111,10 @@
       /* Firefox workaround */
       .no-details details > summary:before { float: left; width: 15px; content: '\25B6'; }
       .no-details details.open > summary:before { content: '\25BC'; }
+
+      a {
+         color: blue;
+      }
     </style>
     <script>
         var maxPOSX = 0;
@@ -459,6 +464,25 @@
 </head>
 
 <body onLoad='init();'>
+	     <details>
+                <summary>Infos</summary>
+                <div>
+                  <p><b>Author</b> : NoNameNo^WAB aka Antoine Santo</p>
+                  <p><b>Twitter</b> : <a href="https://twitter.com/alonetrio" target="_blank">@alonetrio</a></p>
+                  <p><b>Using</b> : <a href="https://codef.santo.fr" target="_blank">CODEF</a></p>
+                  <p><b>Usage</b> : 
+                              <lu>
+                              <li>Enter your name/nick/handle/text.</li>
+			      <li>Choose a font.</li>
+			      <li>Some font file provides variation like (colors,...) click on it.</li>
+			      <li>You can play with sliders (mostly for space and spacing ).</li>
+			      <li>Profit ;)</li>
+                              </lu>
+              
+                  </p>
+                  <p><b>GitHub</b> : <a href="https://github.com/N0NameN0/WAB_Ansi_Logo_Maker" target="_blank">https://github.com/N0NameN0/WAB_Ansi_Logo_Maker</a></p>
+                </div>
+              </details>
     <p style="text-align: center;"><img src="IMG/logo.png" /></p>
     <br> yOUR tEXT hERE : <input id="mytext" type="text" value="old school" onInput="text_renderer(curnum);"><br> fONT sPACING :
     <input type="range" id="spacing" min="0" max="5" oninput="curspacing=parseInt(this.value,10);text_renderer(curnum);"><br> "sPACE" sIZE : <input type="range" id="spacesize" value="5" min="0" max="15" oninput="curspacesize=parseInt(this.value,10);text_renderer(curnum);"><br>    tHE fONT :
@@ -487,7 +511,6 @@
             </td>
         </tr>
     </table>
-    <p style="text-align: center;">This tool is done using <a href="http://codef.santo.fr" target="_blank">CODEF</a>.</p>
 </body>
 
 </html>
