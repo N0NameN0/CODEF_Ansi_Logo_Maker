@@ -10,6 +10,8 @@ WAB-Ansi-Logo-Maker is using [CODEF](https://codef.santo.fr)
 ## Usage
 - Enter your name/nick/handle/text
 - Choose a font
+- Some font file provides variation like (colors,...) click on it.
+- You can play with sliders (mostly for space and spacing )
 - Profit ;)
 
 ## Some logo done with it
