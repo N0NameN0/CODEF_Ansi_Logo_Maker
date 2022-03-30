@@ -18,6 +18,9 @@ WAB-Ansi-Logo-Maker is using [CODEF](https://codef.santo.fr)
 ![logo3](README_Medias/logo3.png)
 ![logo4](README_Medias/logo4.png)
 
+## To Do
+add ANSI/ASCII format export to use it to your nice linux shell MOTD ;)
+
 ## Try it Live
 [HERE](https://n0namen0.github.io/WAB-Ansi-Logo-Maker/)
 
