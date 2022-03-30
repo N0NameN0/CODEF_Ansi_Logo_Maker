@@ -84,6 +84,32 @@
             text-align: center;
             vertical-align: middle;
         }
+
+       details {
+        position: absolute;
+        top: 0;
+        left: 1em;
+        margin: 1em 0;
+        padding: 10px;
+        background: #fff;
+        background:  rgba(155,155,155,0.1);
+        border: 1px solid rgba(0,0,0,0.3);
+        border-radius: 5px;
+        max-width: 600px;
+        font-size: 10pt;
+        z-index: 100;
+        background-color:rgba(247,247,247,0.8);
+      }
+      details > div {
+        margin: 10px 0;
+      }
+      details > summary {
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      /* Firefox workaround */
+      .no-details details > summary:before { float: left; width: 15px; content: '\25B6'; }
+      .no-details details.open > summary:before { content: '\25BC'; }
     </style>
     <script>
         var maxPOSX = 0;
