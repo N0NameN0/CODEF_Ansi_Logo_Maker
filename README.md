@@ -22,7 +22,7 @@ WAB-Ansi-Logo-Maker is using [CODEF](https://codef.santo.fr)
 Add ANSI/ASCII format export to use it to your nice linux shell MOTD ;)
 
 ## Info
-You can find a PHP version to generate de font list in realtime and a HTML version with a hardcoded font list.
+You can find a PHP version to generate the font list in realtime and a HTML version with a hardcoded font list.
 
 ## Try it Live
 [HERE](https://n0namen0.github.io/WAB-Ansi-Logo-Maker/)
