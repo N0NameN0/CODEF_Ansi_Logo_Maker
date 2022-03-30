@@ -1,8 +1,8 @@
-# WAB-Ansi-Logo-Make
+# WAB-Ansi-Logo-Maker
 
 A tiny web tool to use TDF (TheDraw font files) to create logo.
 
-WAB-Ansi-Logo-Make is using [CODEF](https://codef.santo.fr)
+WAB-Ansi-Logo-Maker is using [CODEF](https://codef.santo.fr)
 
 ## Screenshot
 ![logo1](README_Medias/screenshot.png)
@@ -19,7 +19,7 @@ WAB-Ansi-Logo-Make is using [CODEF](https://codef.santo.fr)
 ![logo4](README_Medias/logo4.png)
 
 ## Try it Live
-[HERE](https://n0namen0.github.io/WAB-Ansi-Logo-Make/)
+[HERE](https://n0namen0.github.io/WAB-Ansi-Logo-Maker/)
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
