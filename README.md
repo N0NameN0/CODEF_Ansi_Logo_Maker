@@ -1,4 +1,4 @@
-# WAB-Ansi-Logo-Maker
+# WAB_Ansi_Logo_Maker
 
 A tiny web tool to use TDF (TheDraw font files) to create logo.
 
