@@ -25,7 +25,7 @@ Add ANSI/ASCII format export to use it to your nice linux shell MOTD ;)
 You can find a PHP version to generate the font list in realtime and a HTML version with a hardcoded font list.
 
 ## Try it Live
-[HERE](https://n0namen0.github.io/WAB-Ansi-Logo-Maker/)
+[HERE](https://n0namen0.github.io/WAB_Ansi_Logo_Maker/)
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
