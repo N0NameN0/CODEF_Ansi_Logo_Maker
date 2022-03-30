@@ -8,7 +8,7 @@ WAB-Ansi-Logo-Maker is using [CODEF](https://codef.santo.fr)
 ![logo1](README_Medias/screenshot.png)
 
 ## Usage
-- Enter you name/nick/handle/text
+- Enter your name/nick/handle/text
 - Choose a font
 - Profit ;)
 
