@@ -13,6 +13,7 @@ WAB-Ansi-Logo-Maker is using [CODEF](https://codef.santo.fr)
 - Some font file provides variation like (colors,...) click on it.
 - You can play with sliders (mostly for space and spacing )
 - Profit ;)
+- you can export it as a png image or a txt utf8 file for your MOTD or console scripts;)
 
 ## Some logo done with it
 ![logo1](README_Medias/logo1.png)
@@ -20,8 +21,6 @@ WAB-Ansi-Logo-Maker is using [CODEF](https://codef.santo.fr)
 ![logo3](README_Medias/logo3.png)
 ![logo4](README_Medias/logo4.png)
 
-## To Do
-Add ANSI/ASCII format export to use it to your nice linux shell MOTD ;)
 
 ## Info
 You can find a PHP version to generate the font list in realtime and a HTML version with a hardcoded font list.
