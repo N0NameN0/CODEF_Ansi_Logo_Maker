@@ -200,10 +200,15 @@
                     aze += "<" + "/table>";
                     document.getElementById("infos").innerHTML = aze;
                     text_renderer(0);
+		    dolink(0);
                 }
             };
             fetch.send();
         }
+
+	function dolink(fnum){
+		    document.getElementById("curlink").innerHTML="curl \"https://wab-ansi-logo-maker-api.santo.fr/?text="+encodeURI(document.getElementById("mytext").value)+"&font="+document.getElementById("FONTS").selectedIndex+"&spacing="+document.getElementById("spacing").value+"&spacesize="+document.getElementById("spacesize").value+"&vary="+fnum+"\" > /etc/motd";
+	}
 
         function file_parser(binString) {
             workvar.signature = binString.readBytesFromStart(1, 18); //TDF font file signature "TheDraw FONTS file"
@@ -347,6 +352,7 @@
             }
 
             mycanvas.draw(myfinalcanvas, 0, 0);
+	    dolink(num);
         }
 
         function _PRINTCHAR(char) {
@@ -575,7 +581,6 @@
             var oldcolconv = "";
 
             for (var i = 0; i < 12; i++) {
-
                 if (matrix[i].length != 0) {
                     for (var n = 0; n < matrix[i].length; n++) {
                         if (matrix[i][n] == "\r") {
@@ -589,7 +594,9 @@
                             }
                             mystring += " ";
                         } else if (typeof matrix[i][n] === 'undefined') {
-                            mystring += " ";
+				oldcolconv = "\x1b[0m";
+                                mystring += oldcolconv;
+  	                        mystring += " ";
                         } else {
                             if (workvar.headers[curnum].fonttype == "cOLOR") {
                                 newcolconv = colconv(i, n);
@@ -1055,6 +1062,11 @@
                 <center>
                     <div id="dl" style="display:none;"><button onclick="dl_img()">Download Image</button></div>
                     <div id="dltxt" style="display:none;"><button onclick="dl_txt()">Download text file (utf8)</button></div>
+		    <br>
+		    <br>
+		    <div id="curlink"></div>
+		    <br>
+		    <br>
                 </center>
             </td>
         </tr>

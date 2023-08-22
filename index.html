@@ -2,28 +2,28 @@
 <html lang="en">
 <script>
     /*------------------------------------------------------------------------------
-                    Copyright (c) 2022 Antoine Santo Aka NoNameNo
+                Copyright (c) 2022 Antoine Santo Aka NoNameNo
 
-                    This tool is usinge CODEF
-                    More info : http://codef.santo.fr
-                    Demo gallery http://www.wab.com
+                This tool is usinge CODEF
+                More info : http://codef.santo.fr
+                Demo gallery http://www.wab.com
 
-                    Permission is hereby granted, free of charge, to any person obtaining a copy
-                    of this software and associated documentation files (the "Software"), to deal
-                    in the Software without restriction, including without limitation the rights
-                    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-                    copies of the Software, and to permit persons to whom the Software is
-                    furnished to do so, subject to the following conditions:
-                    The above copyright notice and this permission notice shall be included in
-                    all copies or substantial portions of the Software.
-                    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-                    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-                    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-                    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-                    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-                    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-                    THE SOFTWARE.
-                    ------------------------------------------------------------------------------*/
+                Permission is hereby granted, free of charge, to any person obtaining a copy
+                of this software and associated documentation files (the "Software"), to deal
+                in the Software without restriction, including without limitation the rights
+                to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+                copies of the Software, and to permit persons to whom the Software is
+                furnished to do so, subject to the following conditions:
+                The above copyright notice and this permission notice shall be included in
+                all copies or substantial portions of the Software.
+                THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+                IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+                FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+                AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+                LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+                OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+                THE SOFTWARE.
+                ------------------------------------------------------------------------------*/
 </script>
 
 <head>
@@ -200,10 +200,15 @@
                     aze += "<" + "/table>";
                     document.getElementById("infos").innerHTML = aze;
                     text_renderer(0);
+		    dolink(0);
                 }
             };
             fetch.send();
         }
+
+	function dolink(fnum){
+		    document.getElementById("curlink").innerHTML="curl \"https://wab-ansi-logo-maker-api.santo.fr/?text="+encodeURI(document.getElementById("mytext").value)+"&font="+document.getElementById("FONTS").selectedIndex+"&spacing="+document.getElementById("spacing").value+"&spacesize="+document.getElementById("spacesize").value+"&vary="+fnum+"\" > /etc/motd";
+	}
 
         function file_parser(binString) {
             workvar.signature = binString.readBytesFromStart(1, 18); //TDF font file signature "TheDraw FONTS file"
@@ -347,6 +352,7 @@
             }
 
             mycanvas.draw(myfinalcanvas, 0, 0);
+	    dolink(num);
         }
 
         function _PRINTCHAR(char) {
@@ -575,7 +581,6 @@
             var oldcolconv = "";
 
             for (var i = 0; i < 12; i++) {
-
                 if (matrix[i].length != 0) {
                     for (var n = 0; n < matrix[i].length; n++) {
                         if (matrix[i][n] == "\r") {
@@ -589,7 +594,9 @@
                             }
                             mystring += " ";
                         } else if (typeof matrix[i][n] === 'undefined') {
-                            mystring += " ";
+				oldcolconv = "\x1b[0m";
+                                mystring += oldcolconv;
+  	                        mystring += " ";
                         } else {
                             if (workvar.headers[curnum].fonttype == "cOLOR") {
                                 newcolconv = colconv(i, n);
@@ -1034,1203 +1041,1203 @@
     <br> yOUR tEXT hERE : <input id="mytext" type="text" value="old school" onInput="text_renderer(curnum);"><br> fONT sPACING :
     <input type="range" id="spacing" min="0" max="5" oninput="curspacing=parseInt(this.value,10);text_renderer(curnum);"><br> "sPACE" sIZE : <input type="range" id="spacesize" value="5" min="0" max="15" oninput="curspacesize=parseInt(this.value,10);text_renderer(curnum);"><br>    tHE fONT :
     <select name="FONTS" id="FONTS" onChange="LoadTDF(this.value);">
-        <option id="FONTNUM0" value="FONTS/1911.TDF">1911</option>
-        <option id="FONTNUM1" value="FONTS/1911X.TDF">1911X</option>
-        <option id="FONTNUM2" value="FONTS/208.TDF">208</option>
-        <option id="FONTNUM3" value="FONTS/208X.TDF">208X</option>
-        <option id="FONTNUM4" value="FONTS/3D-ASCII.TDF">3D-ASCII</option>
-        <option id="FONTNUM5" value="FONTS/3D-FADE.TDF">3D-FADE</option>
-        <option id="FONTNUM6" value="FONTS/3DDIAG.TDF">3DDIAG</option>
-        <option id="FONTNUM7" value="FONTS/4MAX.TDF">4MAX</option>
-        <option id="FONTNUM8" value="FONTS/4MAXCOL.TDF">4MAXCOL</option>
-        <option id="FONTNUM9" value="FONTS/4MAXX.TDF">4MAXX</option>
-        <option id="FONTNUM10" value="FONTS/AAA.TDF">AAA</option>
-        <option id="FONTNUM11" value="FONTS/AAAX.TDF">AAAX</option>
-        <option id="FONTNUM12" value="FONTS/AARDVARK.TDF">AARDVARK</option>
-        <option id="FONTNUM13" value="FONTS/ABBADON.TDF">ABBADON</option>
-        <option id="FONTNUM14" value="FONTS/ACCESS.TDF">ACCESS</option>
-        <option id="FONTNUM15" value="FONTS/ACHERONX.TDF">ACHERONX</option>
-        <option id="FONTNUM16" value="FONTS/ACID3DX.TDF">ACID3DX</option>
-        <option id="FONTNUM17" value="FONTS/ACIDNEWX.TDF">ACIDNEWX</option>
-        <option id="FONTNUM18" value="FONTS/ACIDSC2X.TDF">ACIDSC2X</option>
-        <option id="FONTNUM19" value="FONTS/ACIDSCPX.TDF">ACIDSCPX</option>
-        <option id="FONTNUM20" value="FONTS/ACIDTRON.TDF">ACIDTRON</option>
-        <option id="FONTNUM21" value="FONTS/ACIDX.TDF">ACIDX</option>
-        <option id="FONTNUM22" value="FONTS/ACRYLICX.TDF">ACRYLICX</option>
-        <option id="FONTNUM23" value="FONTS/ADOMEX.TDF">ADOMEX</option>
-        <option id="FONTNUM24" value="FONTS/ADRENAX.TDF">ADRENAX</option>
-        <option id="FONTNUM25" value="FONTS/ADRKNESX.TDF">ADRKNESX</option>
-        <option id="FONTNUM26" value="FONTS/ADVOCATE.TDF">ADVOCATE</option>
-        <option id="FONTNUM27" value="FONTS/AFTRDARX.TDF">AFTRDARX</option>
-        <option id="FONTNUM28" value="FONTS/AFTRHOUX.TDF">AFTRHOUX</option>
-        <option id="FONTNUM29" value="FONTS/AGONY.TDF">AGONY</option>
-        <option id="FONTNUM30" value="FONTS/AGONY2X.TDF">AGONY2X</option>
-        <option id="FONTNUM31" value="FONTS/ALCHEMYX.TDF">ALCHEMYX</option>
-        <option id="FONTNUM32" value="FONTS/ALFHEIMX.TDF">ALFHEIMX</option>
-        <option id="FONTNUM33" value="FONTS/ALIENLED.TDF">ALIENLED</option>
-        <option id="FONTNUM34" value="FONTS/ALIGATR2.TDF">ALIGATR2</option>
-        <option id="FONTNUM35" value="FONTS/ALPHAX.TDF">ALPHAX</option>
-        <option id="FONTNUM36" value="FONTS/AMAZONX.TDF">AMAZONX</option>
-        <option id="FONTNUM37" value="FONTS/AMBUSH2.TDF">AMBUSH2</option>
-        <option id="FONTNUM38" value="FONTS/AMBUSHS.TDF">AMBUSHS</option>
-        <option id="FONTNUM39" value="FONTS/AMBUSHX.TDF">AMBUSHX</option>
-        <option id="FONTNUM40" value="FONTS/AMCNEKO.TDF">AMCNEKO</option>
-        <option id="FONTNUM41" value="FONTS/AMCSLASH.TDF">AMCSLASH</option>
-        <option id="FONTNUM42" value="FONTS/AMNESIA.TDF">AMNESIA</option>
-        <option id="FONTNUM43" value="FONTS/AMNESIAX.TDF">AMNESIAX</option>
-        <option id="FONTNUM44" value="FONTS/ANARCHYX.TDF">ANARCHYX</option>
-        <option id="FONTNUM45" value="FONTS/ANDROMED.TDF">ANDROMED</option>
-        <option id="FONTNUM46" value="FONTS/ANEMIAX.TDF">ANEMIAX</option>
-        <option id="FONTNUM47" value="FONTS/ANEMIAXX.TDF">ANEMIAXX</option>
-        <option id="FONTNUM48" value="FONTS/ANGLDUST.TDF">ANGLDUST</option>
-        <option id="FONTNUM49" value="FONTS/ANNIVERX.TDF">ANNIVERX</option>
-        <option id="FONTNUM50" value="FONTS/ANOMALIX.TDF">ANOMALIX</option>
-        <option id="FONTNUM51" value="FONTS/ANSILTR2.TDF">ANSILTR2</option>
-        <option id="FONTNUM52" value="FONTS/ANSILTR3.TDF">ANSILTR3</option>
-        <option id="FONTNUM53" value="FONTS/ANSILTR4.TDF">ANSILTR4</option>
-        <option id="FONTNUM54" value="FONTS/ANSILTR5.TDF">ANSILTR5</option>
-        <option id="FONTNUM55" value="FONTS/ANTRFONT.TDF">ANTRFONT</option>
-        <option id="FONTNUM56" value="FONTS/APOCAL2X.TDF">APOCAL2X</option>
-        <option id="FONTNUM57" value="FONTS/APOTM.TDF">APOTM</option>
-        <option id="FONTNUM58" value="FONTS/APOVISNX.TDF">APOVISNX</option>
-        <option id="FONTNUM59" value="FONTS/APPOCALX.TDF">APPOCALX</option>
-        <option id="FONTNUM60" value="FONTS/ARCANE.TDF">ARCANE</option>
-        <option id="FONTNUM61" value="FONTS/ARCHANA.TDF">ARCHANA</option>
-        <option id="FONTNUM62" value="FONTS/AREACONX.TDF">AREACONX</option>
-        <option id="FONTNUM63" value="FONTS/AREAX.TDF">AREAX</option>
-        <option id="FONTNUM64" value="FONTS/ARMAGDNX.TDF">ARMAGDNX</option>
-        <option id="FONTNUM65" value="FONTS/ASCII.TDF">ASCII</option>
-        <option id="FONTNUM66" value="FONTS/ASCII_2.TDF">ASCII_2</option>
-        <option id="FONTNUM67" value="FONTS/ASSYLUM.TDF">ASSYLUM</option>
-        <option id="FONTNUM68" value="FONTS/ASSYLUMX.TDF">ASSYLUMX</option>
-        <option id="FONTNUM69" value="FONTS/ASTRONMX.TDF">ASTRONMX</option>
-        <option id="FONTNUM70" value="FONTS/ASYLUMX.TDF">ASYLUMX</option>
-        <option id="FONTNUM71" value="FONTS/ATBX.TDF">ATBX</option>
-        <option id="FONTNUM72" value="FONTS/ATLANSMX.TDF">ATLANSMX</option>
-        <option id="FONTNUM73" value="FONTS/ATLANTIX.TDF">ATLANTIX</option>
-        <option id="FONTNUM74" value="FONTS/ATOMICX.TDF">ATOMICX</option>
-        <option id="FONTNUM75" value="FONTS/ATOMX.TDF">ATOMX</option>
-        <option id="FONTNUM76" value="FONTS/ATTITUDX.TDF">ATTITUDX</option>
-        <option id="FONTNUM77" value="FONTS/AUDIOFIL.TDF">AUDIOFIL</option>
-        <option id="FONTNUM78" value="FONTS/BADLANDX.TDF">BADLANDX</option>
-        <option id="FONTNUM79" value="FONTS/BALISTCX.TDF">BALISTCX</option>
-        <option id="FONTNUM80" value="FONTS/BAMBOOSX.TDF">BAMBOOSX</option>
-        <option id="FONTNUM81" value="FONTS/BANSHEE.TDF">BANSHEE</option>
-        <option id="FONTNUM82" value="FONTS/BANSHEEX.TDF">BANSHEEX</option>
-        <option id="FONTNUM83" value="FONTS/BASIC.TDF">BASIC</option>
-        <option id="FONTNUM84" value="FONTS/BBSTX.TDF">BBSTX</option>
-        <option id="FONTNUM85" value="FONTS/BEAST.TDF">BEAST</option>
-        <option id="FONTNUM86" value="FONTS/BELFASTX.TDF">BELFASTX</option>
-        <option id="FONTNUM87" value="FONTS/BEVISIOX.TDF">BEVISIOX</option>
-        <option id="FONTNUM88" value="FONTS/BEYOND2X.TDF">BEYOND2X</option>
-        <option id="FONTNUM89" value="FONTS/BEYONDX.TDF">BEYONDX</option>
-        <option id="FONTNUM90" value="FONTS/BIGICE_F.TDF">BIGICE_F</option>
-        <option id="FONTNUM91" value="FONTS/BIGL2.TDF">BIGL2</option>
-        <option id="FONTNUM92" value="FONTS/BIGLIMPY.TDF">BIGLIMPY</option>
-        <option id="FONTNUM93" value="FONTS/BIGOUT.TDF">BIGOUT</option>
-        <option id="FONTNUM94" value="FONTS/BIOHAZRX.TDF">BIOHAZRX</option>
-        <option id="FONTNUM95" value="FONTS/BISMARCX.TDF">BISMARCX</option>
-        <option id="FONTNUM96" value="FONTS/BITCHVRX.TDF">BITCHVRX</option>
-        <option id="FONTNUM97" value="FONTS/BIZARRAX.TDF">BIZARRAX</option>
-        <option id="FONTNUM98" value="FONTS/BLACKSUN.TDF">BLACKSUN</option>
-        <option id="FONTNUM99" value="FONTS/BLACKSUX.TDF">BLACKSUX</option>
-        <option id="FONTNUM100" value="FONTS/BLACKX.TDF">BLACKX</option>
-        <option id="FONTNUM101" value="FONTS/BLADEX.TDF">BLADEX</option>
-        <option id="FONTNUM102" value="FONTS/BLAH.TDF">BLAH</option>
-        <option id="FONTNUM103" value="FONTS/BLAHX.TDF">BLAHX</option>
-        <option id="FONTNUM104" value="FONTS/BLCKSUNX.TDF">BLCKSUNX</option>
-        <option id="FONTNUM105" value="FONTS/BLCKTRNC.TDF">BLCKTRNC</option>
-        <option id="FONTNUM106" value="FONTS/BLEACH.TDF">BLEACH</option>
-        <option id="FONTNUM107" value="FONTS/BLENDR1X.TDF">BLENDR1X</option>
-        <option id="FONTNUM108" value="FONTS/BLENDR2X.TDF">BLENDR2X</option>
-        <option id="FONTNUM109" value="FONTS/BLEVX.TDF">BLEVX</option>
-        <option id="FONTNUM110" value="FONTS/BLISTERX.TDF">BLISTERX</option>
-        <option id="FONTNUM111" value="FONTS/BLOCK.TDF">BLOCK</option>
-        <option id="FONTNUM112" value="FONTS/BLOCK3D.TDF">BLOCK3D</option>
-        <option id="FONTNUM113" value="FONTS/BLOCK3DX.TDF">BLOCK3DX</option>
-        <option id="FONTNUM114" value="FONTS/BLOODLG.TDF">BLOODLG</option>
-        <option id="FONTNUM115" value="FONTS/BLOODLGC.TDF">BLOODLGC</option>
-        <option id="FONTNUM116" value="FONTS/BLOODSMC.TDF">BLOODSMC</option>
-        <option id="FONTNUM117" value="FONTS/BLOODSML.TDF">BLOODSML</option>
-        <option id="FONTNUM118" value="FONTS/BLOODYX.TDF">BLOODYX</option>
-        <option id="FONTNUM119" value="FONTS/BLUEESCX.TDF">BLUEESCX</option>
-        <option id="FONTNUM120" value="FONTS/BLUNDER.TDF">BLUNDER</option>
-        <option id="FONTNUM121" value="FONTS/BLUNDERS.TDF">BLUNDERS</option>
-        <option id="FONTNUM122" value="FONTS/BLWTORCX.TDF">BLWTORCX</option>
-        <option id="FONTNUM123" value="FONTS/BOARDX.TDF">BOARDX</option>
-        <option id="FONTNUM124" value="FONTS/BODILY.TDF">BODILY</option>
-        <option id="FONTNUM125" value="FONTS/BODYCNT.TDF">BODYCNT</option>
-        <option id="FONTNUM126" value="FONTS/BODYCNTX.TDF">BODYCNTX</option>
-        <option id="FONTNUM127" value="FONTS/BODYELEX.TDF">BODYELEX</option>
-        <option id="FONTNUM128" value="FONTS/BOILPONT.TDF">BOILPONT</option>
-        <option id="FONTNUM129" value="FONTS/BOLDME.TDF">BOLDME</option>
-        <option id="FONTNUM130" value="FONTS/BOLGER.TDF">BOLGER</option>
-        <option id="FONTNUM131" value="FONTS/BOLLUX.TDF">BOLLUX</option>
-        <option id="FONTNUM132" value="FONTS/BOLLUXX.TDF">BOLLUXX</option>
-        <option id="FONTNUM133" value="FONTS/BONERX.TDF">BONERX</option>
-        <option id="FONTNUM134" value="FONTS/BONEX.TDF">BONEX</option>
-        <option id="FONTNUM135" value="FONTS/BONGX.TDF">BONGX</option>
-        <option id="FONTNUM136" value="FONTS/BOW.TDF">BOW</option>
-        <option id="FONTNUM137" value="FONTS/BOXFIGHT.TDF">BOXFIGHT</option>
-        <option id="FONTNUM138" value="FONTS/BRAVEX.TDF">BRAVEX</option>
-        <option id="FONTNUM139" value="FONTS/BRAZENX.TDF">BRAZENX</option>
-        <option id="FONTNUM140" value="FONTS/BREACHX.TDF">BREACHX</option>
-        <option id="FONTNUM141" value="FONTS/BREAKX.TDF">BREAKX</option>
-        <option id="FONTNUM142" value="FONTS/BREX.TDF">BREX</option>
-        <option id="FONTNUM143" value="FONTS/BRICKX.TDF">BRICKX</option>
-        <option id="FONTNUM144" value="FONTS/BRINK.TDF">BRINK</option>
-        <option id="FONTNUM145" value="FONTS/BRINKX.TDF">BRINKX</option>
-        <option id="FONTNUM146" value="FONTS/BRNDAMGX.TDF">BRNDAMGX</option>
-        <option id="FONTNUM147" value="FONTS/BROADWAY.TDF">BROADWAY</option>
-        <option id="FONTNUM148" value="FONTS/BROKENX.TDF">BROKENX</option>
-        <option id="FONTNUM149" value="FONTS/BROKNSRT.TDF">BROKNSRT</option>
-        <option id="FONTNUM150" value="FONTS/BROTHOOD.TDF">BROTHOOD</option>
-        <option id="FONTNUM151" value="FONTS/BUBA.TDF">BUBA</option>
-        <option id="FONTNUM152" value="FONTS/BUBACOL.TDF">BUBACOL</option>
-        <option id="FONTNUM153" value="FONTS/BUFFALO.TDF">BUFFALO</option>
-        <option id="FONTNUM154" value="FONTS/BURNINGX.TDF">BURNINGX</option>
-        <option id="FONTNUM155" value="FONTS/CAFEX.TDF">CAFEX</option>
-        <option id="FONTNUM156" value="FONTS/CALIFORX.TDF">CALIFORX</option>
-        <option id="FONTNUM157" value="FONTS/CALVIN.TDF">CALVIN</option>
-        <option id="FONTNUM158" value="FONTS/CALVIN_L.TDF">CALVIN_L</option>
-        <option id="FONTNUM159" value="FONTS/CALVIN_S.TDF">CALVIN_S</option>
-        <option id="FONTNUM160" value="FONTS/CAPITALX.TDF">CAPITALX</option>
-        <option id="FONTNUM161" value="FONTS/CARBONX.TDF">CARBONX</option>
-        <option id="FONTNUM162" value="FONTS/CARDINAX.TDF">CARDINAX</option>
-        <option id="FONTNUM163" value="FONTS/CARTELX.TDF">CARTELX</option>
-        <option id="FONTNUM164" value="FONTS/CARTOON.TDF">CARTOON</option>
-        <option id="FONTNUM165" value="FONTS/CASINOX.TDF">CASINOX</option>
-        <option id="FONTNUM166" value="FONTS/CASTLEX.TDF">CASTLEX</option>
-        <option id="FONTNUM167" value="FONTS/CATLKINX.TDF">CATLKINX</option>
-        <option id="FONTNUM168" value="FONTS/CATTLEX.TDF">CATTLEX</option>
-        <option id="FONTNUM169" value="FONTS/CCINX.TDF">CCINX</option>
-        <option id="FONTNUM170" value="FONTS/CELERTYX.TDF">CELERTYX</option>
-        <option id="FONTNUM171" value="FONTS/CEMETARY.TDF">CEMETARY</option>
-        <option id="FONTNUM172" value="FONTS/CESSPOOX.TDF">CESSPOOX</option>
-        <option id="FONTNUM173" value="FONTS/CFH-AMIG.TDF">CFH-AMIG</option>
-        <option id="FONTNUM174" value="FONTS/CFH-HOER.TDF">CFH-HOER</option>
-        <option id="FONTNUM175" value="FONTS/CFH-HORX.TDF">CFH-HORX</option>
-        <option id="FONTNUM176" value="FONTS/CFH-SNOW.TDF">CFH-SNOW</option>
-        <option id="FONTNUM177" value="FONTS/CFH-SNWX.TDF">CFH-SNWX</option>
-        <option id="FONTNUM178" value="FONTS/CHAMBERX.TDF">CHAMBERX</option>
-        <option id="FONTNUM179" value="FONTS/CHANNELX.TDF">CHANNELX</option>
-        <option id="FONTNUM180" value="FONTS/CHAOS2X.TDF">CHAOS2X</option>
-        <option id="FONTNUM181" value="FONTS/CHAOSENX.TDF">CHAOSENX</option>
-        <option id="FONTNUM182" value="FONTS/CHAOTICX.TDF">CHAOTICX</option>
-        <option id="FONTNUM183" value="FONTS/CHAZERGX.TDF">CHAZERGX</option>
-        <option id="FONTNUM184" value="FONTS/CHILDREN.TDF">CHILDREN</option>
-        <option id="FONTNUM185" value="FONTS/CHNLZERO.TDF">CHNLZERO</option>
-        <option id="FONTNUM186" value="FONTS/CHROMAX.TDF">CHROMAX</option>
-        <option id="FONTNUM187" value="FONTS/CHRONOX.TDF">CHRONOX</option>
-        <option id="FONTNUM188" value="FONTS/CHURCHX.TDF">CHURCHX</option>
-        <option id="FONTNUM189" value="FONTS/CIAFONTX.TDF">CIAFONTX</option>
-        <option id="FONTNUM190" value="FONTS/CIRCUTSX.TDF">CIRCUTSX</option>
-        <option id="FONTNUM191" value="FONTS/CITYX.TDF">CITYX</option>
-        <option id="FONTNUM192" value="FONTS/CLASSIC.TDF">CLASSIC</option>
-        <option id="FONTNUM193" value="FONTS/CLDCITYX.TDF">CLDCITYX</option>
-        <option id="FONTNUM194" value="FONTS/CLOSEDX.TDF">CLOSEDX</option>
-        <option id="FONTNUM195" value="FONTS/CNERIP.TDF">CNERIP</option>
-        <option id="FONTNUM196" value="FONTS/CODERX.TDF">CODERX</option>
-        <option id="FONTNUM197" value="FONTS/CODEX.TDF">CODEX</option>
-        <option id="FONTNUM198" value="FONTS/COLONY.TDF">COLONY</option>
-        <option id="FONTNUM199" value="FONTS/COLOR.TDF">COLOR</option>
-        <option id="FONTNUM200" value="FONTS/COLORHRD.TDF">COLORHRD</option>
-        <option id="FONTNUM201" value="FONTS/COLOR_.TDF">COLOR_</option>
-        <option id="FONTNUM202" value="FONTS/COLOSALL.TDF">COLOSALL</option>
-        <option id="FONTNUM203" value="FONTS/COLOSCOL.TDF">COLOSCOL</option>
-        <option id="FONTNUM204" value="FONTS/COLOSEUX.TDF">COLOSEUX</option>
-        <option id="FONTNUM205" value="FONTS/COLOSSAL.TDF">COLOSSAL</option>
-        <option id="FONTNUM206" value="FONTS/COLOURSX.TDF">COLOURSX</option>
-        <option id="FONTNUM207" value="FONTS/COMMODRE.TDF">COMMODRE</option>
-        <option id="FONTNUM208" value="FONTS/COMMX.TDF">COMMX</option>
-        <option id="FONTNUM209" value="FONTS/COMPACT.TDF">COMPACT</option>
-        <option id="FONTNUM210" value="FONTS/COMPFIGL.TDF">COMPFIGL</option>
-        <option id="FONTNUM211" value="FONTS/COMPUTRX.TDF">COMPUTRX</option>
-        <option id="FONTNUM212" value="FONTS/CONSOLEX.TDF">CONSOLEX</option>
-        <option id="FONTNUM213" value="FONTS/CONTINUX.TDF">CONTINUX</option>
-        <option id="FONTNUM214" value="FONTS/CONVULSX.TDF">CONVULSX</option>
-        <option id="FONTNUM215" value="FONTS/COP-BH.TDF">COP-BH</option>
-        <option id="FONTNUM216" value="FONTS/COP_CH1.TDF">COP_CH1</option>
-        <option id="FONTNUM217" value="FONTS/COROSV2X.TDF">COROSV2X</option>
-        <option id="FONTNUM218" value="FONTS/CORPSE.TDF">CORPSE</option>
-        <option id="FONTNUM219" value="FONTS/CORROSOX.TDF">CORROSOX</option>
-        <option id="FONTNUM220" value="FONTS/CORUPTNX.TDF">CORUPTNX</option>
-        <option id="FONTNUM221" value="FONTS/COSMIC.TDF">COSMIC</option>
-        <option id="FONTNUM222" value="FONTS/COSMICCO.TDF">COSMICCO</option>
-        <option id="FONTNUM223" value="FONTS/COUNTX.TDF">COUNTX</option>
-        <option id="FONTNUM224" value="FONTS/COURIERX.TDF">COURIERX</option>
-        <option id="FONTNUM225" value="FONTS/CR-X.TDF">CR-X</option>
-        <option id="FONTNUM226" value="FONTS/CRAZEDX.TDF">CRAZEDX</option>
-        <option id="FONTNUM227" value="FONTS/CREATIOX.TDF">CREATIOX</option>
-        <option id="FONTNUM228" value="FONTS/CREATORX.TDF">CREATORX</option>
-        <option id="FONTNUM229" value="FONTS/CREEPX.TDF">CREEPX</option>
-        <option id="FONTNUM230" value="FONTS/CREST.TDF">CREST</option>
-        <option id="FONTNUM231" value="FONTS/CRESTCLX.TDF">CRESTCLX</option>
-        <option id="FONTNUM232" value="FONTS/CREWELX.TDF">CREWELX</option>
-        <option id="FONTNUM233" value="FONTS/CRICKET.TDF">CRICKET</option>
-        <option id="FONTNUM234" value="FONTS/CRIMRINX.TDF">CRIMRINX</option>
-        <option id="FONTNUM235" value="FONTS/CRIMSON.TDF">CRIMSON</option>
-        <option id="FONTNUM236" value="FONTS/CRISISX.TDF">CRISISX</option>
-        <option id="FONTNUM237" value="FONTS/CROSROAX.TDF">CROSROAX</option>
-        <option id="FONTNUM238" value="FONTS/CRYPTIC.TDF">CRYPTIC</option>
-        <option id="FONTNUM239" value="FONTS/CRYSTALX.TDF">CRYSTALX</option>
-        <option id="FONTNUM240" value="FONTS/CRZYMADX.TDF">CRZYMADX</option>
-        <option id="FONTNUM241" value="FONTS/CYANIDX.TDF">CYANIDX</option>
-        <option id="FONTNUM242" value="FONTS/CYBCRTWX.TDF">CYBCRTWX</option>
-        <option id="FONTNUM243" value="FONTS/CYBERA2X.TDF">CYBERA2X</option>
-        <option id="FONTNUM244" value="FONTS/CYBERIA1.TDF">CYBERIA1</option>
-        <option id="FONTNUM245" value="FONTS/CYBERLRG.TDF">CYBERLRG</option>
-        <option id="FONTNUM246" value="FONTS/CYBERNX.TDF">CYBERNX</option>
-        <option id="FONTNUM247" value="FONTS/CYBERRRX.TDF">CYBERRRX</option>
-        <option id="FONTNUM248" value="FONTS/CYBERWRX.TDF">CYBERWRX</option>
-        <option id="FONTNUM249" value="FONTS/CYBERWX.TDF">CYBERWX</option>
-        <option id="FONTNUM250" value="FONTS/CYBLARGE.TDF">CYBLARGE</option>
-        <option id="FONTNUM251" value="FONTS/CYBMEDUM.TDF">CYBMEDUM</option>
-        <option id="FONTNUM252" value="FONTS/CYBRCRME.TDF">CYBRCRME</option>
-        <option id="FONTNUM253" value="FONTS/CYBRFRCX.TDF">CYBRFRCX</option>
-        <option id="FONTNUM254" value="FONTS/CYBSMALL.TDF">CYBSMALL</option>
-        <option id="FONTNUM255" value="FONTS/DAMAGEX.TDF">DAMAGEX</option>
-        <option id="FONTNUM256" value="FONTS/DAMNATNX.TDF">DAMNATNX</option>
-        <option id="FONTNUM257" value="FONTS/DAMNEDX.TDF">DAMNEDX</option>
-        <option id="FONTNUM258" value="FONTS/DANGERFX.TDF">DANGERFX</option>
-        <option id="FONTNUM259" value="FONTS/DANGERX.TDF">DANGERX</option>
-        <option id="FONTNUM260" value="FONTS/DARK.TDF">DARK</option>
-        <option id="FONTNUM261" value="FONTS/DARKCRUX.TDF">DARKCRUX</option>
-        <option id="FONTNUM262" value="FONTS/DARKERS1.TDF">DARKERS1</option>
-        <option id="FONTNUM263" value="FONTS/DARKERS2.TDF">DARKERS2</option>
-        <option id="FONTNUM264" value="FONTS/DARKLANX.TDF">DARKLANX</option>
-        <option id="FONTNUM265" value="FONTS/DARKLITX.TDF">DARKLITX</option>
-        <option id="FONTNUM266" value="FONTS/DARKMOON.TDF">DARKMOON</option>
-        <option id="FONTNUM267" value="FONTS/DARKN2SX.TDF">DARKN2SX</option>
-        <option id="FONTNUM268" value="FONTS/DARKNSES.TDF">DARKNSES</option>
-        <option id="FONTNUM269" value="FONTS/DARKSIDX.TDF">DARKSIDX</option>
-        <option id="FONTNUM270" value="FONTS/DARKSUN.TDF">DARKSUN</option>
-        <option id="FONTNUM271" value="FONTS/DARKSUNX.TDF">DARKSUNX</option>
-        <option id="FONTNUM272" value="FONTS/DARKTWO.TDF">DARKTWO</option>
-        <option id="FONTNUM273" value="FONTS/DARRELL.TDF">DARRELL</option>
-        <option id="FONTNUM274" value="FONTS/DARRELLX.TDF">DARRELLX</option>
-        <option id="FONTNUM275" value="FONTS/DCFONT.TDF">DCFONT</option>
-        <option id="FONTNUM276" value="FONTS/DCP_1.TDF">DCP_1</option>
-        <option id="FONTNUM277" value="FONTS/DEADRELM.TDF">DEADRELM</option>
-        <option id="FONTNUM278" value="FONTS/DEADSTAR.TDF">DEADSTAR</option>
-        <option id="FONTNUM279" value="FONTS/DEADSTRX.TDF">DEADSTRX</option>
-        <option id="FONTNUM280" value="FONTS/DEATH.TDF">DEATH</option>
-        <option id="FONTNUM281" value="FONTS/DEATHROW.TDF">DEATHROW</option>
-        <option id="FONTNUM282" value="FONTS/DEATHX.TDF">DEATHX</option>
-        <option id="FONTNUM283" value="FONTS/DEEP.TDF">DEEP</option>
-        <option id="FONTNUM284" value="FONTS/DEFLEPRD.TDF">DEFLEPRD</option>
-        <option id="FONTNUM285" value="FONTS/DELLX.TDF">DELLX</option>
-        <option id="FONTNUM286" value="FONTS/DELUSION.TDF">DELUSION</option>
-        <option id="FONTNUM287" value="FONTS/DEMONCLX.TDF">DEMONCLX</option>
-        <option id="FONTNUM288" value="FONTS/DEMONIC.TDF">DEMONIC</option>
-        <option id="FONTNUM289" value="FONTS/DENIED.TDF">DENIED</option>
-        <option id="FONTNUM290" value="FONTS/DESCENTX.TDF">DESCENTX</option>
-        <option id="FONTNUM291" value="FONTS/DESCNTSX.TDF">DESCNTSX</option>
-        <option id="FONTNUM292" value="FONTS/DESERTX.TDF">DESERTX</option>
-        <option id="FONTNUM293" value="FONTS/DESNUDO.TDF">DESNUDO</option>
-        <option id="FONTNUM294" value="FONTS/DESTINX.TDF">DESTINX</option>
-        <option id="FONTNUM295" value="FONTS/DESTNY2X.TDF">DESTNY2X</option>
-        <option id="FONTNUM296" value="FONTS/DESTRUCX.TDF">DESTRUCX</option>
-        <option id="FONTNUM297" value="FONTS/DEVELOPX.TDF">DEVELOPX</option>
-        <option id="FONTNUM298" value="FONTS/DGMOTIOX.TDF">DGMOTIOX</option>
-        <option id="FONTNUM299" value="FONTS/DIGITAL2.TDF">DIGITAL2</option>
-        <option id="FONTNUM300" value="FONTS/DIGITALX.TDF">DIGITALX</option>
-        <option id="FONTNUM301" value="FONTS/DIGITX.TDF">DIGITX</option>
-        <option id="FONTNUM302" value="FONTS/DIGX.TDF">DIGX</option>
-        <option id="FONTNUM303" value="FONTS/DIMENTOX.TDF">DIMENTOX</option>
-        <option id="FONTNUM304" value="FONTS/DIMSBOLX.TDF">DIMSBOLX</option>
-        <option id="FONTNUM305" value="FONTS/DIMSSLIM.TDF">DIMSSLIM</option>
-        <option id="FONTNUM306" value="FONTS/DIMSSLIX.TDF">DIMSSLIX</option>
-        <option id="FONTNUM307" value="FONTS/DISSIMUX.TDF">DISSIMUX</option>
-        <option id="FONTNUM308" value="FONTS/DISTREAX.TDF">DISTREAX</option>
-        <option id="FONTNUM309" value="FONTS/DOLCEX.TDF">DOLCEX</option>
-        <option id="FONTNUM310" value="FONTS/DOMINION.TDF">DOMINION</option>
-        <option id="FONTNUM311" value="FONTS/DOMINIOX.TDF">DOMINIOX</option>
-        <option id="FONTNUM312" value="FONTS/DONNOW.TDF">DONNOW</option>
-        <option id="FONTNUM313" value="FONTS/DOORSX.TDF">DOORSX</option>
-        <option id="FONTNUM314" value="FONTS/DOPE.TDF">DOPE</option>
-        <option id="FONTNUM315" value="FONTS/DOSREBEL.TDF">DOSREBEL</option>
-        <option id="FONTNUM316" value="FONTS/DOWNFALX.TDF">DOWNFALX</option>
-        <option id="FONTNUM317" value="FONTS/DRAGON2X.TDF">DRAGON2X</option>
-        <option id="FONTNUM318" value="FONTS/DRAGONX.TDF">DRAGONX</option>
-        <option id="FONTNUM319" value="FONTS/DREADLK.TDF">DREADLK</option>
-        <option id="FONTNUM320" value="FONTS/DREAM.TDF">DREAM</option>
-        <option id="FONTNUM321" value="FONTS/DREAMLDS.TDF">DREAMLDS</option>
-        <option id="FONTNUM322" value="FONTS/DREAMLNX.TDF">DREAMLNX</option>
-        <option id="FONTNUM323" value="FONTS/DREAMLSX.TDF">DREAMLSX</option>
-        <option id="FONTNUM324" value="FONTS/DRGX.TDF">DRGX</option>
-        <option id="FONTNUM325" value="FONTS/DRKERS1X.TDF">DRKERS1X</option>
-        <option id="FONTNUM326" value="FONTS/DRKERS2X.TDF">DRKERS2X</option>
-        <option id="FONTNUM327" value="FONTS/DRKIMAGX.TDF">DRKIMAGX</option>
-        <option id="FONTNUM328" value="FONTS/DRKMOONX.TDF">DRKMOONX</option>
-        <option id="FONTNUM329" value="FONTS/DRKREALM.TDF">DRKREALM</option>
-        <option id="FONTNUM330" value="FONTS/DRKSOCTY.TDF">DRKSOCTY</option>
-        <option id="FONTNUM331" value="FONTS/DROME.TDF">DROME</option>
-        <option id="FONTNUM332" value="FONTS/DRUMSX.TDF">DRUMSX</option>
-        <option id="FONTNUM333" value="FONTS/DSKTDWNX.TDF">DSKTDWNX</option>
-        <option id="FONTNUM334" value="FONTS/DUNGEON2.TDF">DUNGEON2</option>
-        <option id="FONTNUM335" value="FONTS/DUNGEONX.TDF">DUNGEONX</option>
-        <option id="FONTNUM336" value="FONTS/DUSTNBNX.TDF">DUSTNBNX</option>
-        <option id="FONTNUM337" value="FONTS/DYNASTY.TDF">DYNASTY</option>
-        <option id="FONTNUM338" value="FONTS/DYNASTYX.TDF">DYNASTYX</option>
-        <option id="FONTNUM339" value="FONTS/EATMEX.TDF">EATMEX</option>
-        <option id="FONTNUM340" value="FONTS/EBERUSX.TDF">EBERUSX</option>
-        <option id="FONTNUM341" value="FONTS/ECLIPSE2.TDF">ECLIPSE2</option>
-        <option id="FONTNUM342" value="FONTS/ECLIPSEX.TDF">ECLIPSEX</option>
-        <option id="FONTNUM343" value="FONTS/ECLPSE2X.TDF">ECLPSE2X</option>
-        <option id="FONTNUM344" value="FONTS/ECOX.TDF">ECOX</option>
-        <option id="FONTNUM345" value="FONTS/ELEUTHIX.TDF">ELEUTHIX</option>
-        <option id="FONTNUM346" value="FONTS/ELEVENTH.TDF">ELEVENTH</option>
-        <option id="FONTNUM347" value="FONTS/ELITE.TDF">ELITE</option>
-        <option id="FONTNUM348" value="FONTS/ELUSIVEX.TDF">ELUSIVEX</option>
-        <option id="FONTNUM349" value="FONTS/EMBERX.TDF">EMBERX</option>
-        <option id="FONTNUM350" value="FONTS/EMPI.TDF">EMPI</option>
-        <option id="FONTNUM351" value="FONTS/EMPIRESX.TDF">EMPIRESX</option>
-        <option id="FONTNUM352" value="FONTS/EMSX.TDF">EMSX</option>
-        <option id="FONTNUM353" value="FONTS/ENDLESS.TDF">ENDLESS</option>
-        <option id="FONTNUM354" value="FONTS/ENERGYX.TDF">ENERGYX</option>
-        <option id="FONTNUM355" value="FONTS/ERTHBND2.TDF">ERTHBND2</option>
-        <option id="FONTNUM356" value="FONTS/ERTHBOND.TDF">ERTHBOND</option>
-        <option id="FONTNUM357" value="FONTS/ESCAPE2.TDF">ESCAPE2</option>
-        <option id="FONTNUM358" value="FONTS/ESCAPEX.TDF">ESCAPEX</option>
-        <option id="FONTNUM359" value="FONTS/ETERNA2X.TDF">ETERNA2X</option>
-        <option id="FONTNUM360" value="FONTS/ETERNAL2.TDF">ETERNAL2</option>
-        <option id="FONTNUM361" value="FONTS/ETERNALX.TDF">ETERNALX</option>
-        <option id="FONTNUM362" value="FONTS/ETERNITX.TDF">ETERNITX</option>
-        <option id="FONTNUM363" value="FONTS/ETHERX.TDF">ETHERX</option>
-        <option id="FONTNUM364" value="FONTS/EUPHORIX.TDF">EUPHORIX</option>
-        <option id="FONTNUM365" value="FONTS/EVILX.TDF">EVILX</option>
-        <option id="FONTNUM366" value="FONTS/EVLACIDX.TDF">EVLACIDX</option>
-        <option id="FONTNUM367" value="FONTS/EVOLUTX.TDF">EVOLUTX</option>
-        <option id="FONTNUM368" value="FONTS/EVOLVE.TDF">EVOLVE</option>
-        <option id="FONTNUM369" value="FONTS/EXILANSA.TDF">EXILANSA</option>
-        <option id="FONTNUM370" value="FONTS/EXILE.TDF">EXILE</option>
-        <option id="FONTNUM371" value="FONTS/EXILIANS.TDF">EXILIANS</option>
-        <option id="FONTNUM372" value="FONTS/EXODUS2X.TDF">EXODUS2X</option>
-        <option id="FONTNUM373" value="FONTS/EXODUSX.TDF">EXODUSX</option>
-        <option id="FONTNUM374" value="FONTS/EXPLORAX.TDF">EXPLORAX</option>
-        <option id="FONTNUM375" value="FONTS/EXPLOSOX.TDF">EXPLOSOX</option>
-        <option id="FONTNUM376" value="FONTS/EXTASYX.TDF">EXTASYX</option>
-        <option id="FONTNUM377" value="FONTS/FA-2.TDF">FA-2</option>
-        <option id="FONTNUM378" value="FONTS/FADE-1.TDF">FADE-1</option>
-        <option id="FONTNUM379" value="FONTS/FADE-2.TDF">FADE-2</option>
-        <option id="FONTNUM380" value="FONTS/FAITHX.TDF">FAITHX</option>
-        <option id="FONTNUM381" value="FONTS/FALCONSX.TDF">FALCONSX</option>
-        <option id="FONTNUM382" value="FONTS/FANTASYX.TDF">FANTASYX</option>
-        <option id="FONTNUM383" value="FONTS/FASTLANE.TDF">FASTLANE</option>
-        <option id="FONTNUM384" value="FONTS/FATALX.TDF">FATALX</option>
-        <option id="FONTNUM385" value="FONTS/FB-COLDX.TDF">FB-COLDX</option>
-        <option id="FONTNUM386" value="FONTS/FB-FOGFT.TDF">FB-FOGFT</option>
-        <option id="FONTNUM387" value="FONTS/FB-GOTHX.TDF">FB-GOTHX</option>
-        <option id="FONTNUM388" value="FONTS/FB-GRAYX.TDF">FB-GRAYX</option>
-        <option id="FONTNUM389" value="FONTS/FB-ICEFX.TDF">FB-ICEFX</option>
-        <option id="FONTNUM390" value="FONTS/FB-LINE.TDF">FB-LINE</option>
-        <option id="FONTNUM391" value="FONTS/FB-OLDSD.TDF">FB-OLDSD</option>
-        <option id="FONTNUM392" value="FONTS/FB-REDSD.TDF">FB-REDSD</option>
-        <option id="FONTNUM393" value="FONTS/FBR.TDF">FBR</option>
-        <option id="FONTNUM394" value="FONTS/FBRX.TDF">FBRX</option>
-        <option id="FONTNUM395" value="FONTS/FEAR.TDF">FEAR</option>
-        <option id="FONTNUM396" value="FONTS/FIBERX.TDF">FIBERX</option>
-        <option id="FONTNUM397" value="FONTS/FIELDS.TDF">FIELDS</option>
-        <option id="FONTNUM398" value="FONTS/FILEX.TDF">FILEX</option>
-        <option id="FONTNUM399" value="FONTS/FINAL.TDF">FINAL</option>
-        <option id="FONTNUM400" value="FONTS/FINDEST2.TDF">FINDEST2</option>
-        <option id="FONTNUM401" value="FONTS/FINDSTYX.TDF">FINDSTYX</option>
-        <option id="FONTNUM402" value="FONTS/FINE.TDF">FINE</option>
-        <option id="FONTNUM403" value="FONTS/FINEST.TDF">FINEST</option>
-        <option id="FONTNUM404" value="FONTS/FINESTX.TDF">FINESTX</option>
-        <option id="FONTNUM405" value="FONTS/FIRE.TDF">FIRE</option>
-        <option id="FONTNUM406" value="FONTS/FISHBOWL.TDF">FISHBOWL</option>
-        <option id="FONTNUM407" value="FONTS/FLAREX.TDF">FLAREX</option>
-        <option id="FONTNUM408" value="FONTS/FLATLINE.TDF">FLATLINE</option>
-        <option id="FONTNUM409" value="FONTS/FOCSPOPX.TDF">FOCSPOPX</option>
-        <option id="FONTNUM410" value="FONTS/FONT1.TDF">FONT1</option>
-        <option id="FONTNUM411" value="FONTS/FONT10.TDF">FONT10</option>
-        <option id="FONTNUM412" value="FONTS/FONT11.TDF">FONT11</option>
-        <option id="FONTNUM413" value="FONTS/FONT12X.TDF">FONT12X</option>
-        <option id="FONTNUM414" value="FONTS/FONT13.TDF">FONT13</option>
-        <option id="FONTNUM415" value="FONTS/FONT14.TDF">FONT14</option>
-        <option id="FONTNUM416" value="FONTS/FONT15.TDF">FONT15</option>
-        <option id="FONTNUM417" value="FONTS/FONT16.TDF">FONT16</option>
-        <option id="FONTNUM418" value="FONTS/FONT17.TDF">FONT17</option>
-        <option id="FONTNUM419" value="FONTS/FONT18.TDF">FONT18</option>
-        <option id="FONTNUM420" value="FONTS/FONT19.TDF">FONT19</option>
-        <option id="FONTNUM421" value="FONTS/FONT2.TDF">FONT2</option>
-        <option id="FONTNUM422" value="FONTS/FONT20.TDF">FONT20</option>
-        <option id="FONTNUM423" value="FONTS/FONT21X.TDF">FONT21X</option>
-        <option id="FONTNUM424" value="FONTS/FONT22X.TDF">FONT22X</option>
-        <option id="FONTNUM425" value="FONTS/FONT23.TDF">FONT23</option>
-        <option id="FONTNUM426" value="FONTS/FONT25.TDF">FONT25</option>
-        <option id="FONTNUM427" value="FONTS/FONT26OX.TDF">FONT26OX</option>
-        <option id="FONTNUM428" value="FONTS/FONT26X.TDF">FONT26X</option>
-        <option id="FONTNUM429" value="FONTS/FONT27.TDF">FONT27</option>
-        <option id="FONTNUM430" value="FONTS/FONT28X.TDF">FONT28X</option>
-        <option id="FONTNUM431" value="FONTS/FONT29X.TDF">FONT29X</option>
-        <option id="FONTNUM432" value="FONTS/FONT2X.TDF">FONT2X</option>
-        <option id="FONTNUM433" value="FONTS/FONT3.TDF">FONT3</option>
-        <option id="FONTNUM434" value="FONTS/FONT30.TDF">FONT30</option>
-        <option id="FONTNUM435" value="FONTS/FONT31.TDF">FONT31</option>
-        <option id="FONTNUM436" value="FONTS/FONT32.TDF">FONT32</option>
-        <option id="FONTNUM437" value="FONTS/FONT33.TDF">FONT33</option>
-        <option id="FONTNUM438" value="FONTS/FONT34.TDF">FONT34</option>
-        <option id="FONTNUM439" value="FONTS/FONT35.TDF">FONT35</option>
-        <option id="FONTNUM440" value="FONTS/FONT36.TDF">FONT36</option>
-        <option id="FONTNUM441" value="FONTS/FONT37.TDF">FONT37</option>
-        <option id="FONTNUM442" value="FONTS/FONT37R.TDF">FONT37R</option>
-        <option id="FONTNUM443" value="FONTS/FONT38.TDF">FONT38</option>
-        <option id="FONTNUM444" value="FONTS/FONT39.TDF">FONT39</option>
-        <option id="FONTNUM445" value="FONTS/FONT4.TDF">FONT4</option>
-        <option id="FONTNUM446" value="FONTS/FONT40X.TDF">FONT40X</option>
-        <option id="FONTNUM447" value="FONTS/FONT41.TDF">FONT41</option>
-        <option id="FONTNUM448" value="FONTS/FONT42X.TDF">FONT42X</option>
-        <option id="FONTNUM449" value="FONTS/FONT43X.TDF">FONT43X</option>
-        <option id="FONTNUM450" value="FONTS/FONT44X.TDF">FONT44X</option>
-        <option id="FONTNUM451" value="FONTS/FONT45X.TDF">FONT45X</option>
-        <option id="FONTNUM452" value="FONTS/FONT46.TDF">FONT46</option>
-        <option id="FONTNUM453" value="FONTS/FONT47X.TDF">FONT47X</option>
-        <option id="FONTNUM454" value="FONTS/FONT48.TDF">FONT48</option>
-        <option id="FONTNUM455" value="FONTS/FONT49.TDF">FONT49</option>
-        <option id="FONTNUM456" value="FONTS/FONT4X.TDF">FONT4X</option>
-        <option id="FONTNUM457" value="FONTS/FONT5.TDF">FONT5</option>
-        <option id="FONTNUM458" value="FONTS/FONT50.TDF">FONT50</option>
-        <option id="FONTNUM459" value="FONTS/FONT51.TDF">FONT51</option>
-        <option id="FONTNUM460" value="FONTS/FONT52.TDF">FONT52</option>
-        <option id="FONTNUM461" value="FONTS/FONT53X.TDF">FONT53X</option>
-        <option id="FONTNUM462" value="FONTS/FONT54X.TDF">FONT54X</option>
-        <option id="FONTNUM463" value="FONTS/FONT55X.TDF">FONT55X</option>
-        <option id="FONTNUM464" value="FONTS/FONT56X.TDF">FONT56X</option>
-        <option id="FONTNUM465" value="FONTS/FONT57.TDF">FONT57</option>
-        <option id="FONTNUM466" value="FONTS/FONT58X.TDF">FONT58X</option>
-        <option id="FONTNUM467" value="FONTS/FONT59X.TDF">FONT59X</option>
-        <option id="FONTNUM468" value="FONTS/FONT5X.TDF">FONT5X</option>
-        <option id="FONTNUM469" value="FONTS/FONT6.TDF">FONT6</option>
-        <option id="FONTNUM470" value="FONTS/FONT60X.TDF">FONT60X</option>
-        <option id="FONTNUM471" value="FONTS/FONT61X.TDF">FONT61X</option>
-        <option id="FONTNUM472" value="FONTS/FONT62.TDF">FONT62</option>
-        <option id="FONTNUM473" value="FONTS/FONT64.TDF">FONT64</option>
-        <option id="FONTNUM474" value="FONTS/FONT65.TDF">FONT65</option>
-        <option id="FONTNUM475" value="FONTS/FONT66.TDF">FONT66</option>
-        <option id="FONTNUM476" value="FONTS/FONT67X.TDF">FONT67X</option>
-        <option id="FONTNUM477" value="FONTS/FONT68.TDF">FONT68</option>
-        <option id="FONTNUM478" value="FONTS/FONT69.TDF">FONT69</option>
-        <option id="FONTNUM479" value="FONTS/FONT7.TDF">FONT7</option>
-        <option id="FONTNUM480" value="FONTS/FONT70.TDF">FONT70</option>
-        <option id="FONTNUM481" value="FONTS/FONT71.TDF">FONT71</option>
-        <option id="FONTNUM482" value="FONTS/FONT72.TDF">FONT72</option>
-        <option id="FONTNUM483" value="FONTS/FONT72OX.TDF">FONT72OX</option>
-        <option id="FONTNUM484" value="FONTS/FONT73.TDF">FONT73</option>
-        <option id="FONTNUM485" value="FONTS/FONT74.TDF">FONT74</option>
-        <option id="FONTNUM486" value="FONTS/FONT76X.TDF">FONT76X</option>
-        <option id="FONTNUM487" value="FONTS/FONT77.TDF">FONT77</option>
-        <option id="FONTNUM488" value="FONTS/FONT78X.TDF">FONT78X</option>
-        <option id="FONTNUM489" value="FONTS/FONT79X.TDF">FONT79X</option>
-        <option id="FONTNUM490" value="FONTS/FONT8.TDF">FONT8</option>
-        <option id="FONTNUM491" value="FONTS/FONT80.TDF">FONT80</option>
-        <option id="FONTNUM492" value="FONTS/FONT81X.TDF">FONT81X</option>
-        <option id="FONTNUM493" value="FONTS/FONT82.TDF">FONT82</option>
-        <option id="FONTNUM494" value="FONTS/FONT83X.TDF">FONT83X</option>
-        <option id="FONTNUM495" value="FONTS/FONT84X.TDF">FONT84X</option>
-        <option id="FONTNUM496" value="FONTS/FONT85.TDF">FONT85</option>
-        <option id="FONTNUM497" value="FONTS/FONT9.TDF">FONT9</option>
-        <option id="FONTNUM498" value="FONTS/FORBIDDX.TDF">FORBIDDX</option>
-        <option id="FONTNUM499" value="FONTS/FORGOTEX.TDF">FORGOTEX</option>
-        <option id="FONTNUM500" value="FONTS/FOUNDATX.TDF">FOUNDATX</option>
-        <option id="FONTNUM501" value="FONTS/FRAKTUR.TDF">FRAKTUR</option>
-        <option id="FONTNUM502" value="FONTS/FRAKTUR2.TDF">FRAKTUR2</option>
-        <option id="FONTNUM503" value="FONTS/FREAK-10.TDF">FREAK-10</option>
-        <option id="FONTNUM504" value="FONTS/FREAK-11.TDF">FREAK-11</option>
-        <option id="FONTNUM505" value="FONTS/FREAK-2.TDF">FREAK-2</option>
-        <option id="FONTNUM506" value="FONTS/FREAK-4.TDF">FREAK-4</option>
-        <option id="FONTNUM507" value="FONTS/FREAK-5.TDF">FREAK-5</option>
-        <option id="FONTNUM508" value="FONTS/FREAK112.TDF">FREAK112</option>
-        <option id="FONTNUM509" value="FONTS/FREAK_52.TDF">FREAK_52</option>
-        <option id="FONTNUM510" value="FONTS/FREESIDE.TDF">FREESIDE</option>
-        <option id="FONTNUM511" value="FONTS/FRESIDE2.TDF">FRESIDE2</option>
-        <option id="FONTNUM512" value="FONTS/FRIENDSP.TDF">FRIENDSP</option>
-        <option id="FONTNUM513" value="FONTS/FRISTI.TDF">FRISTI</option>
-        <option id="FONTNUM514" value="FONTS/FRZMOON.TDF">FRZMOON</option>
-        <option id="FONTNUM515" value="FONTS/FTEGATEX.TDF">FTEGATEX</option>
-        <option id="FONTNUM516" value="FONTS/FTH.TDF">FTH</option>
-        <option id="FONTNUM517" value="FONTS/FUNDBIRD.TDF">FUNDBIRD</option>
-        <option id="FONTNUM518" value="FONTS/FUNGI.TDF">FUNGI</option>
-        <option id="FONTNUM519" value="FONTS/FUTURE.TDF">FUTURE</option>
-        <option id="FONTNUM520" value="FONTS/FUTURE2X.TDF">FUTURE2X</option>
-        <option id="FONTNUM521" value="FONTS/GALAXYX.TDF">GALAXYX</option>
-        <option id="FONTNUM522" value="FONTS/GANGLANX.TDF">GANGLANX</option>
-        <option id="FONTNUM523" value="FONTS/GARDENX.TDF">GARDENX</option>
-        <option id="FONTNUM524" value="FONTS/GENERATN.TDF">GENERATN</option>
-        <option id="FONTNUM525" value="FONTS/GENOCIDE.TDF">GENOCIDE</option>
-        <option id="FONTNUM526" value="FONTS/GEORGIA1.TDF">GEORGIA1</option>
-        <option id="FONTNUM527" value="FONTS/GHOST.TDF">GHOST</option>
-        <option id="FONTNUM528" value="FONTS/GHOSTX.TDF">GHOSTX</option>
-        <option id="FONTNUM529" value="FONTS/GLAREX.TDF">GLAREX</option>
-        <option id="FONTNUM530" value="FONTS/GLOOMX.TDF">GLOOMX</option>
-        <option id="FONTNUM531" value="FONTS/GLOREE.TDF">GLOREE</option>
-        <option id="FONTNUM532" value="FONTS/GLUENEW.TDF">GLUENEW</option>
-        <option id="FONTNUM533" value="FONTS/GNARLYX.TDF">GNARLYX</option>
-        <option id="FONTNUM534" value="FONTS/GOTHIC.TDF">GOTHIC</option>
-        <option id="FONTNUM535" value="FONTS/GRAFFITI.TDF">GRAFFITI</option>
-        <option id="FONTNUM536" value="FONTS/GRANDX.TDF">GRANDX</option>
-        <option id="FONTNUM537" value="FONTS/GRAPHICX.TDF">GRAPHICX</option>
-        <option id="FONTNUM538" value="FONTS/GRAVEX.TDF">GRAVEX</option>
-        <option id="FONTNUM539" value="FONTS/GREEDX.TDF">GREEDX</option>
-        <option id="FONTNUM540" value="FONTS/GREEK2.TDF">GREEK2</option>
-        <option id="FONTNUM541" value="FONTS/GREENIE.TDF">GREENIE</option>
-        <option id="FONTNUM542" value="FONTS/GRNCHAOX.TDF">GRNCHAOX</option>
-        <option id="FONTNUM543" value="FONTS/GRNDZERO.TDF">GRNDZERO</option>
-        <option id="FONTNUM544" value="FONTS/GRNDZERX.TDF">GRNDZERX</option>
-        <option id="FONTNUM545" value="FONTS/GRNDZSML.TDF">GRNDZSML</option>
-        <option id="FONTNUM546" value="FONTS/GRNDZSMX.TDF">GRNDZSMX</option>
-        <option id="FONTNUM547" value="FONTS/GRNSHT.TDF">GRNSHT</option>
-        <option id="FONTNUM548" value="FONTS/GRNSHTX.TDF">GRNSHTX</option>
-        <option id="FONTNUM549" value="FONTS/GRVEYARD.TDF">GRVEYARD</option>
-        <option id="FONTNUM550" value="FONTS/GUARDF2.TDF">GUARDF2</option>
-        <option id="FONTNUM551" value="FONTS/GUILD.TDF">GUILD</option>
-        <option id="FONTNUM552" value="FONTS/GUILD2.TDF">GUILD2</option>
-        <option id="FONTNUM553" value="FONTS/HACK-TDF.TDF">HACK-TDF</option>
-        <option id="FONTNUM554" value="FONTS/HACKER2.TDF">HACKER2</option>
-        <option id="FONTNUM555" value="FONTS/HACKSHCK.TDF">HACKSHCK</option>
-        <option id="FONTNUM556" value="FONTS/HARDTDFX.TDF">HARDTDFX</option>
-        <option id="FONTNUM557" value="FONTS/HARDWRDX.TDF">HARDWRDX</option>
-        <option id="FONTNUM558" value="FONTS/HARLOT.TDF">HARLOT</option>
-        <option id="FONTNUM559" value="FONTS/HARLOTX.TDF">HARLOTX</option>
-        <option id="FONTNUM560" value="FONTS/HARVEST.TDF">HARVEST</option>
-        <option id="FONTNUM561" value="FONTS/HARVESTX.TDF">HARVESTX</option>
-        <option id="FONTNUM562" value="FONTS/HAWKX.TDF">HAWKX</option>
-        <option id="FONTNUM563" value="FONTS/HEAD.TDF">HEAD</option>
-        <option id="FONTNUM564" value="FONTS/HEADX.TDF">HEADX</option>
-        <option id="FONTNUM565" value="FONTS/HELITECH.TDF">HELITECH</option>
-        <option id="FONTNUM566" value="FONTS/HELITECX.TDF">HELITECX</option>
-        <option id="FONTNUM567" value="FONTS/HELIUM.TDF">HELIUM</option>
-        <option id="FONTNUM568" value="FONTS/HELLHOLE.TDF">HELLHOLE</option>
-        <option id="FONTNUM569" value="FONTS/HELLPAY.TDF">HELLPAY</option>
-        <option id="FONTNUM570" value="FONTS/HELTSKLX.TDF">HELTSKLX</option>
-        <option id="FONTNUM571" value="FONTS/HEMI.TDF">HEMI</option>
-        <option id="FONTNUM572" value="FONTS/HEMISPHX.TDF">HEMISPHX</option>
-        <option id="FONTNUM573" value="FONTS/HENRY3D.TDF">HENRY3D</option>
-        <option id="FONTNUM574" value="FONTS/HGSIERAX.TDF">HGSIERAX</option>
-        <option id="FONTNUM575" value="FONTS/HIDDEN.TDF">HIDDEN</option>
-        <option id="FONTNUM576" value="FONTS/HIEROGLP.TDF">HIEROGLP</option>
-        <option id="FONTNUM577" value="FONTS/HOARD.TDF">HOARD</option>
-        <option id="FONTNUM578" value="FONTS/HOBBES.TDF">HOBBES</option>
-        <option id="FONTNUM579" value="FONTS/HOLYWOOD.TDF">HOLYWOOD</option>
-        <option id="FONTNUM580" value="FONTS/HOPELESS.TDF">HOPELESS</option>
-        <option id="FONTNUM581" value="FONTS/HORR-TDF.TDF">HORR-TDF</option>
-        <option id="FONTNUM582" value="FONTS/HOSTESS.TDF">HOSTESS</option>
-        <option id="FONTNUM583" value="FONTS/HOTBOX.TDF">HOTBOX</option>
-        <option id="FONTNUM584" value="FONTS/HOUN-TDF.TDF">HOUN-TDF</option>
-        <option id="FONTNUM585" value="FONTS/HOUSEX.TDF">HOUSEX</option>
-        <option id="FONTNUM586" value="FONTS/HOUSTEKX.TDF">HOUSTEKX</option>
-        <option id="FONTNUM587" value="FONTS/HRDWIREX.TDF">HRDWIREX</option>
-        <option id="FONTNUM588" value="FONTS/HS-EFFEK.TDF">HS-EFFEK</option>
-        <option id="FONTNUM589" value="FONTS/HUNTERX.TDF">HUNTERX</option>
-        <option id="FONTNUM590" value="FONTS/HW.TDF">HW</option>
-        <option id="FONTNUM591" value="FONTS/HWPLATED.TDF">HWPLATED</option>
-        <option id="FONTNUM592" value="FONTS/HWX.TDF">HWX</option>
-        <option id="FONTNUM593" value="FONTS/HYDROGEN.TDF">HYDROGEN</option>
-        <option id="FONTNUM594" value="FONTS/HYPERX.TDF">HYPERX</option>
-        <option id="FONTNUM595" value="FONTS/HYPNOSIS.TDF">HYPNOSIS</option>
-        <option id="FONTNUM596" value="FONTS/HYSTERIA.TDF">HYSTERIA</option>
-        <option id="FONTNUM597" value="FONTS/ICEBLOCK.TDF">ICEBLOCK</option>
-        <option id="FONTNUM598" value="FONTS/ICECREAM.TDF">ICECREAM</option>
-        <option id="FONTNUM599" value="FONTS/ICEFIRE.TDF">ICEFIRE</option>
-        <option id="FONTNUM600" value="FONTS/ICEX.TDF">ICEX</option>
-        <option id="FONTNUM601" value="FONTS/ICEZONEX.TDF">ICEZONEX</option>
-        <option id="FONTNUM602" value="FONTS/IDESX.TDF">IDESX</option>
-        <option id="FONTNUM603" value="FONTS/ILCOMMX.TDF">ILCOMMX</option>
-        <option id="FONTNUM604" value="FONTS/ILLCOMM.TDF">ILLCOMM</option>
-        <option id="FONTNUM605" value="FONTS/ILLUCHRO.TDF">ILLUCHRO</option>
-        <option id="FONTNUM606" value="FONTS/ILLUSIN2.TDF">ILLUSIN2</option>
-        <option id="FONTNUM607" value="FONTS/ILLUSION.TDF">ILLUSION</option>
-        <option id="FONTNUM608" value="FONTS/ILUSION3.TDF">ILUSION3</option>
-        <option id="FONTNUM609" value="FONTS/IMAGES.TDF">IMAGES</option>
-        <option id="FONTNUM610" value="FONTS/IMAGESX.TDF">IMAGESX</option>
-        <option id="FONTNUM611" value="FONTS/IMGMNSET.TDF">IMGMNSET</option>
-        <option id="FONTNUM612" value="FONTS/IMPACT2X.TDF">IMPACT2X</option>
-        <option id="FONTNUM613" value="FONTS/IMPACTX.TDF">IMPACTX</option>
-        <option id="FONTNUM614" value="FONTS/IMPOSSBL.TDF">IMPOSSBL</option>
-        <option id="FONTNUM615" value="FONTS/INCH.TDF">INCH</option>
-        <option id="FONTNUM616" value="FONTS/INCIRCLE.TDF">INCIRCLE</option>
-        <option id="FONTNUM617" value="FONTS/INCIRCLX.TDF">INCIRCLX</option>
-        <option id="FONTNUM618" value="FONTS/INCORPED.TDF">INCORPED</option>
-        <option id="FONTNUM619" value="FONTS/INCORPEX.TDF">INCORPEX</option>
-        <option id="FONTNUM620" value="FONTS/INDESGRN.TDF">INDESGRN</option>
-        <option id="FONTNUM621" value="FONTS/INERTIA.TDF">INERTIA</option>
-        <option id="FONTNUM622" value="FONTS/INERTIAX.TDF">INERTIAX</option>
-        <option id="FONTNUM623" value="FONTS/INET.TDF">INET</option>
-        <option id="FONTNUM624" value="FONTS/INETX.TDF">INETX</option>
-        <option id="FONTNUM625" value="FONTS/INFINITE.TDF">INFINITE</option>
-        <option id="FONTNUM626" value="FONTS/INFINSRT.TDF">INFINSRT</option>
-        <option id="FONTNUM627" value="FONTS/INFINSRX.TDF">INFINSRX</option>
-        <option id="FONTNUM628" value="FONTS/INFOZINE.TDF">INFOZINE</option>
-        <option id="FONTNUM629" value="FONTS/INFOZINX.TDF">INFOZINX</option>
-        <option id="FONTNUM630" value="FONTS/INNER.TDF">INNER</option>
-        <option id="FONTNUM631" value="FONTS/INOCENCX.TDF">INOCENCX</option>
-        <option id="FONTNUM632" value="FONTS/INSANEX.TDF">INSANEX</option>
-        <option id="FONTNUM633" value="FONTS/INSANITY.TDF">INSANITY</option>
-        <option id="FONTNUM634" value="FONTS/INSINSAN.TDF">INSINSAN</option>
-        <option id="FONTNUM635" value="FONTS/INSINSAX.TDF">INSINSAX</option>
-        <option id="FONTNUM636" value="FONTS/INSOMIAX.TDF">INSOMIAX</option>
-        <option id="FONTNUM637" value="FONTS/INSPECTX.TDF">INSPECTX</option>
-        <option id="FONTNUM638" value="FONTS/INTENSE.TDF">INTENSE</option>
-        <option id="FONTNUM639" value="FONTS/INTENSEX.TDF">INTENSEX</option>
-        <option id="FONTNUM640" value="FONTS/INTENTSX.TDF">INTENTSX</option>
-        <option id="FONTNUM641" value="FONTS/INTERNAT.TDF">INTERNAT</option>
-        <option id="FONTNUM642" value="FONTS/INTOXICX.TDF">INTOXICX</option>
-        <option id="FONTNUM643" value="FONTS/INVASINS.TDF">INVASINS</option>
-        <option id="FONTNUM644" value="FONTS/INVASION.TDF">INVASION</option>
-        <option id="FONTNUM645" value="FONTS/INVASISX.TDF">INVASISX</option>
-        <option id="FONTNUM646" value="FONTS/IRIDIUM.TDF">IRIDIUM</option>
-        <option id="FONTNUM647" value="FONTS/ISOMET1.TDF">ISOMET1</option>
-        <option id="FONTNUM648" value="FONTS/ISOMET2.TDF">ISOMET2</option>
-        <option id="FONTNUM649" value="FONTS/ISOMET3.TDF">ISOMET3</option>
-        <option id="FONTNUM650" value="FONTS/ISOMET4.TDF">ISOMET4</option>
-        <option id="FONTNUM651" value="FONTS/ITSOVER.TDF">ITSOVER</option>
-        <option id="FONTNUM652" value="FONTS/JAZMINE.TDF">JAZMINE</option>
-        <option id="FONTNUM653" value="FONTS/JELLY.TDF">JELLY</option>
-        <option id="FONTNUM654" value="FONTS/JSFRASTE.TDF">JSFRASTE</option>
-        <option id="FONTNUM655" value="FONTS/JSFTHICK.TDF">JSFTHICK</option>
-        <option id="FONTNUM656" value="FONTS/JSFTHIN.TDF">JSFTHIN</option>
-        <option id="FONTNUM657" value="FONTS/JSFWIDE.TDF">JSFWIDE</option>
-        <option id="FONTNUM658" value="FONTS/JUICE.TDF">JUICE</option>
-        <option id="FONTNUM659" value="FONTS/JUICEX.TDF">JUICEX</option>
-        <option id="FONTNUM660" value="FONTS/JUVENOCR.TDF">JUVENOCR</option>
-        <option id="FONTNUM661" value="FONTS/KANSAS.TDF">KANSAS</option>
-        <option id="FONTNUM662" value="FONTS/KEVIN1.TDF">KEVIN1</option>
-        <option id="FONTNUM663" value="FONTS/KEVIN2.TDF">KEVIN2</option>
-        <option id="FONTNUM664" value="FONTS/KEVIN3.TDF">KEVIN3</option>
-        <option id="FONTNUM665" value="FONTS/KEVIN4.TDF">KEVIN4</option>
-        <option id="FONTNUM666" value="FONTS/KEVIN42.TDF">KEVIN42</option>
-        <option id="FONTNUM667" value="FONTS/KEVIN5.TDF">KEVIN5</option>
-        <option id="FONTNUM668" value="FONTS/KEVIN52.TDF">KEVIN52</option>
-        <option id="FONTNUM669" value="FONTS/KEWL-TDF.TDF">KEWL-TDF</option>
-        <option id="FONTNUM670" value="FONTS/KEYS.TDF">KEYS</option>
-        <option id="FONTNUM671" value="FONTS/KFCX.TDF">KFCX</option>
-        <option id="FONTNUM672" value="FONTS/KISSMY.TDF">KISSMY</option>
-        <option id="FONTNUM673" value="FONTS/KISSMYX.TDF">KISSMYX</option>
-        <option id="FONTNUM674" value="FONTS/KNIGHTSX.TDF">KNIGHTSX</option>
-        <option id="FONTNUM675" value="FONTS/KODERS.TDF">KODERS</option>
-        <option id="FONTNUM676" value="FONTS/KOLO-TDF.TDF">KOLO-TDF</option>
-        <option id="FONTNUM677" value="FONTS/KRYSTAL.TDF">KRYSTAL</option>
-        <option id="FONTNUM678" value="FONTS/KRYSTALX.TDF">KRYSTALX</option>
-        <option id="FONTNUM679" value="FONTS/LARRY3D.TDF">LARRY3D</option>
-        <option id="FONTNUM680" value="FONTS/LASTBBS.TDF">LASTBBS</option>
-        <option id="FONTNUM681" value="FONTS/LASTDIME.TDF">LASTDIME</option>
-        <option id="FONTNUM682" value="FONTS/LAUGHTEX.TDF">LAUGHTEX</option>
-        <option id="FONTNUM683" value="FONTS/LEAGUE.TDF">LEAGUE</option>
-        <option id="FONTNUM684" value="FONTS/LEECH.TDF">LEECH</option>
-        <option id="FONTNUM685" value="FONTS/LEECHING.TDF">LEECHING</option>
-        <option id="FONTNUM686" value="FONTS/LEGACY.TDF">LEGACY</option>
-        <option id="FONTNUM687" value="FONTS/LEGACY2X.TDF">LEGACY2X</option>
-        <option id="FONTNUM688" value="FONTS/LEGCY3DX.TDF">LEGCY3DX</option>
-        <option id="FONTNUM689" value="FONTS/LEISURE.TDF">LEISURE</option>
-        <option id="FONTNUM690" value="FONTS/LEISUREX.TDF">LEISUREX</option>
-        <option id="FONTNUM691" value="FONTS/LGY3DBL.TDF">LGY3DBL</option>
-        <option id="FONTNUM692" value="FONTS/LIAR.TDF">LIAR</option>
-        <option id="FONTNUM693" value="FONTS/LIMPYSET.TDF">LIMPYSET</option>
-        <option id="FONTNUM694" value="FONTS/LIQUID.TDF">LIQUID</option>
-        <option id="FONTNUM695" value="FONTS/LIQUID2.TDF">LIQUID2</option>
-        <option id="FONTNUM696" value="FONTS/LIVE.TDF">LIVE</option>
-        <option id="FONTNUM697" value="FONTS/LKERGNME.TDF">LKERGNME</option>
-        <option id="FONTNUM698" value="FONTS/LSTSOULS.TDF">LSTSOULS</option>
-        <option id="FONTNUM699" value="FONTS/LUCIDSRT.TDF">LUCIDSRT</option>
-        <option id="FONTNUM700" value="FONTS/LUCRETIX.TDF">LUCRETIX</option>
-        <option id="FONTNUM701" value="FONTS/MABUS.TDF">MABUS</option>
-        <option id="FONTNUM702" value="FONTS/MABUS12.TDF">MABUS12</option>
-        <option id="FONTNUM703" value="FONTS/MADMAN.TDF">MADMAN</option>
-        <option id="FONTNUM704" value="FONTS/MADMAN2.TDF">MADMAN2</option>
-        <option id="FONTNUM705" value="FONTS/MAGAZINE.TDF">MAGAZINE</option>
-        <option id="FONTNUM706" value="FONTS/MAGICAST.TDF">MAGICAST</option>
-        <option id="FONTNUM707" value="FONTS/MAGNUMX.TDF">MAGNUMX</option>
-        <option id="FONTNUM708" value="FONTS/MAJICX.TDF">MAJICX</option>
-        <option id="FONTNUM709" value="FONTS/MALICE.TDF">MALICE</option>
-        <option id="FONTNUM710" value="FONTS/MAPPERSX.TDF">MAPPERSX</option>
-        <option id="FONTNUM711" value="FONTS/MASACREX.TDF">MASACREX</option>
-        <option id="FONTNUM712" value="FONTS/MASTER.TDF">MASTER</option>
-        <option id="FONTNUM713" value="FONTS/MATRIX.TDF">MATRIX</option>
-        <option id="FONTNUM714" value="FONTS/MATRIXX.TDF">MATRIXX</option>
-        <option id="FONTNUM715" value="FONTS/MAXFONT2.TDF">MAXFONT2</option>
-        <option id="FONTNUM716" value="FONTS/MAXFOUR.TDF">MAXFOUR</option>
-        <option id="FONTNUM717" value="FONTS/MAXIMUM.TDF">MAXIMUM</option>
-        <option id="FONTNUM718" value="FONTS/MAXIMUMX.TDF">MAXIMUMX</option>
-        <option id="FONTNUM719" value="FONTS/MECHANIC.TDF">MECHANIC</option>
-        <option id="FONTNUM720" value="FONTS/MECHRESI.TDF">MECHRESI</option>
-        <option id="FONTNUM721" value="FONTS/MECHREST.TDF">MECHREST</option>
-        <option id="FONTNUM722" value="FONTS/MEDIUM.TDF">MEDIUM</option>
-        <option id="FONTNUM723" value="FONTS/MEMBERS.TDF">MEMBERS</option>
-        <option id="FONTNUM724" value="FONTS/MEMORYX.TDF">MEMORYX</option>
-        <option id="FONTNUM725" value="FONTS/MENACEX.TDF">MENACEX</option>
-        <option id="FONTNUM726" value="FONTS/MERCURY.TDF">MERCURY</option>
-        <option id="FONTNUM727" value="FONTS/MERCURY2.TDF">MERCURY2</option>
-        <option id="FONTNUM728" value="FONTS/MERCURYX.TDF">MERCURYX</option>
-        <option id="FONTNUM729" value="FONTS/MERCUY3X.TDF">MERCUY3X</option>
-        <option id="FONTNUM730" value="FONTS/MERLIN1.TDF">MERLIN1</option>
-        <option id="FONTNUM731" value="FONTS/MERLIN2.TDF">MERLIN2</option>
-        <option id="FONTNUM732" value="FONTS/MERRY.TDF">MERRY</option>
-        <option id="FONTNUM733" value="FONTS/MESSAGES.TDF">MESSAGES</option>
-        <option id="FONTNUM734" value="FONTS/METAL.TDF">METAL</option>
-        <option id="FONTNUM735" value="FONTS/METALIX.TDF">METALIX</option>
-        <option id="FONTNUM736" value="FONTS/METALIX2.TDF">METALIX2</option>
-        <option id="FONTNUM737" value="FONTS/MIDAS.TDF">MIDAS</option>
-        <option id="FONTNUM738" value="FONTS/MIDDLAGE.TDF">MIDDLAGE</option>
-        <option id="FONTNUM739" value="FONTS/MIDNIGHT.TDF">MIDNIGHT</option>
-        <option id="FONTNUM740" value="FONTS/MINDBEND.TDF">MINDBEND</option>
-        <option id="FONTNUM741" value="FONTS/MINDBNCX.TDF">MINDBNCX</option>
-        <option id="FONTNUM742" value="FONTS/MINDSTAX.TDF">MINDSTAX</option>
-        <option id="FONTNUM743" value="FONTS/MINDSX.TDF">MINDSX</option>
-        <option id="FONTNUM744" value="FONTS/MIRROR.TDF">MIRROR</option>
-        <option id="FONTNUM745" value="FONTS/MIRROW2.TDF">MIRROW2</option>
-        <option id="FONTNUM746" value="FONTS/MONEY.TDF">MONEY</option>
-        <option id="FONTNUM747" value="FONTS/MOON1.TDF">MOON1</option>
-        <option id="FONTNUM748" value="FONTS/MOON2.TDF">MOON2</option>
-        <option id="FONTNUM749" value="FONTS/MOON3.TDF">MOON3</option>
-        <option id="FONTNUM750" value="FONTS/MORLDECX.TDF">MORLDECX</option>
-        <option id="FONTNUM751" value="FONTS/MOTION.TDF">MOTION</option>
-        <option id="FONTNUM752" value="FONTS/MR.TDF">MR</option>
-        <option id="FONTNUM753" value="FONTS/MYFONT.TDF">MYFONT</option>
-        <option id="FONTNUM754" value="FONTS/MYSTBYE.TDF">MYSTBYE</option>
-        <option id="FONTNUM755" value="FONTS/MYSTERYX.TDF">MYSTERYX</option>
-        <option id="FONTNUM756" value="FONTS/MYSTICX.TDF">MYSTICX</option>
-        <option id="FONTNUM757" value="FONTS/MYSTOUSX.TDF">MYSTOUSX</option>
-        <option id="FONTNUM758" value="FONTS/NACHO.TDF">NACHO</option>
-        <option id="FONTNUM759" value="FONTS/NANCYJFA.TDF">NANCYJFA</option>
-        <option id="FONTNUM760" value="FONTS/NANCYJIP.TDF">NANCYJIP</option>
-        <option id="FONTNUM761" value="FONTS/NANCYJUL.TDF">NANCYJUL</option>
-        <option id="FONTNUM762" value="FONTS/NATIONX.TDF">NATIONX</option>
-        <option id="FONTNUM763" value="FONTS/NEGATIVE.TDF">NEGATIVE</option>
-        <option id="FONTNUM764" value="FONTS/NEON.TDF">NEON</option>
-        <option id="FONTNUM765" value="FONTS/NESTRED.TDF">NESTRED</option>
-        <option id="FONTNUM766" value="FONTS/NESTX.TDF">NESTX</option>
-        <option id="FONTNUM767" value="FONTS/NEUROSIX.TDF">NEUROSIX</option>
-        <option id="FONTNUM768" value="FONTS/NEUROSMX.TDF">NEUROSMX</option>
-        <option id="FONTNUM769" value="FONTS/NEURRNDX.TDF">NEURRNDX</option>
-        <option id="FONTNUM770" value="FONTS/NEUTRALX.TDF">NEUTRALX</option>
-        <option id="FONTNUM771" value="FONTS/NEWHAVNX.TDF">NEWHAVNX</option>
-        <option id="FONTNUM772" value="FONTS/NEWSLETX.TDF">NEWSLETX</option>
-        <option id="FONTNUM773" value="FONTS/NEWSX.TDF">NEWSX</option>
-        <option id="FONTNUM774" value="FONTS/NEXUS.TDF">NEXUS</option>
-        <option id="FONTNUM775" value="FONTS/NGHTMARE.TDF">NGHTMARE</option>
-        <option id="FONTNUM776" value="FONTS/NGTHSHDX.TDF">NGTHSHDX</option>
-        <option id="FONTNUM777" value="FONTS/NICEX.TDF">NICEX</option>
-        <option id="FONTNUM778" value="FONTS/NIGTMGRX.TDF">NIGTMGRX</option>
-        <option id="FONTNUM779" value="FONTS/NIRVANA.TDF">NIRVANA</option>
-        <option id="FONTNUM780" value="FONTS/NIRVANA2.TDF">NIRVANA2</option>
-        <option id="FONTNUM781" value="FONTS/NMSWHQ.TDF">NMSWHQ</option>
-        <option id="FONTNUM782" value="FONTS/NOCARIEX.TDF">NOCARIEX</option>
-        <option id="FONTNUM783" value="FONTS/NODELAY.TDF">NODELAY</option>
-        <option id="FONTNUM784" value="FONTS/NODESPYX.TDF">NODESPYX</option>
-        <option id="FONTNUM785" value="FONTS/NOPE.TDF">NOPE</option>
-        <option id="FONTNUM786" value="FONTS/NOPE2.TDF">NOPE2</option>
-        <option id="FONTNUM787" value="FONTS/NORTHERX.TDF">NORTHERX</option>
-        <option id="FONTNUM788" value="FONTS/NOVAX.TDF">NOVAX</option>
-        <option id="FONTNUM789" value="FONTS/NOX.TDF">NOX</option>
-        <option id="FONTNUM790" value="FONTS/NRTHSTAR.TDF">NRTHSTAR</option>
-        <option id="FONTNUM791" value="FONTS/NSA.TDF">NSA</option>
-        <option id="FONTNUM792" value="FONTS/NUCLEAR.TDF">NUCLEAR</option>
-        <option id="FONTNUM793" value="FONTS/NUKEX.TDF">NUKEX</option>
-        <option id="FONTNUM794" value="FONTS/NUKLEARX.TDF">NUKLEARX</option>
-        <option id="FONTNUM795" value="FONTS/NVSCR2.TDF">NVSCR2</option>
-        <option id="FONTNUM796" value="FONTS/NVSCRIPT.TDF">NVSCRIPT</option>
-        <option id="FONTNUM797" value="FONTS/NYCOTINE.TDF">NYCOTINE</option>
-        <option id="FONTNUM798" value="FONTS/NYNDEE.TDF">NYNDEE</option>
-        <option id="FONTNUM799" value="FONTS/OBLIVION.TDF">OBLIVION</option>
-        <option id="FONTNUM800" value="FONTS/OBLIVRED.TDF">OBLIVRED</option>
-        <option id="FONTNUM801" value="FONTS/OBSESSS.TDF">OBSESSS</option>
-        <option id="FONTNUM802" value="FONTS/OBVLRDSM.TDF">OBVLRDSM</option>
-        <option id="FONTNUM803" value="FONTS/OCEANA.TDF">OCEANA</option>
-        <option id="FONTNUM804" value="FONTS/ODB.TDF">ODB</option>
-        <option id="FONTNUM805" value="FONTS/OGRE.TDF">OGRE</option>
-        <option id="FONTNUM806" value="FONTS/ONE.TDF">ONE</option>
-        <option id="FONTNUM807" value="FONTS/ONELINEX.TDF">ONELINEX</option>
-        <option id="FONTNUM808" value="FONTS/ONKELZX.TDF">ONKELZX</option>
-        <option id="FONTNUM809" value="FONTS/OPTICAL.TDF">OPTICAL</option>
-        <option id="FONTNUM810" value="FONTS/OUTFONT1.TDF">OUTFONT1</option>
-        <option id="FONTNUM811" value="FONTS/OUTLINEX.TDF">OUTLINEX</option>
-        <option id="FONTNUM812" value="FONTS/OUTPOST.TDF">OUTPOST</option>
-        <option id="FONTNUM813" value="FONTS/OUTPOST2.TDF">OUTPOST2</option>
-        <option id="FONTNUM814" value="FONTS/OVERDOSX.TDF">OVERDOSX</option>
-        <option id="FONTNUM815" value="FONTS/PAGAN.TDF">PAGAN</option>
-        <option id="FONTNUM816" value="FONTS/PAGANRHX.TDF">PAGANRHX</option>
-        <option id="FONTNUM817" value="FONTS/PAINCAVE.TDF">PAINCAVE</option>
-        <option id="FONTNUM818" value="FONTS/PALACE.TDF">PALACE</option>
-        <option id="FONTNUM819" value="FONTS/PALACE2X.TDF">PALACE2X</option>
-        <option id="FONTNUM820" value="FONTS/PALADIUX.TDF">PALADIUX</option>
-        <option id="FONTNUM821" value="FONTS/PANDEMON.TDF">PANDEMON</option>
-        <option id="FONTNUM822" value="FONTS/PANGEAX.TDF">PANGEAX</option>
-        <option id="FONTNUM823" value="FONTS/PANTHEON.TDF">PANTHEON</option>
-        <option id="FONTNUM824" value="FONTS/PARADIGM.TDF">PARADIGM</option>
-        <option id="FONTNUM825" value="FONTS/PARAMNTX.TDF">PARAMNTX</option>
-        <option id="FONTNUM826" value="FONTS/PARIDOXX.TDF">PARIDOXX</option>
-        <option id="FONTNUM827" value="FONTS/PARTYX.TDF">PARTYX</option>
-        <option id="FONTNUM828" value="FONTS/PATCHESE.TDF">PATCHESE</option>
-        <option id="FONTNUM829" value="FONTS/PATEX.TDF">PATEX</option>
-        <option id="FONTNUM830" value="FONTS/PATORJK.TDF">PATORJK</option>
-        <option id="FONTNUM831" value="FONTS/PCBOARD.TDF">PCBOARD</option>
-        <option id="FONTNUM832" value="FONTS/PENTAGRX.TDF">PENTAGRX</option>
-        <option id="FONTNUM833" value="FONTS/PEPPER.TDF">PEPPER</option>
-        <option id="FONTNUM834" value="FONTS/PERSUASX.TDF">PERSUASX</option>
-        <option id="FONTNUM835" value="FONTS/PEX.TDF">PEX</option>
-        <option id="FONTNUM836" value="FONTS/PHALANX.TDF">PHALANX</option>
-        <option id="FONTNUM837" value="FONTS/PHALNXX.TDF">PHALNXX</option>
-        <option id="FONTNUM838" value="FONTS/PHARCYDX.TDF">PHARCYDX</option>
-        <option id="FONTNUM839" value="FONTS/PHIBER1X.TDF">PHIBER1X</option>
-        <option id="FONTNUM840" value="FONTS/PHIBER2.TDF">PHIBER2</option>
-        <option id="FONTNUM841" value="FONTS/PHIBERX.TDF">PHIBERX</option>
-        <option id="FONTNUM842" value="FONTS/PHONX.TDF">PHONX</option>
-        <option id="FONTNUM843" value="FONTS/PHUCK.TDF">PHUCK</option>
-        <option id="FONTNUM844" value="FONTS/PHUDGE.TDF">PHUDGE</option>
-        <option id="FONTNUM845" value="FONTS/PINACLEX.TDF">PINACLEX</option>
-        <option id="FONTNUM846" value="FONTS/PIPELINE.TDF">PIPELINE</option>
-        <option id="FONTNUM847" value="FONTS/PIRATES.TDF">PIRATES</option>
-        <option id="FONTNUM848" value="FONTS/PITSX.TDF">PITSX</option>
-        <option id="FONTNUM849" value="FONTS/PITTYX.TDF">PITTYX</option>
-        <option id="FONTNUM850" value="FONTS/PLATZANG.TDF">PLATZANG</option>
-        <option id="FONTNUM851" value="FONTS/POISONX.TDF">POISONX</option>
-        <option id="FONTNUM852" value="FONTS/POLICEX.TDF">POLICEX</option>
-        <option id="FONTNUM853" value="FONTS/PORTAL.TDF">PORTAL</option>
-        <option id="FONTNUM854" value="FONTS/POWRGRDX.TDF">POWRGRDX</option>
-        <option id="FONTNUM855" value="FONTS/PRDCTNSX.TDF">PRDCTNSX</option>
-        <option id="FONTNUM856" value="FONTS/PRESUREX.TDF">PRESUREX</option>
-        <option id="FONTNUM857" value="FONTS/PRIMELIN.TDF">PRIMELIN</option>
-        <option id="FONTNUM858" value="FONTS/PRIMELIX.TDF">PRIMELIX</option>
-        <option id="FONTNUM859" value="FONTS/PRISONER.TDF">PRISONER</option>
-        <option id="FONTNUM860" value="FONTS/PRJET13X.TDF">PRJET13X</option>
-        <option id="FONTNUM861" value="FONTS/PROCTOR.TDF">PROCTOR</option>
-        <option id="FONTNUM862" value="FONTS/PROPHECY.TDF">PROPHECY</option>
-        <option id="FONTNUM863" value="FONTS/PROPS.TDF">PROPS</option>
-        <option id="FONTNUM864" value="FONTS/PROTOTYP.TDF">PROTOTYP</option>
-        <option id="FONTNUM865" value="FONTS/PRPUGRDX.TDF">PRPUGRDX</option>
-        <option id="FONTNUM866" value="FONTS/PSYCH3DX.TDF">PSYCH3DX</option>
-        <option id="FONTNUM867" value="FONTS/PSYCHO2.TDF">PSYCHO2</option>
-        <option id="FONTNUM868" value="FONTS/PSYCHO3X.TDF">PSYCHO3X</option>
-        <option id="FONTNUM869" value="FONTS/PSYCHOS2.TDF">PSYCHOS2</option>
-        <option id="FONTNUM870" value="FONTS/PSYCHOSM.TDF">PSYCHOSM</option>
-        <option id="FONTNUM871" value="FONTS/PSYCHSYX.TDF">PSYCHSYX</option>
-        <option id="FONTNUM872" value="FONTS/PSYCOSIX.TDF">PSYCOSIX</option>
-        <option id="FONTNUM873" value="FONTS/PSYNEURO.TDF">PSYNEURO</option>
-        <option id="FONTNUM874" value="FONTS/PULSEX.TDF">PULSEX</option>
-        <option id="FONTNUM875" value="FONTS/PUNCX.TDF">PUNCX</option>
-        <option id="FONTNUM876" value="FONTS/PUNISHTX.TDF">PUNISHTX</option>
-        <option id="FONTNUM877" value="FONTS/PUREMADX.TDF">PUREMADX</option>
-        <option id="FONTNUM878" value="FONTS/PUSHEAD.TDF">PUSHEAD</option>
-        <option id="FONTNUM879" value="FONTS/QUAZARX.TDF">QUAZARX</option>
-        <option id="FONTNUM880" value="FONTS/R.TDF">R</option>
-        <option id="FONTNUM881" value="FONTS/RADIANCX.TDF">RADIANCX</option>
-        <option id="FONTNUM882" value="FONTS/RAGNARKX.TDF">RAGNARKX</option>
-        <option id="FONTNUM883" value="FONTS/RAINX.TDF">RAINX</option>
-        <option id="FONTNUM884" value="FONTS/RAMMSTEN.TDF">RAMMSTEN</option>
-        <option id="FONTNUM885" value="FONTS/RAPID.TDF">RAPID</option>
-        <option id="FONTNUM886" value="FONTS/RAPIDCOL.TDF">RAPIDCOL</option>
-        <option id="FONTNUM887" value="FONTS/RASTAA.TDF">RASTAA</option>
-        <option id="FONTNUM888" value="FONTS/RASTER.TDF">RASTER</option>
-        <option id="FONTNUM889" value="FONTS/RAVAGED.TDF">RAVAGED</option>
-        <option id="FONTNUM890" value="FONTS/RAVE.TDF">RAVE</option>
-        <option id="FONTNUM891" value="FONTS/RAZOR1X.TDF">RAZOR1X</option>
-        <option id="FONTNUM892" value="FONTS/RAZOR2.TDF">RAZOR2</option>
-        <option id="FONTNUM893" value="FONTS/RAZOR3.TDF">RAZOR3</option>
-        <option id="FONTNUM894" value="FONTS/RAZORX.TDF">RAZORX</option>
-        <option id="FONTNUM895" value="FONTS/REALITYX.TDF">REALITYX</option>
-        <option id="FONTNUM896" value="FONTS/REBELART.TDF">REBELART</option>
-        <option id="FONTNUM897" value="FONTS/REBELION.TDF">REBELION</option>
-        <option id="FONTNUM898" value="FONTS/REBELL.TDF">REBELL</option>
-        <option id="FONTNUM899" value="FONTS/REDPHONX.TDF">REDPHONX</option>
-        <option id="FONTNUM900" value="FONTS/REGENCY.TDF">REGENCY</option>
-        <option id="FONTNUM901" value="FONTS/REGULATX.TDF">REGULATX</option>
-        <option id="FONTNUM902" value="FONTS/REGUOUTX.TDF">REGUOUTX</option>
-        <option id="FONTNUM903" value="FONTS/RELIEF.TDF">RELIEF</option>
-        <option id="FONTNUM904" value="FONTS/RELIEF2.TDF">RELIEF2</option>
-        <option id="FONTNUM905" value="FONTS/REMORSE.TDF">REMORSE</option>
-        <option id="FONTNUM906" value="FONTS/REQUEST.TDF">REQUEST</option>
-        <option id="FONTNUM907" value="FONTS/RESISTA2.TDF">RESISTA2</option>
-        <option id="FONTNUM908" value="FONTS/RESISTAN.TDF">RESISTAN</option>
-        <option id="FONTNUM909" value="FONTS/RESISTAX.TDF">RESISTAX</option>
-        <option id="FONTNUM910" value="FONTS/RETRIBTX.TDF">RETRIBTX</option>
-        <option id="FONTNUM911" value="FONTS/REVIEW.TDF">REVIEW</option>
-        <option id="FONTNUM912" value="FONTS/REVISIOX.TDF">REVISIOX</option>
-        <option id="FONTNUM913" value="FONTS/REVOLUTX.TDF">REVOLUTX</option>
-        <option id="FONTNUM914" value="FONTS/RIPPER.TDF">RIPPER</option>
-        <option id="FONTNUM915" value="FONTS/RIVNDELX.TDF">RIVNDELX</option>
-        <option id="FONTNUM916" value="FONTS/ROBOJOKE.TDF">ROBOJOKE</option>
-        <option id="FONTNUM917" value="FONTS/ROD-BLUE.TDF">ROD-BLUE</option>
-        <option id="FONTNUM918" value="FONTS/ROD-GRN.TDF">ROD-GRN</option>
-        <option id="FONTNUM919" value="FONTS/ROD-NAV.TDF">ROD-NAV</option>
-        <option id="FONTNUM920" value="FONTS/ROD-RED.TDF">ROD-RED</option>
-        <option id="FONTNUM921" value="FONTS/ROMAN.TDF">ROMAN</option>
-        <option id="FONTNUM922" value="FONTS/ROMANNSL.TDF">ROMANNSL</option>
-        <option id="FONTNUM923" value="FONTS/ROUNDED.TDF">ROUNDED</option>
-        <option id="FONTNUM924" value="FONTS/ROUNDX.TDF">ROUNDX</option>
-        <option id="FONTNUM925" value="FONTS/ROWANCAP.TDF">ROWANCAP</option>
-        <option id="FONTNUM926" value="FONTS/ROY-OLSX.TDF">ROY-OLSX</option>
-        <option id="FONTNUM927" value="FONTS/ROY3D.TDF">ROY3D</option>
-        <option id="FONTNUM928" value="FONTS/ROYAFNT1.TDF">ROYAFNT1</option>
-        <option id="FONTNUM929" value="FONTS/ROYAFNT2.TDF">ROYAFNT2</option>
-        <option id="FONTNUM930" value="FONTS/ROYFIVEX.TDF">ROYFIVEX</option>
-        <option id="FONTNUM931" value="FONTS/ROYFNT1.TDF">ROYFNT1</option>
-        <option id="FONTNUM932" value="FONTS/ROYFOUR.TDF">ROYFOUR</option>
-        <option id="FONTNUM933" value="FONTS/ROYFOUR2.TDF">ROYFOUR2</option>
-        <option id="FONTNUM934" value="FONTS/ROYSAC2C.TDF">ROYSAC2C</option>
-        <option id="FONTNUM935" value="FONTS/ROYSACOS.TDF">ROYSACOS</option>
-        <option id="FONTNUM936" value="FONTS/ROZZO.TDF">ROZZO</option>
-        <option id="FONTNUM937" value="FONTS/ROZZY.TDF">ROZZY</option>
-        <option id="FONTNUM938" value="FONTS/ROZZYX.TDF">ROZZYX</option>
-        <option id="FONTNUM939" value="FONTS/RUNNER.TDF">RUNNER</option>
-        <option id="FONTNUM940" value="FONTS/RUST.TDF">RUST</option>
-        <option id="FONTNUM941" value="FONTS/RUSTY.TDF">RUSTY</option>
-        <option id="FONTNUM942" value="FONTS/SABOTAGC.TDF">SABOTAGC</option>
-        <option id="FONTNUM943" value="FONTS/SABOTAGE.TDF">SABOTAGE</option>
-        <option id="FONTNUM944" value="FONTS/SABOTG2X.TDF">SABOTG2X</option>
-        <option id="FONTNUM945" value="FONTS/SAC.TDF">SAC</option>
-        <option id="FONTNUM946" value="FONTS/SACGRENX.TDF">SACGRENX</option>
-        <option id="FONTNUM947" value="FONTS/SADISTX.TDF">SADISTX</option>
-        <option id="FONTNUM948" value="FONTS/SALVATNX.TDF">SALVATNX</option>
-        <option id="FONTNUM949" value="FONTS/SANCTX.TDF">SANCTX</option>
-        <option id="FONTNUM950" value="FONTS/SANITARX.TDF">SANITARX</option>
-        <option id="FONTNUM951" value="FONTS/SANKTRYX.TDF">SANKTRYX</option>
-        <option id="FONTNUM952" value="FONTS/SANKTUARY.TDF">SANKTUARY</option>
-        <option id="FONTNUM953" value="FONTS/SAVAGEX.TDF">SAVAGEX</option>
-        <option id="FONTNUM954" value="FONTS/SCD-L2X.TDF">SCD-L2X</option>
-        <option id="FONTNUM955" value="FONTS/SCD-LINE.TDF">SCD-LINE</option>
-        <option id="FONTNUM956" value="FONTS/SECTOR.TDF">SECTOR</option>
-        <option id="FONTNUM957" value="FONTS/SECTOR2X.TDF">SECTOR2X</option>
-        <option id="FONTNUM958" value="FONTS/SECTORX.TDF">SECTORX</option>
-        <option id="FONTNUM959" value="FONTS/SEEDSX.TDF">SEEDSX</option>
-        <option id="FONTNUM960" value="FONTS/SELEVEN.TDF">SELEVEN</option>
-        <option id="FONTNUM961" value="FONTS/SENSEX.TDF">SENSEX</option>
-        <option id="FONTNUM962" value="FONTS/SERPENTX.TDF">SERPENTX</option>
-        <option id="FONTNUM963" value="FONTS/SEVEREDX.TDF">SEVEREDX</option>
-        <option id="FONTNUM964" value="FONTS/SHADLNDX.TDF">SHADLNDX</option>
-        <option id="FONTNUM965" value="FONTS/SHADOW.TDF">SHADOW</option>
-        <option id="FONTNUM966" value="FONTS/SHADWLSX.TDF">SHADWLSX</option>
-        <option id="FONTNUM967" value="FONTS/SHADWSX.TDF">SHADWSX</option>
-        <option id="FONTNUM968" value="FONTS/SHALLOWX.TDF">SHALLOWX</option>
-        <option id="FONTNUM969" value="FONTS/SHAOLIN2.TDF">SHAOLIN2</option>
-        <option id="FONTNUM970" value="FONTS/SHAOLINS.TDF">SHAOLINS</option>
-        <option id="FONTNUM971" value="FONTS/SHAOLYN.TDF">SHAOLYN</option>
-        <option id="FONTNUM972" value="FONTS/SHAOLYNX.TDF">SHAOLYNX</option>
-        <option id="FONTNUM973" value="FONTS/SHAOS.TDF">SHAOS</option>
-        <option id="FONTNUM974" value="FONTS/SHAOSX.TDF">SHAOSX</option>
-        <option id="FONTNUM975" value="FONTS/SHAOTIS.TDF">SHAOTIS</option>
-        <option id="FONTNUM976" value="FONTS/SHEAVEN.TDF">SHEAVEN</option>
-        <option id="FONTNUM977" value="FONTS/SHEAVENX.TDF">SHEAVENX</option>
-        <option id="FONTNUM978" value="FONTS/SHELZNSH.TDF">SHELZNSH</option>
-        <option id="FONTNUM979" value="FONTS/SHELZONE.TDF">SHELZONE</option>
-        <option id="FONTNUM980" value="FONTS/SHLNVERT.TDF">SHLNVERT</option>
-        <option id="FONTNUM981" value="FONTS/SHODANX.TDF">SHODANX</option>
-        <option id="FONTNUM982" value="FONTS/SHRIMPX.TDF">SHRIMPX</option>
-        <option id="FONTNUM983" value="FONTS/SHROOMS.TDF">SHROOMS</option>
-        <option id="FONTNUM984" value="FONTS/SHSYSTEM.TDF">SHSYSTEM</option>
-        <option id="FONTNUM985" value="FONTS/SIDEPOCK.TDF">SIDEPOCK</option>
-        <option id="FONTNUM986" value="FONTS/SIDEPOKX.TDF">SIDEPOKX</option>
-        <option id="FONTNUM987" value="FONTS/SILICON2.TDF">SILICON2</option>
-        <option id="FONTNUM988" value="FONTS/SILICSHT.TDF">SILICSHT</option>
-        <option id="FONTNUM989" value="FONTS/SILVER2.TDF">SILVER2</option>
-        <option id="FONTNUM990" value="FONTS/SILVERX.TDF">SILVERX</option>
-        <option id="FONTNUM991" value="FONTS/SIVERSX.TDF">SIVERSX</option>
-        <option id="FONTNUM992" value="FONTS/SKILLION.TDF">SKILLION</option>
-        <option id="FONTNUM993" value="FONTS/SKYLIGTX.TDF">SKYLIGTX</option>
-        <option id="FONTNUM994" value="FONTS/SLOUP.TDF">SLOUP</option>
-        <option id="FONTNUM995" value="FONTS/SMALLR.TDF">SMALLR</option>
-        <option id="FONTNUM996" value="FONTS/SMAT.TDF">SMAT</option>
-        <option id="FONTNUM997" value="FONTS/SMLISOM1.TDF">SMLISOM1</option>
-        <option id="FONTNUM998" value="FONTS/SMLSLANT.TDF">SMLSLANT</option>
-        <option id="FONTNUM999" value="FONTS/SOCIETYX.TDF">SOCIETYX</option>
-        <option id="FONTNUM1000" value="FONTS/SODAPOP.TDF">SODAPOP</option>
-        <option id="FONTNUM1001" value="FONTS/SOLE.TDF">SOLE</option>
-        <option id="FONTNUM1002" value="FONTS/SONIC.TDF">SONIC</option>
-        <option id="FONTNUM1003" value="FONTS/SONICX.TDF">SONICX</option>
-        <option id="FONTNUM1004" value="FONTS/SPACELNK.TDF">SPACELNK</option>
-        <option id="FONTNUM1005" value="FONTS/SPACELNX.TDF">SPACELNX</option>
-        <option id="FONTNUM1006" value="FONTS/SPANISH.TDF">SPANISH</option>
-        <option id="FONTNUM1007" value="FONTS/SPASTC4X.TDF">SPASTC4X</option>
-        <option id="FONTNUM1008" value="FONTS/SPASTC5X.TDF">SPASTC5X</option>
-        <option id="FONTNUM1009" value="FONTS/SPASTIC1.TDF">SPASTIC1</option>
-        <option id="FONTNUM1010" value="FONTS/SPASTIC2.TDF">SPASTIC2</option>
-        <option id="FONTNUM1011" value="FONTS/SPASTIC3.TDF">SPASTIC3</option>
-        <option id="FONTNUM1012" value="FONTS/SPAWN.TDF">SPAWN</option>
-        <option id="FONTNUM1013" value="FONTS/SPEDWAYX.TDF">SPEDWAYX</option>
-        <option id="FONTNUM1014" value="FONTS/SPEEDWAY.TDF">SPEEDWAY</option>
-        <option id="FONTNUM1015" value="FONTS/SPLAT.TDF">SPLAT</option>
-        <option id="FONTNUM1016" value="FONTS/SPLATHOS.TDF">SPLATHOS</option>
-        <option id="FONTNUM1017" value="FONTS/SPLOOGE.TDF">SPLOOGE</option>
-        <option id="FONTNUM1018" value="FONTS/SPYRIT.TDF">SPYRIT</option>
-        <option id="FONTNUM1019" value="FONTS/STAMPX.TDF">STAMPX</option>
-        <option id="FONTNUM1020" value="FONTS/STANDARD.TDF">STANDARD</option>
-        <option id="FONTNUM1021" value="FONTS/STAR.TDF">STAR</option>
-        <option id="FONTNUM1022" value="FONTS/STAR2X.TDF">STAR2X</option>
-        <option id="FONTNUM1023" value="FONTS/STAR3DX.TDF">STAR3DX</option>
-        <option id="FONTNUM1024" value="FONTS/STARGATX.TDF">STARGATX</option>
-        <option id="FONTNUM1025" value="FONTS/STARWARS.TDF">STARWARS</option>
-        <option id="FONTNUM1026" value="FONTS/STASIS.TDF">STASIS</option>
-        <option id="FONTNUM1027" value="FONTS/STATIC.TDF">STATIC</option>
-        <option id="FONTNUM1028" value="FONTS/STATISX.TDF">STATISX</option>
-        <option id="FONTNUM1029" value="FONTS/STATS.TDF">STATS</option>
-        <option id="FONTNUM1030" value="FONTS/STATSRS.TDF">STATSRS</option>
-        <option id="FONTNUM1031" value="FONTS/STEELX.TDF">STEELX</option>
-        <option id="FONTNUM1032" value="FONTS/STNCIRC1.TDF">STNCIRC1</option>
-        <option id="FONTNUM1033" value="FONTS/STNCIRC2.TDF">STNCIRC2</option>
-        <option id="FONTNUM1034" value="FONTS/STORMX.TDF">STORMX</option>
-        <option id="FONTNUM1035" value="FONTS/STRABERY.TDF">STRABERY</option>
-        <option id="FONTNUM1036" value="FONTS/STRIPESX.TDF">STRIPESX</option>
-        <option id="FONTNUM1037" value="FONTS/STRIPSSX.TDF">STRIPSSX</option>
-        <option id="FONTNUM1038" value="FONTS/STUPIDX.TDF">STUPIDX</option>
-        <option id="FONTNUM1039" value="FONTS/STURBO.TDF">STURBO</option>
-        <option id="FONTNUM1040" value="FONTS/SUB-ZERO.TDF">SUB-ZERO</option>
-        <option id="FONTNUM1041" value="FONTS/SUB.TDF">SUB</option>
-        <option id="FONTNUM1042" value="FONTS/SUCCO2X.TDF">SUCCO2X</option>
-        <option id="FONTNUM1043" value="FONTS/SUCCOX.TDF">SUCCOX</option>
-        <option id="FONTNUM1044" value="FONTS/SUCKER.TDF">SUCKER</option>
-        <option id="FONTNUM1045" value="FONTS/SUICIDAX.TDF">SUICIDAX</option>
-        <option id="FONTNUM1046" value="FONTS/SUMMIT.TDF">SUMMIT</option>
-        <option id="FONTNUM1047" value="FONTS/SUNRISE.TDF">SUNRISE</option>
-        <option id="FONTNUM1048" value="FONTS/SUNSHNEX.TDF">SUNSHNEX</option>
-        <option id="FONTNUM1049" value="FONTS/SUNYSHNE.TDF">SUNYSHNE</option>
-        <option id="FONTNUM1050" value="FONTS/SUPER.TDF">SUPER</option>
-        <option id="FONTNUM1051" value="FONTS/SUPERILU.TDF">SUPERILU</option>
-        <option id="FONTNUM1052" value="FONTS/SUPREM2X.TDF">SUPREM2X</option>
-        <option id="FONTNUM1053" value="FONTS/SUPREMCY.TDF">SUPREMCY</option>
-        <option id="FONTNUM1054" value="FONTS/SUPREME.TDF">SUPREME</option>
-        <option id="FONTNUM1055" value="FONTS/SUPREME2.TDF">SUPREME2</option>
-        <option id="FONTNUM1056" value="FONTS/SWAMPLND.TDF">SWAMPLND</option>
-        <option id="FONTNUM1057" value="FONTS/SWEET.TDF">SWEET</option>
-        <option id="FONTNUM1058" value="FONTS/SYNDICAT.TDF">SYNDICAT</option>
-        <option id="FONTNUM1059" value="FONTS/SYNDROME.TDF">SYNDROME</option>
-        <option id="FONTNUM1060" value="FONTS/SYNERGY.TDF">SYNERGY</option>
-        <option id="FONTNUM1061" value="FONTS/SYNRDSRX.TDF">SYNRDSRX</option>
-        <option id="FONTNUM1062" value="FONTS/SYNRGISX.TDF">SYNRGISX</option>
-        <option id="FONTNUM1063" value="FONTS/SYNTHICX.TDF">SYNTHICX</option>
-        <option id="FONTNUM1064" value="FONTS/SYNTHMEM.TDF">SYNTHMEM</option>
-        <option id="FONTNUM1065" value="FONTS/SYNTHTIC.TDF">SYNTHTIC</option>
-        <option id="FONTNUM1066" value="FONTS/TALENT.TDF">TALENT</option>
-        <option id="FONTNUM1067" value="FONTS/TALENT2.TDF">TALENT2</option>
-        <option id="FONTNUM1068" value="FONTS/TCAX.TDF">TCAX</option>
-        <option id="FONTNUM1069" value="FONTS/TDDX.TDF">TDDX</option>
-        <option id="FONTNUM1070" value="FONTS/TDFONTS-2.TDF">TDFONTS-2</option>
-        <option id="FONTNUM1071" value="FONTS/TDFONTS-3.TDF">TDFONTS-3</option>
-        <option id="FONTNUM1072" value="FONTS/TDFONTS-4.TDF">TDFONTS-4</option>
-        <option id="FONTNUM1073" value="FONTS/TDFONTS_ORG.TDF">TDFONTS_ORG</option>
-        <option id="FONTNUM1074" value="FONTS/TDU.TDF">TDU</option>
-        <option id="FONTNUM1075" value="FONTS/TEAPOTX.TDF">TEAPOTX</option>
-        <option id="FONTNUM1076" value="FONTS/TECH.TDF">TECH</option>
-        <option id="FONTNUM1077" value="FONTS/TENGWAR.TDF">TENGWAR</option>
-        <option id="FONTNUM1078" value="FONTS/TERMITEX.TDF">TERMITEX</option>
-        <option id="FONTNUM1079" value="FONTS/TFH.TDF">TFH</option>
-        <option id="FONTNUM1080" value="FONTS/THENSTAX.TDF">THENSTAX</option>
-        <option id="FONTNUM1081" value="FONTS/THEROADX.TDF">THEROADX</option>
-        <option id="FONTNUM1082" value="FONTS/THESANCT.TDF">THESANCT</option>
-        <option id="FONTNUM1083" value="FONTS/THE_EDGE.TDF">THE_EDGE</option>
-        <option id="FONTNUM1084" value="FONTS/THICK.TDF">THICK</option>
-        <option id="FONTNUM1085" value="FONTS/THICKO.TDF">THICKO</option>
-        <option id="FONTNUM1087" value="FONTS/THIEVS2X.TDF">THIEVS2X</option>
-        <option id="FONTNUM1088" value="FONTS/THIEVSML.TDF">THIEVSML</option>
-        <option id="FONTNUM1089" value="FONTS/THIN2.TDF">THIN2</option>
-        <option id="FONTNUM1090" value="FONTS/THINX.TDF">THINX</option>
-        <option id="FONTNUM1091" value="FONTS/THIS!.TDF">THIS!</option>
-        <option id="FONTNUM1092" value="FONTS/THIVSMLX.TDF">THIVSMLX</option>
-        <option id="FONTNUM1093" value="FONTS/THSANCTX.TDF">THSANCTX</option>
-        <option id="FONTNUM1094" value="FONTS/TIC.TDF">TIC</option>
-        <option id="FONTNUM1095" value="FONTS/TICCOL.TDF">TICCOL</option>
-        <option id="FONTNUM1096" value="FONTS/TICKS.TDF">TICKS</option>
-        <option id="FONTNUM1097" value="FONTS/TICKSSLT.TDF">TICKSSLT</option>
-        <option id="FONTNUM1098" value="FONTS/TIMSPIRX.TDF">TIMSPIRX</option>
-        <option id="FONTNUM1099" value="FONTS/TINCANS.TDF">TINCANS</option>
-        <option id="FONTNUM1100" value="FONTS/TINY.TDF">TINY</option>
-        <option id="FONTNUM1101" value="FONTS/TOASTERX.TDF">TOASTERX</option>
-        <option id="FONTNUM1102" value="FONTS/TOKYO.TDF">TOKYO</option>
-        <option id="FONTNUM1103" value="FONTS/TOWER.TDF">TOWER</option>
-        <option id="FONTNUM1104" value="FONTS/TOWER2.TDF">TOWER2</option>
-        <option id="FONTNUM1105" value="FONTS/TOWNSMLX.TDF">TOWNSMLX</option>
-        <option id="FONTNUM1106" value="FONTS/TOWNX.TDF">TOWNX</option>
-        <option id="FONTNUM1107" value="FONTS/TOXIC.TDF">TOXIC</option>
-        <option id="FONTNUM1108" value="FONTS/TRACES.TDF">TRACES</option>
-        <option id="FONTNUM1109" value="FONTS/TRANQILX.TDF">TRANQILX</option>
-        <option id="FONTNUM1110" value="FONTS/TREK.TDF">TREK</option>
-        <option id="FONTNUM1111" value="FONTS/TRIBESX.TDF">TRIBESX</option>
-        <option id="FONTNUM1112" value="FONTS/TRIBWRIT.TDF">TRIBWRIT</option>
-        <option id="FONTNUM1113" value="FONTS/TRONICSX.TDF">TRONICSX</option>
-        <option id="FONTNUM1114" value="FONTS/TROUTX.TDF">TROUTX</option>
-        <option id="FONTNUM1115" value="FONTS/TUCX.TDF">TUCX</option>
-        <option id="FONTNUM1116" value="FONTS/TUMOIL.TDF">TUMOIL</option>
-        <option id="FONTNUM1117" value="FONTS/TUSSE.TDF">TUSSE</option>
-        <option id="FONTNUM1118" value="FONTS/TWISTEDX.TDF">TWISTEDX</option>
-        <option id="FONTNUM1119" value="FONTS/TWOYEARS.TDF">TWOYEARS</option>
-        <option id="FONTNUM1120" value="FONTS/UDM1X.TDF">UDM1X</option>
-        <option id="FONTNUM1121" value="FONTS/UDMFIRE.TDF">UDMFIRE</option>
-        <option id="FONTNUM1122" value="FONTS/UGRNDFTR.TDF">UGRNDFTR</option>
-        <option id="FONTNUM1123" value="FONTS/UNCHAINX.TDF">UNCHAINX</option>
-        <option id="FONTNUM1124" value="FONTS/UNDER.TDF">UNDER</option>
-        <option id="FONTNUM1125" value="FONTS/UNDERGD2.TDF">UNDERGD2</option>
-        <option id="FONTNUM1126" value="FONTS/UNDERWLD.TDF">UNDERWLD</option>
-        <option id="FONTNUM1127" value="FONTS/UNDRGDSX.TDF">UNDRGDSX</option>
-        <option id="FONTNUM1128" value="FONTS/UNDRGRN2.TDF">UNDRGRN2</option>
-        <option id="FONTNUM1129" value="FONTS/UNDRGRND.TDF">UNDRGRND</option>
-        <option id="FONTNUM1130" value="FONTS/UNDRGRWN.TDF">UNDRGRWN</option>
-        <option id="FONTNUM1131" value="FONTS/UNDRWLDX.TDF">UNDRWLDX</option>
-        <option id="FONTNUM1132" value="FONTS/UNGRWING.TDF">UNGRWING</option>
-        <option id="FONTNUM1133" value="FONTS/UNGRWNXX.TDF">UNGRWNXX</option>
-        <option id="FONTNUM1134" value="FONTS/UNHOLYX.TDF">UNHOLYX</option>
-        <option id="FONTNUM1135" value="FONTS/UNION.TDF">UNION</option>
-        <option id="FONTNUM1136" value="FONTS/UNION2.TDF">UNION2</option>
-        <option id="FONTNUM1137" value="FONTS/UNIVERS.TDF">UNIVERS</option>
-        <option id="FONTNUM1138" value="FONTS/UNKNOWNX.TDF">UNKNOWNX</option>
-        <option id="FONTNUM1139" value="FONTS/UNOX.TDF">UNOX</option>
-        <option id="FONTNUM1140" value="FONTS/UNREAL.TDF">UNREAL</option>
-        <option id="FONTNUM1141" value="FONTS/UNSANE.TDF">UNSANE</option>
-        <option id="FONTNUM1142" value="FONTS/UNSANEX.TDF">UNSANEX</option>
-        <option id="FONTNUM1143" value="FONTS/UNSNFATE.TDF">UNSNFATE</option>
-        <option id="FONTNUM1144" value="FONTS/UNTX.TDF">UNTX</option>
-        <option id="FONTNUM1145" value="FONTS/UPCORX.TDF">UPCORX</option>
-        <option id="FONTNUM1146" value="FONTS/UPRISE.TDF">UPRISE</option>
-        <option id="FONTNUM1147" value="FONTS/UPRISE2X.TDF">UPRISE2X</option>
-        <option id="FONTNUM1148" value="FONTS/USAFLAG.TDF">USAFLAG</option>
-        <option id="FONTNUM1149" value="FONTS/USER.TDF">USER</option>
-        <option id="FONTNUM1150" value="FONTS/USER2.TDF">USER2</option>
-        <option id="FONTNUM1151" value="FONTS/USERSTSX.TDF">USERSTSX</option>
-        <option id="FONTNUM1152" value="FONTS/USEX.TDF">USEX</option>
-        <option id="FONTNUM1153" value="FONTS/USFLGCOL.TDF">USFLGCOL</option>
-        <option id="FONTNUM1154" value="FONTS/USFLGORG.TDF">USFLGORG</option>
-        <option id="FONTNUM1155" value="FONTS/UTOPANX.TDF">UTOPANX</option>
-        <option id="FONTNUM1156" value="FONTS/VALLEYX.TDF">VALLEYX</option>
-        <option id="FONTNUM1157" value="FONTS/VAMPYREX.TDF">VAMPYREX</option>
-        <option id="FONTNUM1158" value="FONTS/VASNIAKX.TDF">VASNIAKX</option>
-        <option id="FONTNUM1159" value="FONTS/VDO_1.TDF">VDO_1</option>
-        <option id="FONTNUM1160" value="FONTS/VENGANCX.TDF">VENGANCX</option>
-        <option id="FONTNUM1161" value="FONTS/VIBRNTSX.TDF">VIBRNTSX</option>
-        <option id="FONTNUM1162" value="FONTS/VINTAGE.TDF">VINTAGE</option>
-        <option id="FONTNUM1163" value="FONTS/VIOLENT.TDF">VIOLENT</option>
-        <option id="FONTNUM1164" value="FONTS/VIRTACXS.TDF">VIRTACXS</option>
-        <option id="FONTNUM1165" value="FONTS/VISION2.TDF">VISION2</option>
-        <option id="FONTNUM1166" value="FONTS/VISION3.TDF">VISION3</option>
-        <option id="FONTNUM1167" value="FONTS/VISIONS.TDF">VISIONS</option>
-        <option id="FONTNUM1168" value="FONTS/VISIONSX.TDF">VISIONSX</option>
-        <option id="FONTNUM1169" value="FONTS/VISIONX.TDF">VISIONX</option>
-        <option id="FONTNUM1170" value="FONTS/VISIONXX.TDF">VISIONXX</option>
-        <option id="FONTNUM1171" value="FONTS/VOICES.TDF">VOICES</option>
-        <option id="FONTNUM1172" value="FONTS/VOIDX.TDF">VOIDX</option>
-        <option id="FONTNUM1173" value="FONTS/WALLX.TDF">WALLX</option>
-        <option id="FONTNUM1174" value="FONTS/WARZONEX.TDF">WARZONEX</option>
-        <option id="FONTNUM1175" value="FONTS/WATCHDGX.TDF">WATCHDGX</option>
-        <option id="FONTNUM1176" value="FONTS/WATER.TDF">WATER</option>
-        <option id="FONTNUM1177" value="FONTS/WEIRD.TDF">WEIRD</option>
-        <option id="FONTNUM1178" value="FONTS/WELLFARE.TDF">WELLFARE</option>
-        <option id="FONTNUM1179" value="FONTS/WETLETER.TDF">WETLETER</option>
-        <option id="FONTNUM1180" value="FONTS/WHIMSY.TDF">WHIMSY</option>
-        <option id="FONTNUM1181" value="FONTS/WHIRWINX.TDF">WHIRWINX</option>
-        <option id="FONTNUM1182" value="FONTS/WHITE-BL.TDF">WHITE-BL</option>
-        <option id="FONTNUM1183" value="FONTS/WHOX.TDF">WHOX</option>
-        <option id="FONTNUM1184" value="FONTS/WICKED.TDF">WICKED</option>
-        <option id="FONTNUM1185" value="FONTS/WILD.TDF">WILD</option>
-        <option id="FONTNUM1186" value="FONTS/WILDCHLD.TDF">WILDCHLD</option>
-        <option id="FONTNUM1187" value="FONTS/WILDSIDX.TDF">WILDSIDX</option>
-        <option id="FONTNUM1188" value="FONTS/WPAINT.TDF">WPAINT</option>
-        <option id="FONTNUM1189" value="FONTS/X-TREMEX.TDF">X-TREMEX</option>
-        <option id="FONTNUM1190" value="FONTS/XENTRX1X.TDF">XENTRX1X</option>
-        <option id="FONTNUM1191" value="FONTS/XFONTX.TDF">XFONTX</option>
-        <option id="FONTNUM1192" value="FONTS/XMAS.TDF">XMAS</option>
-        <option id="FONTNUM1193" value="FONTS/YAZOOX.TDF">YAZOOX</option>
-        <option id="FONTNUM1194" value="FONTS/ZANE.TDF">ZANE</option>
-        <option id="FONTNUM1195" value="FONTS/ZANEX.TDF">ZANEX</option>
-        <option id="FONTNUM1196" value="FONTS/ZETRAX.TDF">ZETRAX</option>
-        <option id="FONTNUM1197" value="FONTS/ZOOKX.TDF">ZOOKX</option>
+<option id="FONTNUM0" value="FONTS/1911.TDF">1911</option>
+<option id="FONTNUM1" value="FONTS/1911X.TDF">1911X</option>
+<option id="FONTNUM2" value="FONTS/208.TDF">208</option>
+<option id="FONTNUM3" value="FONTS/208X.TDF">208X</option>
+<option id="FONTNUM4" value="FONTS/3D-ASCII.TDF">3D-ASCII</option>
+<option id="FONTNUM5" value="FONTS/3D-FADE.TDF">3D-FADE</option>
+<option id="FONTNUM6" value="FONTS/3DDIAG.TDF">3DDIAG</option>
+<option id="FONTNUM7" value="FONTS/4MAX.TDF">4MAX</option>
+<option id="FONTNUM8" value="FONTS/4MAXCOL.TDF">4MAXCOL</option>
+<option id="FONTNUM9" value="FONTS/4MAXX.TDF">4MAXX</option>
+<option id="FONTNUM10" value="FONTS/AAA.TDF">AAA</option>
+<option id="FONTNUM11" value="FONTS/AAAX.TDF">AAAX</option>
+<option id="FONTNUM12" value="FONTS/AARDVARK.TDF">AARDVARK</option>
+<option id="FONTNUM13" value="FONTS/ABBADON.TDF">ABBADON</option>
+<option id="FONTNUM14" value="FONTS/ACCESS.TDF">ACCESS</option>
+<option id="FONTNUM15" value="FONTS/ACHERONX.TDF">ACHERONX</option>
+<option id="FONTNUM16" value="FONTS/ACID3DX.TDF">ACID3DX</option>
+<option id="FONTNUM17" value="FONTS/ACIDNEWX.TDF">ACIDNEWX</option>
+<option id="FONTNUM18" value="FONTS/ACIDSC2X.TDF">ACIDSC2X</option>
+<option id="FONTNUM19" value="FONTS/ACIDSCPX.TDF">ACIDSCPX</option>
+<option id="FONTNUM20" value="FONTS/ACIDTRON.TDF">ACIDTRON</option>
+<option id="FONTNUM21" value="FONTS/ACIDX.TDF">ACIDX</option>
+<option id="FONTNUM22" value="FONTS/ACRYLICX.TDF">ACRYLICX</option>
+<option id="FONTNUM23" value="FONTS/ADOMEX.TDF">ADOMEX</option>
+<option id="FONTNUM24" value="FONTS/ADRENAX.TDF">ADRENAX</option>
+<option id="FONTNUM25" value="FONTS/ADRKNESX.TDF">ADRKNESX</option>
+<option id="FONTNUM26" value="FONTS/ADVOCATE.TDF">ADVOCATE</option>
+<option id="FONTNUM27" value="FONTS/AFTRDARX.TDF">AFTRDARX</option>
+<option id="FONTNUM28" value="FONTS/AFTRHOUX.TDF">AFTRHOUX</option>
+<option id="FONTNUM29" value="FONTS/AGONY.TDF">AGONY</option>
+<option id="FONTNUM30" value="FONTS/AGONY2X.TDF">AGONY2X</option>
+<option id="FONTNUM31" value="FONTS/ALCHEMYX.TDF">ALCHEMYX</option>
+<option id="FONTNUM32" value="FONTS/ALFHEIMX.TDF">ALFHEIMX</option>
+<option id="FONTNUM33" value="FONTS/ALIENLED.TDF">ALIENLED</option>
+<option id="FONTNUM34" value="FONTS/ALIGATR2.TDF">ALIGATR2</option>
+<option id="FONTNUM35" value="FONTS/ALPHAX.TDF">ALPHAX</option>
+<option id="FONTNUM36" value="FONTS/AMAZONX.TDF">AMAZONX</option>
+<option id="FONTNUM37" value="FONTS/AMBUSH2.TDF">AMBUSH2</option>
+<option id="FONTNUM38" value="FONTS/AMBUSHS.TDF">AMBUSHS</option>
+<option id="FONTNUM39" value="FONTS/AMBUSHX.TDF">AMBUSHX</option>
+<option id="FONTNUM40" value="FONTS/AMCNEKO.TDF">AMCNEKO</option>
+<option id="FONTNUM41" value="FONTS/AMCSLASH.TDF">AMCSLASH</option>
+<option id="FONTNUM42" value="FONTS/AMNESIA.TDF">AMNESIA</option>
+<option id="FONTNUM43" value="FONTS/AMNESIAX.TDF">AMNESIAX</option>
+<option id="FONTNUM44" value="FONTS/ANARCHYX.TDF">ANARCHYX</option>
+<option id="FONTNUM45" value="FONTS/ANDROMED.TDF">ANDROMED</option>
+<option id="FONTNUM46" value="FONTS/ANEMIAX.TDF">ANEMIAX</option>
+<option id="FONTNUM47" value="FONTS/ANEMIAXX.TDF">ANEMIAXX</option>
+<option id="FONTNUM48" value="FONTS/ANGLDUST.TDF">ANGLDUST</option>
+<option id="FONTNUM49" value="FONTS/ANNIVERX.TDF">ANNIVERX</option>
+<option id="FONTNUM50" value="FONTS/ANOMALIX.TDF">ANOMALIX</option>
+<option id="FONTNUM51" value="FONTS/ANSILTR2.TDF">ANSILTR2</option>
+<option id="FONTNUM52" value="FONTS/ANSILTR3.TDF">ANSILTR3</option>
+<option id="FONTNUM53" value="FONTS/ANSILTR4.TDF">ANSILTR4</option>
+<option id="FONTNUM54" value="FONTS/ANSILTR5.TDF">ANSILTR5</option>
+<option id="FONTNUM55" value="FONTS/ANTRFONT.TDF">ANTRFONT</option>
+<option id="FONTNUM56" value="FONTS/APOCAL2X.TDF">APOCAL2X</option>
+<option id="FONTNUM57" value="FONTS/APOTM.TDF">APOTM</option>
+<option id="FONTNUM58" value="FONTS/APOVISNX.TDF">APOVISNX</option>
+<option id="FONTNUM59" value="FONTS/APPOCALX.TDF">APPOCALX</option>
+<option id="FONTNUM60" value="FONTS/ARCANE.TDF">ARCANE</option>
+<option id="FONTNUM61" value="FONTS/ARCHANA.TDF">ARCHANA</option>
+<option id="FONTNUM62" value="FONTS/AREACONX.TDF">AREACONX</option>
+<option id="FONTNUM63" value="FONTS/AREAX.TDF">AREAX</option>
+<option id="FONTNUM64" value="FONTS/ARMAGDNX.TDF">ARMAGDNX</option>
+<option id="FONTNUM65" value="FONTS/ASCII.TDF">ASCII</option>
+<option id="FONTNUM66" value="FONTS/ASCII_2.TDF">ASCII_2</option>
+<option id="FONTNUM67" value="FONTS/ASSYLUM.TDF">ASSYLUM</option>
+<option id="FONTNUM68" value="FONTS/ASSYLUMX.TDF">ASSYLUMX</option>
+<option id="FONTNUM69" value="FONTS/ASTRONMX.TDF">ASTRONMX</option>
+<option id="FONTNUM70" value="FONTS/ASYLUMX.TDF">ASYLUMX</option>
+<option id="FONTNUM71" value="FONTS/ATBX.TDF">ATBX</option>
+<option id="FONTNUM72" value="FONTS/ATLANSMX.TDF">ATLANSMX</option>
+<option id="FONTNUM73" value="FONTS/ATLANTIX.TDF">ATLANTIX</option>
+<option id="FONTNUM74" value="FONTS/ATOMICX.TDF">ATOMICX</option>
+<option id="FONTNUM75" value="FONTS/ATOMX.TDF">ATOMX</option>
+<option id="FONTNUM76" value="FONTS/ATTITUDX.TDF">ATTITUDX</option>
+<option id="FONTNUM77" value="FONTS/AUDIOFIL.TDF">AUDIOFIL</option>
+<option id="FONTNUM78" value="FONTS/BADLANDX.TDF">BADLANDX</option>
+<option id="FONTNUM79" value="FONTS/BALISTCX.TDF">BALISTCX</option>
+<option id="FONTNUM80" value="FONTS/BAMBOOSX.TDF">BAMBOOSX</option>
+<option id="FONTNUM81" value="FONTS/BANSHEE.TDF">BANSHEE</option>
+<option id="FONTNUM82" value="FONTS/BANSHEEX.TDF">BANSHEEX</option>
+<option id="FONTNUM83" value="FONTS/BASIC.TDF">BASIC</option>
+<option id="FONTNUM84" value="FONTS/BBSTX.TDF">BBSTX</option>
+<option id="FONTNUM85" value="FONTS/BEAST.TDF">BEAST</option>
+<option id="FONTNUM86" value="FONTS/BELFASTX.TDF">BELFASTX</option>
+<option id="FONTNUM87" value="FONTS/BEVISIOX.TDF">BEVISIOX</option>
+<option id="FONTNUM88" value="FONTS/BEYOND2X.TDF">BEYOND2X</option>
+<option id="FONTNUM89" value="FONTS/BEYONDX.TDF">BEYONDX</option>
+<option id="FONTNUM90" value="FONTS/BIGICE_F.TDF">BIGICE_F</option>
+<option id="FONTNUM91" value="FONTS/BIGL2.TDF">BIGL2</option>
+<option id="FONTNUM92" value="FONTS/BIGLIMPY.TDF">BIGLIMPY</option>
+<option id="FONTNUM93" value="FONTS/BIGOUT.TDF">BIGOUT</option>
+<option id="FONTNUM94" value="FONTS/BIOHAZRX.TDF">BIOHAZRX</option>
+<option id="FONTNUM95" value="FONTS/BISMARCX.TDF">BISMARCX</option>
+<option id="FONTNUM96" value="FONTS/BITCHVRX.TDF">BITCHVRX</option>
+<option id="FONTNUM97" value="FONTS/BIZARRAX.TDF">BIZARRAX</option>
+<option id="FONTNUM98" value="FONTS/BLACKSUN.TDF">BLACKSUN</option>
+<option id="FONTNUM99" value="FONTS/BLACKSUX.TDF">BLACKSUX</option>
+<option id="FONTNUM100" value="FONTS/BLACKX.TDF">BLACKX</option>
+<option id="FONTNUM101" value="FONTS/BLADEX.TDF">BLADEX</option>
+<option id="FONTNUM102" value="FONTS/BLAH.TDF">BLAH</option>
+<option id="FONTNUM103" value="FONTS/BLAHX.TDF">BLAHX</option>
+<option id="FONTNUM104" value="FONTS/BLCKSUNX.TDF">BLCKSUNX</option>
+<option id="FONTNUM105" value="FONTS/BLCKTRNC.TDF">BLCKTRNC</option>
+<option id="FONTNUM106" value="FONTS/BLEACH.TDF">BLEACH</option>
+<option id="FONTNUM107" value="FONTS/BLENDR1X.TDF">BLENDR1X</option>
+<option id="FONTNUM108" value="FONTS/BLENDR2X.TDF">BLENDR2X</option>
+<option id="FONTNUM109" value="FONTS/BLEVX.TDF">BLEVX</option>
+<option id="FONTNUM110" value="FONTS/BLISTERX.TDF">BLISTERX</option>
+<option id="FONTNUM111" value="FONTS/BLOCK.TDF">BLOCK</option>
+<option id="FONTNUM112" value="FONTS/BLOCK3D.TDF">BLOCK3D</option>
+<option id="FONTNUM113" value="FONTS/BLOCK3DX.TDF">BLOCK3DX</option>
+<option id="FONTNUM114" value="FONTS/BLOODLG.TDF">BLOODLG</option>
+<option id="FONTNUM115" value="FONTS/BLOODLGC.TDF">BLOODLGC</option>
+<option id="FONTNUM116" value="FONTS/BLOODSMC.TDF">BLOODSMC</option>
+<option id="FONTNUM117" value="FONTS/BLOODSML.TDF">BLOODSML</option>
+<option id="FONTNUM118" value="FONTS/BLOODYX.TDF">BLOODYX</option>
+<option id="FONTNUM119" value="FONTS/BLUEESCX.TDF">BLUEESCX</option>
+<option id="FONTNUM120" value="FONTS/BLUNDER.TDF">BLUNDER</option>
+<option id="FONTNUM121" value="FONTS/BLUNDERS.TDF">BLUNDERS</option>
+<option id="FONTNUM122" value="FONTS/BLWTORCX.TDF">BLWTORCX</option>
+<option id="FONTNUM123" value="FONTS/BOARDX.TDF">BOARDX</option>
+<option id="FONTNUM124" value="FONTS/BODILY.TDF">BODILY</option>
+<option id="FONTNUM125" value="FONTS/BODYCNT.TDF">BODYCNT</option>
+<option id="FONTNUM126" value="FONTS/BODYCNTX.TDF">BODYCNTX</option>
+<option id="FONTNUM127" value="FONTS/BODYELEX.TDF">BODYELEX</option>
+<option id="FONTNUM128" value="FONTS/BOILPONT.TDF">BOILPONT</option>
+<option id="FONTNUM129" value="FONTS/BOLDME.TDF">BOLDME</option>
+<option id="FONTNUM130" value="FONTS/BOLGER.TDF">BOLGER</option>
+<option id="FONTNUM131" value="FONTS/BOLLUX.TDF">BOLLUX</option>
+<option id="FONTNUM132" value="FONTS/BOLLUXX.TDF">BOLLUXX</option>
+<option id="FONTNUM133" value="FONTS/BONERX.TDF">BONERX</option>
+<option id="FONTNUM134" value="FONTS/BONEX.TDF">BONEX</option>
+<option id="FONTNUM135" value="FONTS/BONGX.TDF">BONGX</option>
+<option id="FONTNUM136" value="FONTS/BOW.TDF">BOW</option>
+<option id="FONTNUM137" value="FONTS/BOXFIGHT.TDF">BOXFIGHT</option>
+<option id="FONTNUM138" value="FONTS/BRAVEX.TDF">BRAVEX</option>
+<option id="FONTNUM139" value="FONTS/BRAZENX.TDF">BRAZENX</option>
+<option id="FONTNUM140" value="FONTS/BREACHX.TDF">BREACHX</option>
+<option id="FONTNUM141" value="FONTS/BREAKX.TDF">BREAKX</option>
+<option id="FONTNUM142" value="FONTS/BREX.TDF">BREX</option>
+<option id="FONTNUM143" value="FONTS/BRICKX.TDF">BRICKX</option>
+<option id="FONTNUM144" value="FONTS/BRINK.TDF">BRINK</option>
+<option id="FONTNUM145" value="FONTS/BRINKX.TDF">BRINKX</option>
+<option id="FONTNUM146" value="FONTS/BRNDAMGX.TDF">BRNDAMGX</option>
+<option id="FONTNUM147" value="FONTS/BROADWAY.TDF">BROADWAY</option>
+<option id="FONTNUM148" value="FONTS/BROKENX.TDF">BROKENX</option>
+<option id="FONTNUM149" value="FONTS/BROKNSRT.TDF">BROKNSRT</option>
+<option id="FONTNUM150" value="FONTS/BROTHOOD.TDF">BROTHOOD</option>
+<option id="FONTNUM151" value="FONTS/BUBA.TDF">BUBA</option>
+<option id="FONTNUM152" value="FONTS/BUBACOL.TDF">BUBACOL</option>
+<option id="FONTNUM153" value="FONTS/BUFFALO.TDF">BUFFALO</option>
+<option id="FONTNUM154" value="FONTS/BURNINGX.TDF">BURNINGX</option>
+<option id="FONTNUM155" value="FONTS/CAFEX.TDF">CAFEX</option>
+<option id="FONTNUM156" value="FONTS/CALIFORX.TDF">CALIFORX</option>
+<option id="FONTNUM157" value="FONTS/CALVIN.TDF">CALVIN</option>
+<option id="FONTNUM158" value="FONTS/CALVIN_L.TDF">CALVIN_L</option>
+<option id="FONTNUM159" value="FONTS/CALVIN_S.TDF">CALVIN_S</option>
+<option id="FONTNUM160" value="FONTS/CAPITALX.TDF">CAPITALX</option>
+<option id="FONTNUM161" value="FONTS/CARBONX.TDF">CARBONX</option>
+<option id="FONTNUM162" value="FONTS/CARDINAX.TDF">CARDINAX</option>
+<option id="FONTNUM163" value="FONTS/CARTELX.TDF">CARTELX</option>
+<option id="FONTNUM164" value="FONTS/CARTOON.TDF">CARTOON</option>
+<option id="FONTNUM165" value="FONTS/CASINOX.TDF">CASINOX</option>
+<option id="FONTNUM166" value="FONTS/CASTLEX.TDF">CASTLEX</option>
+<option id="FONTNUM167" value="FONTS/CATLKINX.TDF">CATLKINX</option>
+<option id="FONTNUM168" value="FONTS/CATTLEX.TDF">CATTLEX</option>
+<option id="FONTNUM169" value="FONTS/CCINX.TDF">CCINX</option>
+<option id="FONTNUM170" value="FONTS/CELERTYX.TDF">CELERTYX</option>
+<option id="FONTNUM171" value="FONTS/CEMETARY.TDF">CEMETARY</option>
+<option id="FONTNUM172" value="FONTS/CESSPOOX.TDF">CESSPOOX</option>
+<option id="FONTNUM173" value="FONTS/CFH-AMIG.TDF">CFH-AMIG</option>
+<option id="FONTNUM174" value="FONTS/CFH-HOER.TDF">CFH-HOER</option>
+<option id="FONTNUM175" value="FONTS/CFH-HORX.TDF">CFH-HORX</option>
+<option id="FONTNUM176" value="FONTS/CFH-SNOW.TDF">CFH-SNOW</option>
+<option id="FONTNUM177" value="FONTS/CFH-SNWX.TDF">CFH-SNWX</option>
+<option id="FONTNUM178" value="FONTS/CHAMBERX.TDF">CHAMBERX</option>
+<option id="FONTNUM179" value="FONTS/CHANNELX.TDF">CHANNELX</option>
+<option id="FONTNUM180" value="FONTS/CHAOS2X.TDF">CHAOS2X</option>
+<option id="FONTNUM181" value="FONTS/CHAOSENX.TDF">CHAOSENX</option>
+<option id="FONTNUM182" value="FONTS/CHAOTICX.TDF">CHAOTICX</option>
+<option id="FONTNUM183" value="FONTS/CHAZERGX.TDF">CHAZERGX</option>
+<option id="FONTNUM184" value="FONTS/CHILDREN.TDF">CHILDREN</option>
+<option id="FONTNUM185" value="FONTS/CHNLZERO.TDF">CHNLZERO</option>
+<option id="FONTNUM186" value="FONTS/CHROMAX.TDF">CHROMAX</option>
+<option id="FONTNUM187" value="FONTS/CHRONOX.TDF">CHRONOX</option>
+<option id="FONTNUM188" value="FONTS/CHURCHX.TDF">CHURCHX</option>
+<option id="FONTNUM189" value="FONTS/CIAFONTX.TDF">CIAFONTX</option>
+<option id="FONTNUM190" value="FONTS/CIRCUTSX.TDF">CIRCUTSX</option>
+<option id="FONTNUM191" value="FONTS/CITYX.TDF">CITYX</option>
+<option id="FONTNUM192" value="FONTS/CLASSIC.TDF">CLASSIC</option>
+<option id="FONTNUM193" value="FONTS/CLDCITYX.TDF">CLDCITYX</option>
+<option id="FONTNUM194" value="FONTS/CLOSEDX.TDF">CLOSEDX</option>
+<option id="FONTNUM195" value="FONTS/CNERIP.TDF">CNERIP</option>
+<option id="FONTNUM196" value="FONTS/CODERX.TDF">CODERX</option>
+<option id="FONTNUM197" value="FONTS/CODEX.TDF">CODEX</option>
+<option id="FONTNUM198" value="FONTS/COLONY.TDF">COLONY</option>
+<option id="FONTNUM199" value="FONTS/COLOR.TDF">COLOR</option>
+<option id="FONTNUM200" value="FONTS/COLORHRD.TDF">COLORHRD</option>
+<option id="FONTNUM201" value="FONTS/COLOR_.TDF">COLOR_</option>
+<option id="FONTNUM202" value="FONTS/COLOSALL.TDF">COLOSALL</option>
+<option id="FONTNUM203" value="FONTS/COLOSCOL.TDF">COLOSCOL</option>
+<option id="FONTNUM204" value="FONTS/COLOSEUX.TDF">COLOSEUX</option>
+<option id="FONTNUM205" value="FONTS/COLOSSAL.TDF">COLOSSAL</option>
+<option id="FONTNUM206" value="FONTS/COLOURSX.TDF">COLOURSX</option>
+<option id="FONTNUM207" value="FONTS/COMMODRE.TDF">COMMODRE</option>
+<option id="FONTNUM208" value="FONTS/COMMX.TDF">COMMX</option>
+<option id="FONTNUM209" value="FONTS/COMPACT.TDF">COMPACT</option>
+<option id="FONTNUM210" value="FONTS/COMPFIGL.TDF">COMPFIGL</option>
+<option id="FONTNUM211" value="FONTS/COMPUTRX.TDF">COMPUTRX</option>
+<option id="FONTNUM212" value="FONTS/CONSOLEX.TDF">CONSOLEX</option>
+<option id="FONTNUM213" value="FONTS/CONTINUX.TDF">CONTINUX</option>
+<option id="FONTNUM214" value="FONTS/CONVULSX.TDF">CONVULSX</option>
+<option id="FONTNUM215" value="FONTS/COP-BH.TDF">COP-BH</option>
+<option id="FONTNUM216" value="FONTS/COP_CH1.TDF">COP_CH1</option>
+<option id="FONTNUM217" value="FONTS/COROSV2X.TDF">COROSV2X</option>
+<option id="FONTNUM218" value="FONTS/CORPSE.TDF">CORPSE</option>
+<option id="FONTNUM219" value="FONTS/CORROSOX.TDF">CORROSOX</option>
+<option id="FONTNUM220" value="FONTS/CORUPTNX.TDF">CORUPTNX</option>
+<option id="FONTNUM221" value="FONTS/COSMIC.TDF">COSMIC</option>
+<option id="FONTNUM222" value="FONTS/COSMICCO.TDF">COSMICCO</option>
+<option id="FONTNUM223" value="FONTS/COUNTX.TDF">COUNTX</option>
+<option id="FONTNUM224" value="FONTS/COURIERX.TDF">COURIERX</option>
+<option id="FONTNUM225" value="FONTS/CR-X.TDF">CR-X</option>
+<option id="FONTNUM226" value="FONTS/CRAZEDX.TDF">CRAZEDX</option>
+<option id="FONTNUM227" value="FONTS/CREATIOX.TDF">CREATIOX</option>
+<option id="FONTNUM228" value="FONTS/CREATORX.TDF">CREATORX</option>
+<option id="FONTNUM229" value="FONTS/CREEPX.TDF">CREEPX</option>
+<option id="FONTNUM230" value="FONTS/CREST.TDF">CREST</option>
+<option id="FONTNUM231" value="FONTS/CRESTCLX.TDF">CRESTCLX</option>
+<option id="FONTNUM232" value="FONTS/CREWELX.TDF">CREWELX</option>
+<option id="FONTNUM233" value="FONTS/CRICKET.TDF">CRICKET</option>
+<option id="FONTNUM234" value="FONTS/CRIMRINX.TDF">CRIMRINX</option>
+<option id="FONTNUM235" value="FONTS/CRIMSON.TDF">CRIMSON</option>
+<option id="FONTNUM236" value="FONTS/CRISISX.TDF">CRISISX</option>
+<option id="FONTNUM237" value="FONTS/CROSROAX.TDF">CROSROAX</option>
+<option id="FONTNUM238" value="FONTS/CRYPTIC.TDF">CRYPTIC</option>
+<option id="FONTNUM239" value="FONTS/CRYSTALX.TDF">CRYSTALX</option>
+<option id="FONTNUM240" value="FONTS/CRZYMADX.TDF">CRZYMADX</option>
+<option id="FONTNUM241" value="FONTS/CYANIDX.TDF">CYANIDX</option>
+<option id="FONTNUM242" value="FONTS/CYBCRTWX.TDF">CYBCRTWX</option>
+<option id="FONTNUM243" value="FONTS/CYBERA2X.TDF">CYBERA2X</option>
+<option id="FONTNUM244" value="FONTS/CYBERIA1.TDF">CYBERIA1</option>
+<option id="FONTNUM245" value="FONTS/CYBERLRG.TDF">CYBERLRG</option>
+<option id="FONTNUM246" value="FONTS/CYBERNX.TDF">CYBERNX</option>
+<option id="FONTNUM247" value="FONTS/CYBERRRX.TDF">CYBERRRX</option>
+<option id="FONTNUM248" value="FONTS/CYBERWRX.TDF">CYBERWRX</option>
+<option id="FONTNUM249" value="FONTS/CYBERWX.TDF">CYBERWX</option>
+<option id="FONTNUM250" value="FONTS/CYBLARGE.TDF">CYBLARGE</option>
+<option id="FONTNUM251" value="FONTS/CYBMEDUM.TDF">CYBMEDUM</option>
+<option id="FONTNUM252" value="FONTS/CYBRCRME.TDF">CYBRCRME</option>
+<option id="FONTNUM253" value="FONTS/CYBRFRCX.TDF">CYBRFRCX</option>
+<option id="FONTNUM254" value="FONTS/CYBSMALL.TDF">CYBSMALL</option>
+<option id="FONTNUM255" value="FONTS/DAMAGEX.TDF">DAMAGEX</option>
+<option id="FONTNUM256" value="FONTS/DAMNATNX.TDF">DAMNATNX</option>
+<option id="FONTNUM257" value="FONTS/DAMNEDX.TDF">DAMNEDX</option>
+<option id="FONTNUM258" value="FONTS/DANGERFX.TDF">DANGERFX</option>
+<option id="FONTNUM259" value="FONTS/DANGERX.TDF">DANGERX</option>
+<option id="FONTNUM260" value="FONTS/DARK.TDF">DARK</option>
+<option id="FONTNUM261" value="FONTS/DARKCRUX.TDF">DARKCRUX</option>
+<option id="FONTNUM262" value="FONTS/DARKERS1.TDF">DARKERS1</option>
+<option id="FONTNUM263" value="FONTS/DARKERS2.TDF">DARKERS2</option>
+<option id="FONTNUM264" value="FONTS/DARKLANX.TDF">DARKLANX</option>
+<option id="FONTNUM265" value="FONTS/DARKLITX.TDF">DARKLITX</option>
+<option id="FONTNUM266" value="FONTS/DARKMOON.TDF">DARKMOON</option>
+<option id="FONTNUM267" value="FONTS/DARKN2SX.TDF">DARKN2SX</option>
+<option id="FONTNUM268" value="FONTS/DARKNSES.TDF">DARKNSES</option>
+<option id="FONTNUM269" value="FONTS/DARKSIDX.TDF">DARKSIDX</option>
+<option id="FONTNUM270" value="FONTS/DARKSUN.TDF">DARKSUN</option>
+<option id="FONTNUM271" value="FONTS/DARKSUNX.TDF">DARKSUNX</option>
+<option id="FONTNUM272" value="FONTS/DARKTWO.TDF">DARKTWO</option>
+<option id="FONTNUM273" value="FONTS/DARRELL.TDF">DARRELL</option>
+<option id="FONTNUM274" value="FONTS/DARRELLX.TDF">DARRELLX</option>
+<option id="FONTNUM275" value="FONTS/DCFONT.TDF">DCFONT</option>
+<option id="FONTNUM276" value="FONTS/DCP_1.TDF">DCP_1</option>
+<option id="FONTNUM277" value="FONTS/DEADRELM.TDF">DEADRELM</option>
+<option id="FONTNUM278" value="FONTS/DEADSTAR.TDF">DEADSTAR</option>
+<option id="FONTNUM279" value="FONTS/DEADSTRX.TDF">DEADSTRX</option>
+<option id="FONTNUM280" value="FONTS/DEATH.TDF">DEATH</option>
+<option id="FONTNUM281" value="FONTS/DEATHROW.TDF">DEATHROW</option>
+<option id="FONTNUM282" value="FONTS/DEATHX.TDF">DEATHX</option>
+<option id="FONTNUM283" value="FONTS/DEEP.TDF">DEEP</option>
+<option id="FONTNUM284" value="FONTS/DEFLEPRD.TDF">DEFLEPRD</option>
+<option id="FONTNUM285" value="FONTS/DELLX.TDF">DELLX</option>
+<option id="FONTNUM286" value="FONTS/DELUSION.TDF">DELUSION</option>
+<option id="FONTNUM287" value="FONTS/DEMONCLX.TDF">DEMONCLX</option>
+<option id="FONTNUM288" value="FONTS/DEMONIC.TDF">DEMONIC</option>
+<option id="FONTNUM289" value="FONTS/DENIED.TDF">DENIED</option>
+<option id="FONTNUM290" value="FONTS/DESCENTX.TDF">DESCENTX</option>
+<option id="FONTNUM291" value="FONTS/DESCNTSX.TDF">DESCNTSX</option>
+<option id="FONTNUM292" value="FONTS/DESERTX.TDF">DESERTX</option>
+<option id="FONTNUM293" value="FONTS/DESNUDO.TDF">DESNUDO</option>
+<option id="FONTNUM294" value="FONTS/DESTINX.TDF">DESTINX</option>
+<option id="FONTNUM295" value="FONTS/DESTNY2X.TDF">DESTNY2X</option>
+<option id="FONTNUM296" value="FONTS/DESTRUCX.TDF">DESTRUCX</option>
+<option id="FONTNUM297" value="FONTS/DEVELOPX.TDF">DEVELOPX</option>
+<option id="FONTNUM298" value="FONTS/DGMOTIOX.TDF">DGMOTIOX</option>
+<option id="FONTNUM299" value="FONTS/DIGITAL2.TDF">DIGITAL2</option>
+<option id="FONTNUM300" value="FONTS/DIGITALX.TDF">DIGITALX</option>
+<option id="FONTNUM301" value="FONTS/DIGITX.TDF">DIGITX</option>
+<option id="FONTNUM302" value="FONTS/DIGX.TDF">DIGX</option>
+<option id="FONTNUM303" value="FONTS/DIMENTOX.TDF">DIMENTOX</option>
+<option id="FONTNUM304" value="FONTS/DIMSBOLX.TDF">DIMSBOLX</option>
+<option id="FONTNUM305" value="FONTS/DIMSSLIM.TDF">DIMSSLIM</option>
+<option id="FONTNUM306" value="FONTS/DIMSSLIX.TDF">DIMSSLIX</option>
+<option id="FONTNUM307" value="FONTS/DISSIMUX.TDF">DISSIMUX</option>
+<option id="FONTNUM308" value="FONTS/DISTREAX.TDF">DISTREAX</option>
+<option id="FONTNUM309" value="FONTS/DOLCEX.TDF">DOLCEX</option>
+<option id="FONTNUM310" value="FONTS/DOMINION.TDF">DOMINION</option>
+<option id="FONTNUM311" value="FONTS/DOMINIOX.TDF">DOMINIOX</option>
+<option id="FONTNUM312" value="FONTS/DONNOW.TDF">DONNOW</option>
+<option id="FONTNUM313" value="FONTS/DOORSX.TDF">DOORSX</option>
+<option id="FONTNUM314" value="FONTS/DOPE.TDF">DOPE</option>
+<option id="FONTNUM315" value="FONTS/DOSREBEL.TDF">DOSREBEL</option>
+<option id="FONTNUM316" value="FONTS/DOWNFALX.TDF">DOWNFALX</option>
+<option id="FONTNUM317" value="FONTS/DRAGON2X.TDF">DRAGON2X</option>
+<option id="FONTNUM318" value="FONTS/DRAGONX.TDF">DRAGONX</option>
+<option id="FONTNUM319" value="FONTS/DREADLK.TDF">DREADLK</option>
+<option id="FONTNUM320" value="FONTS/DREAM.TDF">DREAM</option>
+<option id="FONTNUM321" value="FONTS/DREAMLDS.TDF">DREAMLDS</option>
+<option id="FONTNUM322" value="FONTS/DREAMLNX.TDF">DREAMLNX</option>
+<option id="FONTNUM323" value="FONTS/DREAMLSX.TDF">DREAMLSX</option>
+<option id="FONTNUM324" value="FONTS/DRGX.TDF">DRGX</option>
+<option id="FONTNUM325" value="FONTS/DRKERS1X.TDF">DRKERS1X</option>
+<option id="FONTNUM326" value="FONTS/DRKERS2X.TDF">DRKERS2X</option>
+<option id="FONTNUM327" value="FONTS/DRKIMAGX.TDF">DRKIMAGX</option>
+<option id="FONTNUM328" value="FONTS/DRKMOONX.TDF">DRKMOONX</option>
+<option id="FONTNUM329" value="FONTS/DRKREALM.TDF">DRKREALM</option>
+<option id="FONTNUM330" value="FONTS/DRKSOCTY.TDF">DRKSOCTY</option>
+<option id="FONTNUM331" value="FONTS/DROME.TDF">DROME</option>
+<option id="FONTNUM332" value="FONTS/DRUMSX.TDF">DRUMSX</option>
+<option id="FONTNUM333" value="FONTS/DSKTDWNX.TDF">DSKTDWNX</option>
+<option id="FONTNUM334" value="FONTS/DUNGEON2.TDF">DUNGEON2</option>
+<option id="FONTNUM335" value="FONTS/DUNGEONX.TDF">DUNGEONX</option>
+<option id="FONTNUM336" value="FONTS/DUSTNBNX.TDF">DUSTNBNX</option>
+<option id="FONTNUM337" value="FONTS/DYNASTY.TDF">DYNASTY</option>
+<option id="FONTNUM338" value="FONTS/DYNASTYX.TDF">DYNASTYX</option>
+<option id="FONTNUM339" value="FONTS/EATMEX.TDF">EATMEX</option>
+<option id="FONTNUM340" value="FONTS/EBERUSX.TDF">EBERUSX</option>
+<option id="FONTNUM341" value="FONTS/ECLIPSE2.TDF">ECLIPSE2</option>
+<option id="FONTNUM342" value="FONTS/ECLIPSEX.TDF">ECLIPSEX</option>
+<option id="FONTNUM343" value="FONTS/ECLPSE2X.TDF">ECLPSE2X</option>
+<option id="FONTNUM344" value="FONTS/ECOX.TDF">ECOX</option>
+<option id="FONTNUM345" value="FONTS/ELEUTHIX.TDF">ELEUTHIX</option>
+<option id="FONTNUM346" value="FONTS/ELEVENTH.TDF">ELEVENTH</option>
+<option id="FONTNUM347" value="FONTS/ELITE.TDF">ELITE</option>
+<option id="FONTNUM348" value="FONTS/ELUSIVEX.TDF">ELUSIVEX</option>
+<option id="FONTNUM349" value="FONTS/EMBERX.TDF">EMBERX</option>
+<option id="FONTNUM350" value="FONTS/EMPI.TDF">EMPI</option>
+<option id="FONTNUM351" value="FONTS/EMPIRESX.TDF">EMPIRESX</option>
+<option id="FONTNUM352" value="FONTS/EMSX.TDF">EMSX</option>
+<option id="FONTNUM353" value="FONTS/ENDLESS.TDF">ENDLESS</option>
+<option id="FONTNUM354" value="FONTS/ENERGYX.TDF">ENERGYX</option>
+<option id="FONTNUM355" value="FONTS/ERTHBND2.TDF">ERTHBND2</option>
+<option id="FONTNUM356" value="FONTS/ERTHBOND.TDF">ERTHBOND</option>
+<option id="FONTNUM357" value="FONTS/ESCAPE2.TDF">ESCAPE2</option>
+<option id="FONTNUM358" value="FONTS/ESCAPEX.TDF">ESCAPEX</option>
+<option id="FONTNUM359" value="FONTS/ETERNA2X.TDF">ETERNA2X</option>
+<option id="FONTNUM360" value="FONTS/ETERNAL2.TDF">ETERNAL2</option>
+<option id="FONTNUM361" value="FONTS/ETERNALX.TDF">ETERNALX</option>
+<option id="FONTNUM362" value="FONTS/ETERNITX.TDF">ETERNITX</option>
+<option id="FONTNUM363" value="FONTS/ETHERX.TDF">ETHERX</option>
+<option id="FONTNUM364" value="FONTS/EUPHORIX.TDF">EUPHORIX</option>
+<option id="FONTNUM365" value="FONTS/EVILX.TDF">EVILX</option>
+<option id="FONTNUM366" value="FONTS/EVLACIDX.TDF">EVLACIDX</option>
+<option id="FONTNUM367" value="FONTS/EVOLUTX.TDF">EVOLUTX</option>
+<option id="FONTNUM368" value="FONTS/EVOLVE.TDF">EVOLVE</option>
+<option id="FONTNUM369" value="FONTS/EXILANSA.TDF">EXILANSA</option>
+<option id="FONTNUM370" value="FONTS/EXILE.TDF">EXILE</option>
+<option id="FONTNUM371" value="FONTS/EXILIANS.TDF">EXILIANS</option>
+<option id="FONTNUM372" value="FONTS/EXODUS2X.TDF">EXODUS2X</option>
+<option id="FONTNUM373" value="FONTS/EXODUSX.TDF">EXODUSX</option>
+<option id="FONTNUM374" value="FONTS/EXPLORAX.TDF">EXPLORAX</option>
+<option id="FONTNUM375" value="FONTS/EXPLOSOX.TDF">EXPLOSOX</option>
+<option id="FONTNUM376" value="FONTS/EXTASYX.TDF">EXTASYX</option>
+<option id="FONTNUM377" value="FONTS/FA-2.TDF">FA-2</option>
+<option id="FONTNUM378" value="FONTS/FADE-1.TDF">FADE-1</option>
+<option id="FONTNUM379" value="FONTS/FADE-2.TDF">FADE-2</option>
+<option id="FONTNUM380" value="FONTS/FAITHX.TDF">FAITHX</option>
+<option id="FONTNUM381" value="FONTS/FALCONSX.TDF">FALCONSX</option>
+<option id="FONTNUM382" value="FONTS/FANTASYX.TDF">FANTASYX</option>
+<option id="FONTNUM383" value="FONTS/FASTLANE.TDF">FASTLANE</option>
+<option id="FONTNUM384" value="FONTS/FATALX.TDF">FATALX</option>
+<option id="FONTNUM385" value="FONTS/FB-COLDX.TDF">FB-COLDX</option>
+<option id="FONTNUM386" value="FONTS/FB-FOGFT.TDF">FB-FOGFT</option>
+<option id="FONTNUM387" value="FONTS/FB-GOTHX.TDF">FB-GOTHX</option>
+<option id="FONTNUM388" value="FONTS/FB-GRAYX.TDF">FB-GRAYX</option>
+<option id="FONTNUM389" value="FONTS/FB-ICEFX.TDF">FB-ICEFX</option>
+<option id="FONTNUM390" value="FONTS/FB-LINE.TDF">FB-LINE</option>
+<option id="FONTNUM391" value="FONTS/FB-OLDSD.TDF">FB-OLDSD</option>
+<option id="FONTNUM392" value="FONTS/FB-REDSD.TDF">FB-REDSD</option>
+<option id="FONTNUM393" value="FONTS/FBR.TDF">FBR</option>
+<option id="FONTNUM394" value="FONTS/FBRX.TDF">FBRX</option>
+<option id="FONTNUM395" value="FONTS/FEAR.TDF">FEAR</option>
+<option id="FONTNUM396" value="FONTS/FIBERX.TDF">FIBERX</option>
+<option id="FONTNUM397" value="FONTS/FIELDS.TDF">FIELDS</option>
+<option id="FONTNUM398" value="FONTS/FILEX.TDF">FILEX</option>
+<option id="FONTNUM399" value="FONTS/FINAL.TDF">FINAL</option>
+<option id="FONTNUM400" value="FONTS/FINDEST2.TDF">FINDEST2</option>
+<option id="FONTNUM401" value="FONTS/FINDSTYX.TDF">FINDSTYX</option>
+<option id="FONTNUM402" value="FONTS/FINE.TDF">FINE</option>
+<option id="FONTNUM403" value="FONTS/FINEST.TDF">FINEST</option>
+<option id="FONTNUM404" value="FONTS/FINESTX.TDF">FINESTX</option>
+<option id="FONTNUM405" value="FONTS/FIRE.TDF">FIRE</option>
+<option id="FONTNUM406" value="FONTS/FISHBOWL.TDF">FISHBOWL</option>
+<option id="FONTNUM407" value="FONTS/FLAREX.TDF">FLAREX</option>
+<option id="FONTNUM408" value="FONTS/FLATLINE.TDF">FLATLINE</option>
+<option id="FONTNUM409" value="FONTS/FOCSPOPX.TDF">FOCSPOPX</option>
+<option id="FONTNUM410" value="FONTS/FONT1.TDF">FONT1</option>
+<option id="FONTNUM411" value="FONTS/FONT10.TDF">FONT10</option>
+<option id="FONTNUM412" value="FONTS/FONT11.TDF">FONT11</option>
+<option id="FONTNUM413" value="FONTS/FONT12X.TDF">FONT12X</option>
+<option id="FONTNUM414" value="FONTS/FONT13.TDF">FONT13</option>
+<option id="FONTNUM415" value="FONTS/FONT14.TDF">FONT14</option>
+<option id="FONTNUM416" value="FONTS/FONT15.TDF">FONT15</option>
+<option id="FONTNUM417" value="FONTS/FONT16.TDF">FONT16</option>
+<option id="FONTNUM418" value="FONTS/FONT17.TDF">FONT17</option>
+<option id="FONTNUM419" value="FONTS/FONT18.TDF">FONT18</option>
+<option id="FONTNUM420" value="FONTS/FONT19.TDF">FONT19</option>
+<option id="FONTNUM421" value="FONTS/FONT2.TDF">FONT2</option>
+<option id="FONTNUM422" value="FONTS/FONT20.TDF">FONT20</option>
+<option id="FONTNUM423" value="FONTS/FONT21X.TDF">FONT21X</option>
+<option id="FONTNUM424" value="FONTS/FONT22X.TDF">FONT22X</option>
+<option id="FONTNUM425" value="FONTS/FONT23.TDF">FONT23</option>
+<option id="FONTNUM426" value="FONTS/FONT25.TDF">FONT25</option>
+<option id="FONTNUM427" value="FONTS/FONT26OX.TDF">FONT26OX</option>
+<option id="FONTNUM428" value="FONTS/FONT26X.TDF">FONT26X</option>
+<option id="FONTNUM429" value="FONTS/FONT27.TDF">FONT27</option>
+<option id="FONTNUM430" value="FONTS/FONT28X.TDF">FONT28X</option>
+<option id="FONTNUM431" value="FONTS/FONT29X.TDF">FONT29X</option>
+<option id="FONTNUM432" value="FONTS/FONT2X.TDF">FONT2X</option>
+<option id="FONTNUM433" value="FONTS/FONT3.TDF">FONT3</option>
+<option id="FONTNUM434" value="FONTS/FONT30.TDF">FONT30</option>
+<option id="FONTNUM435" value="FONTS/FONT31.TDF">FONT31</option>
+<option id="FONTNUM436" value="FONTS/FONT32.TDF">FONT32</option>
+<option id="FONTNUM437" value="FONTS/FONT33.TDF">FONT33</option>
+<option id="FONTNUM438" value="FONTS/FONT34.TDF">FONT34</option>
+<option id="FONTNUM439" value="FONTS/FONT35.TDF">FONT35</option>
+<option id="FONTNUM440" value="FONTS/FONT36.TDF">FONT36</option>
+<option id="FONTNUM441" value="FONTS/FONT37.TDF">FONT37</option>
+<option id="FONTNUM442" value="FONTS/FONT37R.TDF">FONT37R</option>
+<option id="FONTNUM443" value="FONTS/FONT38.TDF">FONT38</option>
+<option id="FONTNUM444" value="FONTS/FONT39.TDF">FONT39</option>
+<option id="FONTNUM445" value="FONTS/FONT4.TDF">FONT4</option>
+<option id="FONTNUM446" value="FONTS/FONT40X.TDF">FONT40X</option>
+<option id="FONTNUM447" value="FONTS/FONT41.TDF">FONT41</option>
+<option id="FONTNUM448" value="FONTS/FONT42X.TDF">FONT42X</option>
+<option id="FONTNUM449" value="FONTS/FONT43X.TDF">FONT43X</option>
+<option id="FONTNUM450" value="FONTS/FONT44X.TDF">FONT44X</option>
+<option id="FONTNUM451" value="FONTS/FONT45X.TDF">FONT45X</option>
+<option id="FONTNUM452" value="FONTS/FONT46.TDF">FONT46</option>
+<option id="FONTNUM453" value="FONTS/FONT47X.TDF">FONT47X</option>
+<option id="FONTNUM454" value="FONTS/FONT48.TDF">FONT48</option>
+<option id="FONTNUM455" value="FONTS/FONT49.TDF">FONT49</option>
+<option id="FONTNUM456" value="FONTS/FONT4X.TDF">FONT4X</option>
+<option id="FONTNUM457" value="FONTS/FONT5.TDF">FONT5</option>
+<option id="FONTNUM458" value="FONTS/FONT50.TDF">FONT50</option>
+<option id="FONTNUM459" value="FONTS/FONT51.TDF">FONT51</option>
+<option id="FONTNUM460" value="FONTS/FONT52.TDF">FONT52</option>
+<option id="FONTNUM461" value="FONTS/FONT53X.TDF">FONT53X</option>
+<option id="FONTNUM462" value="FONTS/FONT54X.TDF">FONT54X</option>
+<option id="FONTNUM463" value="FONTS/FONT55X.TDF">FONT55X</option>
+<option id="FONTNUM464" value="FONTS/FONT56X.TDF">FONT56X</option>
+<option id="FONTNUM465" value="FONTS/FONT57.TDF">FONT57</option>
+<option id="FONTNUM466" value="FONTS/FONT58X.TDF">FONT58X</option>
+<option id="FONTNUM467" value="FONTS/FONT59X.TDF">FONT59X</option>
+<option id="FONTNUM468" value="FONTS/FONT5X.TDF">FONT5X</option>
+<option id="FONTNUM469" value="FONTS/FONT6.TDF">FONT6</option>
+<option id="FONTNUM470" value="FONTS/FONT60X.TDF">FONT60X</option>
+<option id="FONTNUM471" value="FONTS/FONT61X.TDF">FONT61X</option>
+<option id="FONTNUM472" value="FONTS/FONT62.TDF">FONT62</option>
+<option id="FONTNUM473" value="FONTS/FONT64.TDF">FONT64</option>
+<option id="FONTNUM474" value="FONTS/FONT65.TDF">FONT65</option>
+<option id="FONTNUM475" value="FONTS/FONT66.TDF">FONT66</option>
+<option id="FONTNUM476" value="FONTS/FONT67X.TDF">FONT67X</option>
+<option id="FONTNUM477" value="FONTS/FONT68.TDF">FONT68</option>
+<option id="FONTNUM478" value="FONTS/FONT69.TDF">FONT69</option>
+<option id="FONTNUM479" value="FONTS/FONT7.TDF">FONT7</option>
+<option id="FONTNUM480" value="FONTS/FONT70.TDF">FONT70</option>
+<option id="FONTNUM481" value="FONTS/FONT71.TDF">FONT71</option>
+<option id="FONTNUM482" value="FONTS/FONT72.TDF">FONT72</option>
+<option id="FONTNUM483" value="FONTS/FONT72OX.TDF">FONT72OX</option>
+<option id="FONTNUM484" value="FONTS/FONT73.TDF">FONT73</option>
+<option id="FONTNUM485" value="FONTS/FONT74.TDF">FONT74</option>
+<option id="FONTNUM486" value="FONTS/FONT76X.TDF">FONT76X</option>
+<option id="FONTNUM487" value="FONTS/FONT77.TDF">FONT77</option>
+<option id="FONTNUM488" value="FONTS/FONT78X.TDF">FONT78X</option>
+<option id="FONTNUM489" value="FONTS/FONT79X.TDF">FONT79X</option>
+<option id="FONTNUM490" value="FONTS/FONT8.TDF">FONT8</option>
+<option id="FONTNUM491" value="FONTS/FONT80.TDF">FONT80</option>
+<option id="FONTNUM492" value="FONTS/FONT81X.TDF">FONT81X</option>
+<option id="FONTNUM493" value="FONTS/FONT82.TDF">FONT82</option>
+<option id="FONTNUM494" value="FONTS/FONT83X.TDF">FONT83X</option>
+<option id="FONTNUM495" value="FONTS/FONT84X.TDF">FONT84X</option>
+<option id="FONTNUM496" value="FONTS/FONT85.TDF">FONT85</option>
+<option id="FONTNUM497" value="FONTS/FONT9.TDF">FONT9</option>
+<option id="FONTNUM498" value="FONTS/FORBIDDX.TDF">FORBIDDX</option>
+<option id="FONTNUM499" value="FONTS/FORGOTEX.TDF">FORGOTEX</option>
+<option id="FONTNUM500" value="FONTS/FOUNDATX.TDF">FOUNDATX</option>
+<option id="FONTNUM501" value="FONTS/FRAKTUR.TDF">FRAKTUR</option>
+<option id="FONTNUM502" value="FONTS/FRAKTUR2.TDF">FRAKTUR2</option>
+<option id="FONTNUM503" value="FONTS/FREAK-10.TDF">FREAK-10</option>
+<option id="FONTNUM504" value="FONTS/FREAK-11.TDF">FREAK-11</option>
+<option id="FONTNUM505" value="FONTS/FREAK-2.TDF">FREAK-2</option>
+<option id="FONTNUM506" value="FONTS/FREAK-4.TDF">FREAK-4</option>
+<option id="FONTNUM507" value="FONTS/FREAK-5.TDF">FREAK-5</option>
+<option id="FONTNUM508" value="FONTS/FREAK112.TDF">FREAK112</option>
+<option id="FONTNUM509" value="FONTS/FREAK_52.TDF">FREAK_52</option>
+<option id="FONTNUM510" value="FONTS/FREESIDE.TDF">FREESIDE</option>
+<option id="FONTNUM511" value="FONTS/FRESIDE2.TDF">FRESIDE2</option>
+<option id="FONTNUM512" value="FONTS/FRIENDSP.TDF">FRIENDSP</option>
+<option id="FONTNUM513" value="FONTS/FRISTI.TDF">FRISTI</option>
+<option id="FONTNUM514" value="FONTS/FRZMOON.TDF">FRZMOON</option>
+<option id="FONTNUM515" value="FONTS/FTEGATEX.TDF">FTEGATEX</option>
+<option id="FONTNUM516" value="FONTS/FTH.TDF">FTH</option>
+<option id="FONTNUM517" value="FONTS/FUNDBIRD.TDF">FUNDBIRD</option>
+<option id="FONTNUM518" value="FONTS/FUNGI.TDF">FUNGI</option>
+<option id="FONTNUM519" value="FONTS/FUTURE.TDF">FUTURE</option>
+<option id="FONTNUM520" value="FONTS/FUTURE2X.TDF">FUTURE2X</option>
+<option id="FONTNUM521" value="FONTS/GALAXYX.TDF">GALAXYX</option>
+<option id="FONTNUM522" value="FONTS/GANGLANX.TDF">GANGLANX</option>
+<option id="FONTNUM523" value="FONTS/GARDENX.TDF">GARDENX</option>
+<option id="FONTNUM524" value="FONTS/GENERATN.TDF">GENERATN</option>
+<option id="FONTNUM525" value="FONTS/GENOCIDE.TDF">GENOCIDE</option>
+<option id="FONTNUM526" value="FONTS/GEORGIA1.TDF">GEORGIA1</option>
+<option id="FONTNUM527" value="FONTS/GHOST.TDF">GHOST</option>
+<option id="FONTNUM528" value="FONTS/GHOSTX.TDF">GHOSTX</option>
+<option id="FONTNUM529" value="FONTS/GLAREX.TDF">GLAREX</option>
+<option id="FONTNUM530" value="FONTS/GLOOMX.TDF">GLOOMX</option>
+<option id="FONTNUM531" value="FONTS/GLOREE.TDF">GLOREE</option>
+<option id="FONTNUM532" value="FONTS/GLUENEW.TDF">GLUENEW</option>
+<option id="FONTNUM533" value="FONTS/GNARLYX.TDF">GNARLYX</option>
+<option id="FONTNUM534" value="FONTS/GOTHIC.TDF">GOTHIC</option>
+<option id="FONTNUM535" value="FONTS/GRAFFITI.TDF">GRAFFITI</option>
+<option id="FONTNUM536" value="FONTS/GRANDX.TDF">GRANDX</option>
+<option id="FONTNUM537" value="FONTS/GRAPHICX.TDF">GRAPHICX</option>
+<option id="FONTNUM538" value="FONTS/GRAVEX.TDF">GRAVEX</option>
+<option id="FONTNUM539" value="FONTS/GREEDX.TDF">GREEDX</option>
+<option id="FONTNUM540" value="FONTS/GREEK2.TDF">GREEK2</option>
+<option id="FONTNUM541" value="FONTS/GREENIE.TDF">GREENIE</option>
+<option id="FONTNUM542" value="FONTS/GRNCHAOX.TDF">GRNCHAOX</option>
+<option id="FONTNUM543" value="FONTS/GRNDZERO.TDF">GRNDZERO</option>
+<option id="FONTNUM544" value="FONTS/GRNDZERX.TDF">GRNDZERX</option>
+<option id="FONTNUM545" value="FONTS/GRNDZSML.TDF">GRNDZSML</option>
+<option id="FONTNUM546" value="FONTS/GRNDZSMX.TDF">GRNDZSMX</option>
+<option id="FONTNUM547" value="FONTS/GRNSHT.TDF">GRNSHT</option>
+<option id="FONTNUM548" value="FONTS/GRNSHTX.TDF">GRNSHTX</option>
+<option id="FONTNUM549" value="FONTS/GRVEYARD.TDF">GRVEYARD</option>
+<option id="FONTNUM550" value="FONTS/GUARDF2.TDF">GUARDF2</option>
+<option id="FONTNUM551" value="FONTS/GUILD.TDF">GUILD</option>
+<option id="FONTNUM552" value="FONTS/GUILD2.TDF">GUILD2</option>
+<option id="FONTNUM553" value="FONTS/HACK-TDF.TDF">HACK-TDF</option>
+<option id="FONTNUM554" value="FONTS/HACKER2.TDF">HACKER2</option>
+<option id="FONTNUM555" value="FONTS/HACKSHCK.TDF">HACKSHCK</option>
+<option id="FONTNUM556" value="FONTS/HARDTDFX.TDF">HARDTDFX</option>
+<option id="FONTNUM557" value="FONTS/HARDWRDX.TDF">HARDWRDX</option>
+<option id="FONTNUM558" value="FONTS/HARLOT.TDF">HARLOT</option>
+<option id="FONTNUM559" value="FONTS/HARLOTX.TDF">HARLOTX</option>
+<option id="FONTNUM560" value="FONTS/HARVEST.TDF">HARVEST</option>
+<option id="FONTNUM561" value="FONTS/HARVESTX.TDF">HARVESTX</option>
+<option id="FONTNUM562" value="FONTS/HAWKX.TDF">HAWKX</option>
+<option id="FONTNUM563" value="FONTS/HEAD.TDF">HEAD</option>
+<option id="FONTNUM564" value="FONTS/HEADX.TDF">HEADX</option>
+<option id="FONTNUM565" value="FONTS/HELITECH.TDF">HELITECH</option>
+<option id="FONTNUM566" value="FONTS/HELITECX.TDF">HELITECX</option>
+<option id="FONTNUM567" value="FONTS/HELIUM.TDF">HELIUM</option>
+<option id="FONTNUM568" value="FONTS/HELLHOLE.TDF">HELLHOLE</option>
+<option id="FONTNUM569" value="FONTS/HELLPAY.TDF">HELLPAY</option>
+<option id="FONTNUM570" value="FONTS/HELTSKLX.TDF">HELTSKLX</option>
+<option id="FONTNUM571" value="FONTS/HEMI.TDF">HEMI</option>
+<option id="FONTNUM572" value="FONTS/HEMISPHX.TDF">HEMISPHX</option>
+<option id="FONTNUM573" value="FONTS/HENRY3D.TDF">HENRY3D</option>
+<option id="FONTNUM574" value="FONTS/HGSIERAX.TDF">HGSIERAX</option>
+<option id="FONTNUM575" value="FONTS/HIDDEN.TDF">HIDDEN</option>
+<option id="FONTNUM576" value="FONTS/HIEROGLP.TDF">HIEROGLP</option>
+<option id="FONTNUM577" value="FONTS/HOARD.TDF">HOARD</option>
+<option id="FONTNUM578" value="FONTS/HOBBES.TDF">HOBBES</option>
+<option id="FONTNUM579" value="FONTS/HOLYWOOD.TDF">HOLYWOOD</option>
+<option id="FONTNUM580" value="FONTS/HOPELESS.TDF">HOPELESS</option>
+<option id="FONTNUM581" value="FONTS/HORR-TDF.TDF">HORR-TDF</option>
+<option id="FONTNUM582" value="FONTS/HOSTESS.TDF">HOSTESS</option>
+<option id="FONTNUM583" value="FONTS/HOTBOX.TDF">HOTBOX</option>
+<option id="FONTNUM584" value="FONTS/HOUN-TDF.TDF">HOUN-TDF</option>
+<option id="FONTNUM585" value="FONTS/HOUSEX.TDF">HOUSEX</option>
+<option id="FONTNUM586" value="FONTS/HOUSTEKX.TDF">HOUSTEKX</option>
+<option id="FONTNUM587" value="FONTS/HRDWIREX.TDF">HRDWIREX</option>
+<option id="FONTNUM588" value="FONTS/HS-EFFEK.TDF">HS-EFFEK</option>
+<option id="FONTNUM589" value="FONTS/HUNTERX.TDF">HUNTERX</option>
+<option id="FONTNUM590" value="FONTS/HW.TDF">HW</option>
+<option id="FONTNUM591" value="FONTS/HWPLATED.TDF">HWPLATED</option>
+<option id="FONTNUM592" value="FONTS/HWX.TDF">HWX</option>
+<option id="FONTNUM593" value="FONTS/HYDROGEN.TDF">HYDROGEN</option>
+<option id="FONTNUM594" value="FONTS/HYPERX.TDF">HYPERX</option>
+<option id="FONTNUM595" value="FONTS/HYPNOSIS.TDF">HYPNOSIS</option>
+<option id="FONTNUM596" value="FONTS/HYSTERIA.TDF">HYSTERIA</option>
+<option id="FONTNUM597" value="FONTS/ICEBLOCK.TDF">ICEBLOCK</option>
+<option id="FONTNUM598" value="FONTS/ICECREAM.TDF">ICECREAM</option>
+<option id="FONTNUM599" value="FONTS/ICEFIRE.TDF">ICEFIRE</option>
+<option id="FONTNUM600" value="FONTS/ICEX.TDF">ICEX</option>
+<option id="FONTNUM601" value="FONTS/ICEZONEX.TDF">ICEZONEX</option>
+<option id="FONTNUM602" value="FONTS/IDESX.TDF">IDESX</option>
+<option id="FONTNUM603" value="FONTS/ILCOMMX.TDF">ILCOMMX</option>
+<option id="FONTNUM604" value="FONTS/ILLCOMM.TDF">ILLCOMM</option>
+<option id="FONTNUM605" value="FONTS/ILLUCHRO.TDF">ILLUCHRO</option>
+<option id="FONTNUM606" value="FONTS/ILLUSIN2.TDF">ILLUSIN2</option>
+<option id="FONTNUM607" value="FONTS/ILLUSION.TDF">ILLUSION</option>
+<option id="FONTNUM608" value="FONTS/ILUSION3.TDF">ILUSION3</option>
+<option id="FONTNUM609" value="FONTS/IMAGES.TDF">IMAGES</option>
+<option id="FONTNUM610" value="FONTS/IMAGESX.TDF">IMAGESX</option>
+<option id="FONTNUM611" value="FONTS/IMGMNSET.TDF">IMGMNSET</option>
+<option id="FONTNUM612" value="FONTS/IMPACT2X.TDF">IMPACT2X</option>
+<option id="FONTNUM613" value="FONTS/IMPACTX.TDF">IMPACTX</option>
+<option id="FONTNUM614" value="FONTS/IMPOSSBL.TDF">IMPOSSBL</option>
+<option id="FONTNUM615" value="FONTS/INCH.TDF">INCH</option>
+<option id="FONTNUM616" value="FONTS/INCIRCLE.TDF">INCIRCLE</option>
+<option id="FONTNUM617" value="FONTS/INCIRCLX.TDF">INCIRCLX</option>
+<option id="FONTNUM618" value="FONTS/INCORPED.TDF">INCORPED</option>
+<option id="FONTNUM619" value="FONTS/INCORPEX.TDF">INCORPEX</option>
+<option id="FONTNUM620" value="FONTS/INDESGRN.TDF">INDESGRN</option>
+<option id="FONTNUM621" value="FONTS/INERTIA.TDF">INERTIA</option>
+<option id="FONTNUM622" value="FONTS/INERTIAX.TDF">INERTIAX</option>
+<option id="FONTNUM623" value="FONTS/INET.TDF">INET</option>
+<option id="FONTNUM624" value="FONTS/INETX.TDF">INETX</option>
+<option id="FONTNUM625" value="FONTS/INFINITE.TDF">INFINITE</option>
+<option id="FONTNUM626" value="FONTS/INFINSRT.TDF">INFINSRT</option>
+<option id="FONTNUM627" value="FONTS/INFINSRX.TDF">INFINSRX</option>
+<option id="FONTNUM628" value="FONTS/INFOZINE.TDF">INFOZINE</option>
+<option id="FONTNUM629" value="FONTS/INFOZINX.TDF">INFOZINX</option>
+<option id="FONTNUM630" value="FONTS/INNER.TDF">INNER</option>
+<option id="FONTNUM631" value="FONTS/INOCENCX.TDF">INOCENCX</option>
+<option id="FONTNUM632" value="FONTS/INSANEX.TDF">INSANEX</option>
+<option id="FONTNUM633" value="FONTS/INSANITY.TDF">INSANITY</option>
+<option id="FONTNUM634" value="FONTS/INSINSAN.TDF">INSINSAN</option>
+<option id="FONTNUM635" value="FONTS/INSINSAX.TDF">INSINSAX</option>
+<option id="FONTNUM636" value="FONTS/INSOMIAX.TDF">INSOMIAX</option>
+<option id="FONTNUM637" value="FONTS/INSPECTX.TDF">INSPECTX</option>
+<option id="FONTNUM638" value="FONTS/INTENSE.TDF">INTENSE</option>
+<option id="FONTNUM639" value="FONTS/INTENSEX.TDF">INTENSEX</option>
+<option id="FONTNUM640" value="FONTS/INTENTSX.TDF">INTENTSX</option>
+<option id="FONTNUM641" value="FONTS/INTERNAT.TDF">INTERNAT</option>
+<option id="FONTNUM642" value="FONTS/INTOXICX.TDF">INTOXICX</option>
+<option id="FONTNUM643" value="FONTS/INVASINS.TDF">INVASINS</option>
+<option id="FONTNUM644" value="FONTS/INVASION.TDF">INVASION</option>
+<option id="FONTNUM645" value="FONTS/INVASISX.TDF">INVASISX</option>
+<option id="FONTNUM646" value="FONTS/IRIDIUM.TDF">IRIDIUM</option>
+<option id="FONTNUM647" value="FONTS/ISOMET1.TDF">ISOMET1</option>
+<option id="FONTNUM648" value="FONTS/ISOMET2.TDF">ISOMET2</option>
+<option id="FONTNUM649" value="FONTS/ISOMET3.TDF">ISOMET3</option>
+<option id="FONTNUM650" value="FONTS/ISOMET4.TDF">ISOMET4</option>
+<option id="FONTNUM651" value="FONTS/ITSOVER.TDF">ITSOVER</option>
+<option id="FONTNUM652" value="FONTS/JAZMINE.TDF">JAZMINE</option>
+<option id="FONTNUM653" value="FONTS/JELLY.TDF">JELLY</option>
+<option id="FONTNUM654" value="FONTS/JSFRASTE.TDF">JSFRASTE</option>
+<option id="FONTNUM655" value="FONTS/JSFTHICK.TDF">JSFTHICK</option>
+<option id="FONTNUM656" value="FONTS/JSFTHIN.TDF">JSFTHIN</option>
+<option id="FONTNUM657" value="FONTS/JSFWIDE.TDF">JSFWIDE</option>
+<option id="FONTNUM658" value="FONTS/JUICE.TDF">JUICE</option>
+<option id="FONTNUM659" value="FONTS/JUICEX.TDF">JUICEX</option>
+<option id="FONTNUM660" value="FONTS/JUVENOCR.TDF">JUVENOCR</option>
+<option id="FONTNUM661" value="FONTS/KANSAS.TDF">KANSAS</option>
+<option id="FONTNUM662" value="FONTS/KEVIN1.TDF">KEVIN1</option>
+<option id="FONTNUM663" value="FONTS/KEVIN2.TDF">KEVIN2</option>
+<option id="FONTNUM664" value="FONTS/KEVIN3.TDF">KEVIN3</option>
+<option id="FONTNUM665" value="FONTS/KEVIN4.TDF">KEVIN4</option>
+<option id="FONTNUM666" value="FONTS/KEVIN42.TDF">KEVIN42</option>
+<option id="FONTNUM667" value="FONTS/KEVIN5.TDF">KEVIN5</option>
+<option id="FONTNUM668" value="FONTS/KEVIN52.TDF">KEVIN52</option>
+<option id="FONTNUM669" value="FONTS/KEWL-TDF.TDF">KEWL-TDF</option>
+<option id="FONTNUM670" value="FONTS/KEYS.TDF">KEYS</option>
+<option id="FONTNUM671" value="FONTS/KFCX.TDF">KFCX</option>
+<option id="FONTNUM672" value="FONTS/KISSMY.TDF">KISSMY</option>
+<option id="FONTNUM673" value="FONTS/KISSMYX.TDF">KISSMYX</option>
+<option id="FONTNUM674" value="FONTS/KNIGHTSX.TDF">KNIGHTSX</option>
+<option id="FONTNUM675" value="FONTS/KODERS.TDF">KODERS</option>
+<option id="FONTNUM676" value="FONTS/KOLO-TDF.TDF">KOLO-TDF</option>
+<option id="FONTNUM677" value="FONTS/KRYSTAL.TDF">KRYSTAL</option>
+<option id="FONTNUM678" value="FONTS/KRYSTALX.TDF">KRYSTALX</option>
+<option id="FONTNUM679" value="FONTS/LARRY3D.TDF">LARRY3D</option>
+<option id="FONTNUM680" value="FONTS/LASTBBS.TDF">LASTBBS</option>
+<option id="FONTNUM681" value="FONTS/LASTDIME.TDF">LASTDIME</option>
+<option id="FONTNUM682" value="FONTS/LAUGHTEX.TDF">LAUGHTEX</option>
+<option id="FONTNUM683" value="FONTS/LEAGUE.TDF">LEAGUE</option>
+<option id="FONTNUM684" value="FONTS/LEECH.TDF">LEECH</option>
+<option id="FONTNUM685" value="FONTS/LEECHING.TDF">LEECHING</option>
+<option id="FONTNUM686" value="FONTS/LEGACY.TDF">LEGACY</option>
+<option id="FONTNUM687" value="FONTS/LEGACY2X.TDF">LEGACY2X</option>
+<option id="FONTNUM688" value="FONTS/LEGCY3DX.TDF">LEGCY3DX</option>
+<option id="FONTNUM689" value="FONTS/LEISURE.TDF">LEISURE</option>
+<option id="FONTNUM690" value="FONTS/LEISUREX.TDF">LEISUREX</option>
+<option id="FONTNUM691" value="FONTS/LGY3DBL.TDF">LGY3DBL</option>
+<option id="FONTNUM692" value="FONTS/LIAR.TDF">LIAR</option>
+<option id="FONTNUM693" value="FONTS/LIMPYSET.TDF">LIMPYSET</option>
+<option id="FONTNUM694" value="FONTS/LIQUID.TDF">LIQUID</option>
+<option id="FONTNUM695" value="FONTS/LIQUID2.TDF">LIQUID2</option>
+<option id="FONTNUM696" value="FONTS/LIVE.TDF">LIVE</option>
+<option id="FONTNUM697" value="FONTS/LKERGNME.TDF">LKERGNME</option>
+<option id="FONTNUM698" value="FONTS/LSTSOULS.TDF">LSTSOULS</option>
+<option id="FONTNUM699" value="FONTS/LUCIDSRT.TDF">LUCIDSRT</option>
+<option id="FONTNUM700" value="FONTS/LUCRETIX.TDF">LUCRETIX</option>
+<option id="FONTNUM701" value="FONTS/MABUS.TDF">MABUS</option>
+<option id="FONTNUM702" value="FONTS/MABUS12.TDF">MABUS12</option>
+<option id="FONTNUM703" value="FONTS/MADMAN.TDF">MADMAN</option>
+<option id="FONTNUM704" value="FONTS/MADMAN2.TDF">MADMAN2</option>
+<option id="FONTNUM705" value="FONTS/MAGAZINE.TDF">MAGAZINE</option>
+<option id="FONTNUM706" value="FONTS/MAGICAST.TDF">MAGICAST</option>
+<option id="FONTNUM707" value="FONTS/MAGNUMX.TDF">MAGNUMX</option>
+<option id="FONTNUM708" value="FONTS/MAJICX.TDF">MAJICX</option>
+<option id="FONTNUM709" value="FONTS/MALICE.TDF">MALICE</option>
+<option id="FONTNUM710" value="FONTS/MAPPERSX.TDF">MAPPERSX</option>
+<option id="FONTNUM711" value="FONTS/MASACREX.TDF">MASACREX</option>
+<option id="FONTNUM712" value="FONTS/MASTER.TDF">MASTER</option>
+<option id="FONTNUM713" value="FONTS/MATRIX.TDF">MATRIX</option>
+<option id="FONTNUM714" value="FONTS/MATRIXX.TDF">MATRIXX</option>
+<option id="FONTNUM715" value="FONTS/MAXFONT2.TDF">MAXFONT2</option>
+<option id="FONTNUM716" value="FONTS/MAXFOUR.TDF">MAXFOUR</option>
+<option id="FONTNUM717" value="FONTS/MAXIMUM.TDF">MAXIMUM</option>
+<option id="FONTNUM718" value="FONTS/MAXIMUMX.TDF">MAXIMUMX</option>
+<option id="FONTNUM719" value="FONTS/MECHANIC.TDF">MECHANIC</option>
+<option id="FONTNUM720" value="FONTS/MECHRESI.TDF">MECHRESI</option>
+<option id="FONTNUM721" value="FONTS/MECHREST.TDF">MECHREST</option>
+<option id="FONTNUM722" value="FONTS/MEDIUM.TDF">MEDIUM</option>
+<option id="FONTNUM723" value="FONTS/MEMBERS.TDF">MEMBERS</option>
+<option id="FONTNUM724" value="FONTS/MEMORYX.TDF">MEMORYX</option>
+<option id="FONTNUM725" value="FONTS/MENACEX.TDF">MENACEX</option>
+<option id="FONTNUM726" value="FONTS/MERCURY.TDF">MERCURY</option>
+<option id="FONTNUM727" value="FONTS/MERCURY2.TDF">MERCURY2</option>
+<option id="FONTNUM728" value="FONTS/MERCURYX.TDF">MERCURYX</option>
+<option id="FONTNUM729" value="FONTS/MERCUY3X.TDF">MERCUY3X</option>
+<option id="FONTNUM730" value="FONTS/MERLIN1.TDF">MERLIN1</option>
+<option id="FONTNUM731" value="FONTS/MERLIN2.TDF">MERLIN2</option>
+<option id="FONTNUM732" value="FONTS/MERRY.TDF">MERRY</option>
+<option id="FONTNUM733" value="FONTS/MESSAGES.TDF">MESSAGES</option>
+<option id="FONTNUM734" value="FONTS/METAL.TDF">METAL</option>
+<option id="FONTNUM735" value="FONTS/METALIX.TDF">METALIX</option>
+<option id="FONTNUM736" value="FONTS/METALIX2.TDF">METALIX2</option>
+<option id="FONTNUM737" value="FONTS/MIDAS.TDF">MIDAS</option>
+<option id="FONTNUM738" value="FONTS/MIDDLAGE.TDF">MIDDLAGE</option>
+<option id="FONTNUM739" value="FONTS/MIDNIGHT.TDF">MIDNIGHT</option>
+<option id="FONTNUM740" value="FONTS/MINDBEND.TDF">MINDBEND</option>
+<option id="FONTNUM741" value="FONTS/MINDBNCX.TDF">MINDBNCX</option>
+<option id="FONTNUM742" value="FONTS/MINDSTAX.TDF">MINDSTAX</option>
+<option id="FONTNUM743" value="FONTS/MINDSX.TDF">MINDSX</option>
+<option id="FONTNUM744" value="FONTS/MIRROR.TDF">MIRROR</option>
+<option id="FONTNUM745" value="FONTS/MIRROW2.TDF">MIRROW2</option>
+<option id="FONTNUM746" value="FONTS/MONEY.TDF">MONEY</option>
+<option id="FONTNUM747" value="FONTS/MOON1.TDF">MOON1</option>
+<option id="FONTNUM748" value="FONTS/MOON2.TDF">MOON2</option>
+<option id="FONTNUM749" value="FONTS/MOON3.TDF">MOON3</option>
+<option id="FONTNUM750" value="FONTS/MORLDECX.TDF">MORLDECX</option>
+<option id="FONTNUM751" value="FONTS/MOTION.TDF">MOTION</option>
+<option id="FONTNUM752" value="FONTS/MR.TDF">MR</option>
+<option id="FONTNUM753" value="FONTS/MYFONT.TDF">MYFONT</option>
+<option id="FONTNUM754" value="FONTS/MYSTBYE.TDF">MYSTBYE</option>
+<option id="FONTNUM755" value="FONTS/MYSTERYX.TDF">MYSTERYX</option>
+<option id="FONTNUM756" value="FONTS/MYSTICX.TDF">MYSTICX</option>
+<option id="FONTNUM757" value="FONTS/MYSTOUSX.TDF">MYSTOUSX</option>
+<option id="FONTNUM758" value="FONTS/NACHO.TDF">NACHO</option>
+<option id="FONTNUM759" value="FONTS/NANCYJFA.TDF">NANCYJFA</option>
+<option id="FONTNUM760" value="FONTS/NANCYJIP.TDF">NANCYJIP</option>
+<option id="FONTNUM761" value="FONTS/NANCYJUL.TDF">NANCYJUL</option>
+<option id="FONTNUM762" value="FONTS/NATIONX.TDF">NATIONX</option>
+<option id="FONTNUM763" value="FONTS/NEGATIVE.TDF">NEGATIVE</option>
+<option id="FONTNUM764" value="FONTS/NEON.TDF">NEON</option>
+<option id="FONTNUM765" value="FONTS/NESTRED.TDF">NESTRED</option>
+<option id="FONTNUM766" value="FONTS/NESTX.TDF">NESTX</option>
+<option id="FONTNUM767" value="FONTS/NEUROSIX.TDF">NEUROSIX</option>
+<option id="FONTNUM768" value="FONTS/NEUROSMX.TDF">NEUROSMX</option>
+<option id="FONTNUM769" value="FONTS/NEURRNDX.TDF">NEURRNDX</option>
+<option id="FONTNUM770" value="FONTS/NEUTRALX.TDF">NEUTRALX</option>
+<option id="FONTNUM771" value="FONTS/NEWHAVNX.TDF">NEWHAVNX</option>
+<option id="FONTNUM772" value="FONTS/NEWSLETX.TDF">NEWSLETX</option>
+<option id="FONTNUM773" value="FONTS/NEWSX.TDF">NEWSX</option>
+<option id="FONTNUM774" value="FONTS/NEXUS.TDF">NEXUS</option>
+<option id="FONTNUM775" value="FONTS/NGHTMARE.TDF">NGHTMARE</option>
+<option id="FONTNUM776" value="FONTS/NGTHSHDX.TDF">NGTHSHDX</option>
+<option id="FONTNUM777" value="FONTS/NICEX.TDF">NICEX</option>
+<option id="FONTNUM778" value="FONTS/NIGTMGRX.TDF">NIGTMGRX</option>
+<option id="FONTNUM779" value="FONTS/NIRVANA.TDF">NIRVANA</option>
+<option id="FONTNUM780" value="FONTS/NIRVANA2.TDF">NIRVANA2</option>
+<option id="FONTNUM781" value="FONTS/NMSWHQ.TDF">NMSWHQ</option>
+<option id="FONTNUM782" value="FONTS/NOCARIEX.TDF">NOCARIEX</option>
+<option id="FONTNUM783" value="FONTS/NODELAY.TDF">NODELAY</option>
+<option id="FONTNUM784" value="FONTS/NODESPYX.TDF">NODESPYX</option>
+<option id="FONTNUM785" value="FONTS/NOPE.TDF">NOPE</option>
+<option id="FONTNUM786" value="FONTS/NOPE2.TDF">NOPE2</option>
+<option id="FONTNUM787" value="FONTS/NORTHERX.TDF">NORTHERX</option>
+<option id="FONTNUM788" value="FONTS/NOVAX.TDF">NOVAX</option>
+<option id="FONTNUM789" value="FONTS/NOX.TDF">NOX</option>
+<option id="FONTNUM790" value="FONTS/NRTHSTAR.TDF">NRTHSTAR</option>
+<option id="FONTNUM791" value="FONTS/NSA.TDF">NSA</option>
+<option id="FONTNUM792" value="FONTS/NUCLEAR.TDF">NUCLEAR</option>
+<option id="FONTNUM793" value="FONTS/NUKEX.TDF">NUKEX</option>
+<option id="FONTNUM794" value="FONTS/NUKLEARX.TDF">NUKLEARX</option>
+<option id="FONTNUM795" value="FONTS/NVSCR2.TDF">NVSCR2</option>
+<option id="FONTNUM796" value="FONTS/NVSCRIPT.TDF">NVSCRIPT</option>
+<option id="FONTNUM797" value="FONTS/NYCOTINE.TDF">NYCOTINE</option>
+<option id="FONTNUM798" value="FONTS/NYNDEE.TDF">NYNDEE</option>
+<option id="FONTNUM799" value="FONTS/OBLIVION.TDF">OBLIVION</option>
+<option id="FONTNUM800" value="FONTS/OBLIVRED.TDF">OBLIVRED</option>
+<option id="FONTNUM801" value="FONTS/OBSESSS.TDF">OBSESSS</option>
+<option id="FONTNUM802" value="FONTS/OBVLRDSM.TDF">OBVLRDSM</option>
+<option id="FONTNUM803" value="FONTS/OCEANA.TDF">OCEANA</option>
+<option id="FONTNUM804" value="FONTS/ODB.TDF">ODB</option>
+<option id="FONTNUM805" value="FONTS/OGRE.TDF">OGRE</option>
+<option id="FONTNUM806" value="FONTS/ONE.TDF">ONE</option>
+<option id="FONTNUM807" value="FONTS/ONELINEX.TDF">ONELINEX</option>
+<option id="FONTNUM808" value="FONTS/ONKELZX.TDF">ONKELZX</option>
+<option id="FONTNUM809" value="FONTS/OPTICAL.TDF">OPTICAL</option>
+<option id="FONTNUM810" value="FONTS/OUTFONT1.TDF">OUTFONT1</option>
+<option id="FONTNUM811" value="FONTS/OUTLINEX.TDF">OUTLINEX</option>
+<option id="FONTNUM812" value="FONTS/OUTPOST.TDF">OUTPOST</option>
+<option id="FONTNUM813" value="FONTS/OUTPOST2.TDF">OUTPOST2</option>
+<option id="FONTNUM814" value="FONTS/OVERDOSX.TDF">OVERDOSX</option>
+<option id="FONTNUM815" value="FONTS/PAGAN.TDF">PAGAN</option>
+<option id="FONTNUM816" value="FONTS/PAGANRHX.TDF">PAGANRHX</option>
+<option id="FONTNUM817" value="FONTS/PAINCAVE.TDF">PAINCAVE</option>
+<option id="FONTNUM818" value="FONTS/PALACE.TDF">PALACE</option>
+<option id="FONTNUM819" value="FONTS/PALACE2X.TDF">PALACE2X</option>
+<option id="FONTNUM820" value="FONTS/PALADIUX.TDF">PALADIUX</option>
+<option id="FONTNUM821" value="FONTS/PANDEMON.TDF">PANDEMON</option>
+<option id="FONTNUM822" value="FONTS/PANGEAX.TDF">PANGEAX</option>
+<option id="FONTNUM823" value="FONTS/PANTHEON.TDF">PANTHEON</option>
+<option id="FONTNUM824" value="FONTS/PARADIGM.TDF">PARADIGM</option>
+<option id="FONTNUM825" value="FONTS/PARAMNTX.TDF">PARAMNTX</option>
+<option id="FONTNUM826" value="FONTS/PARIDOXX.TDF">PARIDOXX</option>
+<option id="FONTNUM827" value="FONTS/PARTYX.TDF">PARTYX</option>
+<option id="FONTNUM828" value="FONTS/PATCHESE.TDF">PATCHESE</option>
+<option id="FONTNUM829" value="FONTS/PATEX.TDF">PATEX</option>
+<option id="FONTNUM830" value="FONTS/PATORJK.TDF">PATORJK</option>
+<option id="FONTNUM831" value="FONTS/PCBOARD.TDF">PCBOARD</option>
+<option id="FONTNUM832" value="FONTS/PENTAGRX.TDF">PENTAGRX</option>
+<option id="FONTNUM833" value="FONTS/PEPPER.TDF">PEPPER</option>
+<option id="FONTNUM834" value="FONTS/PERSUASX.TDF">PERSUASX</option>
+<option id="FONTNUM835" value="FONTS/PEX.TDF">PEX</option>
+<option id="FONTNUM836" value="FONTS/PHALANX.TDF">PHALANX</option>
+<option id="FONTNUM837" value="FONTS/PHALNXX.TDF">PHALNXX</option>
+<option id="FONTNUM838" value="FONTS/PHARCYDX.TDF">PHARCYDX</option>
+<option id="FONTNUM839" value="FONTS/PHIBER1X.TDF">PHIBER1X</option>
+<option id="FONTNUM840" value="FONTS/PHIBER2.TDF">PHIBER2</option>
+<option id="FONTNUM841" value="FONTS/PHIBERX.TDF">PHIBERX</option>
+<option id="FONTNUM842" value="FONTS/PHONX.TDF">PHONX</option>
+<option id="FONTNUM843" value="FONTS/PHUCK.TDF">PHUCK</option>
+<option id="FONTNUM844" value="FONTS/PHUDGE.TDF">PHUDGE</option>
+<option id="FONTNUM845" value="FONTS/PINACLEX.TDF">PINACLEX</option>
+<option id="FONTNUM846" value="FONTS/PIPELINE.TDF">PIPELINE</option>
+<option id="FONTNUM847" value="FONTS/PIRATES.TDF">PIRATES</option>
+<option id="FONTNUM848" value="FONTS/PITSX.TDF">PITSX</option>
+<option id="FONTNUM849" value="FONTS/PITTYX.TDF">PITTYX</option>
+<option id="FONTNUM850" value="FONTS/PLATZANG.TDF">PLATZANG</option>
+<option id="FONTNUM851" value="FONTS/POISONX.TDF">POISONX</option>
+<option id="FONTNUM852" value="FONTS/POLICEX.TDF">POLICEX</option>
+<option id="FONTNUM853" value="FONTS/PORTAL.TDF">PORTAL</option>
+<option id="FONTNUM854" value="FONTS/POWRGRDX.TDF">POWRGRDX</option>
+<option id="FONTNUM855" value="FONTS/PRDCTNSX.TDF">PRDCTNSX</option>
+<option id="FONTNUM856" value="FONTS/PRESUREX.TDF">PRESUREX</option>
+<option id="FONTNUM857" value="FONTS/PRIMELIN.TDF">PRIMELIN</option>
+<option id="FONTNUM858" value="FONTS/PRIMELIX.TDF">PRIMELIX</option>
+<option id="FONTNUM859" value="FONTS/PRISONER.TDF">PRISONER</option>
+<option id="FONTNUM860" value="FONTS/PRJET13X.TDF">PRJET13X</option>
+<option id="FONTNUM861" value="FONTS/PROCTOR.TDF">PROCTOR</option>
+<option id="FONTNUM862" value="FONTS/PROPHECY.TDF">PROPHECY</option>
+<option id="FONTNUM863" value="FONTS/PROPS.TDF">PROPS</option>
+<option id="FONTNUM864" value="FONTS/PROTOTYP.TDF">PROTOTYP</option>
+<option id="FONTNUM865" value="FONTS/PRPUGRDX.TDF">PRPUGRDX</option>
+<option id="FONTNUM866" value="FONTS/PSYCH3DX.TDF">PSYCH3DX</option>
+<option id="FONTNUM867" value="FONTS/PSYCHO2.TDF">PSYCHO2</option>
+<option id="FONTNUM868" value="FONTS/PSYCHO3X.TDF">PSYCHO3X</option>
+<option id="FONTNUM869" value="FONTS/PSYCHOS2.TDF">PSYCHOS2</option>
+<option id="FONTNUM870" value="FONTS/PSYCHOSM.TDF">PSYCHOSM</option>
+<option id="FONTNUM871" value="FONTS/PSYCHSYX.TDF">PSYCHSYX</option>
+<option id="FONTNUM872" value="FONTS/PSYCOSIX.TDF">PSYCOSIX</option>
+<option id="FONTNUM873" value="FONTS/PSYNEURO.TDF">PSYNEURO</option>
+<option id="FONTNUM874" value="FONTS/PULSEX.TDF">PULSEX</option>
+<option id="FONTNUM875" value="FONTS/PUNCX.TDF">PUNCX</option>
+<option id="FONTNUM876" value="FONTS/PUNISHTX.TDF">PUNISHTX</option>
+<option id="FONTNUM877" value="FONTS/PUREMADX.TDF">PUREMADX</option>
+<option id="FONTNUM878" value="FONTS/PUSHEAD.TDF">PUSHEAD</option>
+<option id="FONTNUM879" value="FONTS/QUAZARX.TDF">QUAZARX</option>
+<option id="FONTNUM880" value="FONTS/R.TDF">R</option>
+<option id="FONTNUM881" value="FONTS/RADIANCX.TDF">RADIANCX</option>
+<option id="FONTNUM882" value="FONTS/RAGNARKX.TDF">RAGNARKX</option>
+<option id="FONTNUM883" value="FONTS/RAINX.TDF">RAINX</option>
+<option id="FONTNUM884" value="FONTS/RAMMSTEN.TDF">RAMMSTEN</option>
+<option id="FONTNUM885" value="FONTS/RAPID.TDF">RAPID</option>
+<option id="FONTNUM886" value="FONTS/RAPIDCOL.TDF">RAPIDCOL</option>
+<option id="FONTNUM887" value="FONTS/RASTAA.TDF">RASTAA</option>
+<option id="FONTNUM888" value="FONTS/RASTER.TDF">RASTER</option>
+<option id="FONTNUM889" value="FONTS/RAVAGED.TDF">RAVAGED</option>
+<option id="FONTNUM890" value="FONTS/RAVE.TDF">RAVE</option>
+<option id="FONTNUM891" value="FONTS/RAZOR1X.TDF">RAZOR1X</option>
+<option id="FONTNUM892" value="FONTS/RAZOR2.TDF">RAZOR2</option>
+<option id="FONTNUM893" value="FONTS/RAZOR3.TDF">RAZOR3</option>
+<option id="FONTNUM894" value="FONTS/RAZORX.TDF">RAZORX</option>
+<option id="FONTNUM895" value="FONTS/REALITYX.TDF">REALITYX</option>
+<option id="FONTNUM896" value="FONTS/REBELART.TDF">REBELART</option>
+<option id="FONTNUM897" value="FONTS/REBELION.TDF">REBELION</option>
+<option id="FONTNUM898" value="FONTS/REBELL.TDF">REBELL</option>
+<option id="FONTNUM899" value="FONTS/REDPHONX.TDF">REDPHONX</option>
+<option id="FONTNUM900" value="FONTS/REGENCY.TDF">REGENCY</option>
+<option id="FONTNUM901" value="FONTS/REGULATX.TDF">REGULATX</option>
+<option id="FONTNUM902" value="FONTS/REGUOUTX.TDF">REGUOUTX</option>
+<option id="FONTNUM903" value="FONTS/RELIEF.TDF">RELIEF</option>
+<option id="FONTNUM904" value="FONTS/RELIEF2.TDF">RELIEF2</option>
+<option id="FONTNUM905" value="FONTS/REMORSE.TDF">REMORSE</option>
+<option id="FONTNUM906" value="FONTS/REQUEST.TDF">REQUEST</option>
+<option id="FONTNUM907" value="FONTS/RESISTA2.TDF">RESISTA2</option>
+<option id="FONTNUM908" value="FONTS/RESISTAN.TDF">RESISTAN</option>
+<option id="FONTNUM909" value="FONTS/RESISTAX.TDF">RESISTAX</option>
+<option id="FONTNUM910" value="FONTS/RETRIBTX.TDF">RETRIBTX</option>
+<option id="FONTNUM911" value="FONTS/REVIEW.TDF">REVIEW</option>
+<option id="FONTNUM912" value="FONTS/REVISIOX.TDF">REVISIOX</option>
+<option id="FONTNUM913" value="FONTS/REVOLUTX.TDF">REVOLUTX</option>
+<option id="FONTNUM914" value="FONTS/RIPPER.TDF">RIPPER</option>
+<option id="FONTNUM915" value="FONTS/RIVNDELX.TDF">RIVNDELX</option>
+<option id="FONTNUM916" value="FONTS/ROBOJOKE.TDF">ROBOJOKE</option>
+<option id="FONTNUM917" value="FONTS/ROD-BLUE.TDF">ROD-BLUE</option>
+<option id="FONTNUM918" value="FONTS/ROD-GRN.TDF">ROD-GRN</option>
+<option id="FONTNUM919" value="FONTS/ROD-NAV.TDF">ROD-NAV</option>
+<option id="FONTNUM920" value="FONTS/ROD-RED.TDF">ROD-RED</option>
+<option id="FONTNUM921" value="FONTS/ROMAN.TDF">ROMAN</option>
+<option id="FONTNUM922" value="FONTS/ROMANNSL.TDF">ROMANNSL</option>
+<option id="FONTNUM923" value="FONTS/ROUNDED.TDF">ROUNDED</option>
+<option id="FONTNUM924" value="FONTS/ROUNDX.TDF">ROUNDX</option>
+<option id="FONTNUM925" value="FONTS/ROWANCAP.TDF">ROWANCAP</option>
+<option id="FONTNUM926" value="FONTS/ROY-OLSX.TDF">ROY-OLSX</option>
+<option id="FONTNUM927" value="FONTS/ROY3D.TDF">ROY3D</option>
+<option id="FONTNUM928" value="FONTS/ROYAFNT1.TDF">ROYAFNT1</option>
+<option id="FONTNUM929" value="FONTS/ROYAFNT2.TDF">ROYAFNT2</option>
+<option id="FONTNUM930" value="FONTS/ROYFIVEX.TDF">ROYFIVEX</option>
+<option id="FONTNUM931" value="FONTS/ROYFNT1.TDF">ROYFNT1</option>
+<option id="FONTNUM932" value="FONTS/ROYFOUR.TDF">ROYFOUR</option>
+<option id="FONTNUM933" value="FONTS/ROYFOUR2.TDF">ROYFOUR2</option>
+<option id="FONTNUM934" value="FONTS/ROYSAC2C.TDF">ROYSAC2C</option>
+<option id="FONTNUM935" value="FONTS/ROYSACOS.TDF">ROYSACOS</option>
+<option id="FONTNUM936" value="FONTS/ROZZO.TDF">ROZZO</option>
+<option id="FONTNUM937" value="FONTS/ROZZY.TDF">ROZZY</option>
+<option id="FONTNUM938" value="FONTS/ROZZYX.TDF">ROZZYX</option>
+<option id="FONTNUM939" value="FONTS/RUNNER.TDF">RUNNER</option>
+<option id="FONTNUM940" value="FONTS/RUST.TDF">RUST</option>
+<option id="FONTNUM941" value="FONTS/RUSTY.TDF">RUSTY</option>
+<option id="FONTNUM942" value="FONTS/SABOTAGC.TDF">SABOTAGC</option>
+<option id="FONTNUM943" value="FONTS/SABOTAGE.TDF">SABOTAGE</option>
+<option id="FONTNUM944" value="FONTS/SABOTG2X.TDF">SABOTG2X</option>
+<option id="FONTNUM945" value="FONTS/SAC.TDF">SAC</option>
+<option id="FONTNUM946" value="FONTS/SACGRENX.TDF">SACGRENX</option>
+<option id="FONTNUM947" value="FONTS/SADISTX.TDF">SADISTX</option>
+<option id="FONTNUM948" value="FONTS/SALVATNX.TDF">SALVATNX</option>
+<option id="FONTNUM949" value="FONTS/SANCTX.TDF">SANCTX</option>
+<option id="FONTNUM950" value="FONTS/SANITARX.TDF">SANITARX</option>
+<option id="FONTNUM951" value="FONTS/SANKTRYX.TDF">SANKTRYX</option>
+<option id="FONTNUM952" value="FONTS/SANKTUARY.TDF">SANKTUARY</option>
+<option id="FONTNUM953" value="FONTS/SAVAGEX.TDF">SAVAGEX</option>
+<option id="FONTNUM954" value="FONTS/SCD-L2X.TDF">SCD-L2X</option>
+<option id="FONTNUM955" value="FONTS/SCD-LINE.TDF">SCD-LINE</option>
+<option id="FONTNUM956" value="FONTS/SECTOR.TDF">SECTOR</option>
+<option id="FONTNUM957" value="FONTS/SECTOR2X.TDF">SECTOR2X</option>
+<option id="FONTNUM958" value="FONTS/SECTORX.TDF">SECTORX</option>
+<option id="FONTNUM959" value="FONTS/SEEDSX.TDF">SEEDSX</option>
+<option id="FONTNUM960" value="FONTS/SELEVEN.TDF">SELEVEN</option>
+<option id="FONTNUM961" value="FONTS/SENSEX.TDF">SENSEX</option>
+<option id="FONTNUM962" value="FONTS/SERPENTX.TDF">SERPENTX</option>
+<option id="FONTNUM963" value="FONTS/SEVEREDX.TDF">SEVEREDX</option>
+<option id="FONTNUM964" value="FONTS/SHADLNDX.TDF">SHADLNDX</option>
+<option id="FONTNUM965" value="FONTS/SHADOW.TDF">SHADOW</option>
+<option id="FONTNUM966" value="FONTS/SHADWLSX.TDF">SHADWLSX</option>
+<option id="FONTNUM967" value="FONTS/SHADWSX.TDF">SHADWSX</option>
+<option id="FONTNUM968" value="FONTS/SHALLOWX.TDF">SHALLOWX</option>
+<option id="FONTNUM969" value="FONTS/SHAOLIN2.TDF">SHAOLIN2</option>
+<option id="FONTNUM970" value="FONTS/SHAOLINS.TDF">SHAOLINS</option>
+<option id="FONTNUM971" value="FONTS/SHAOLYN.TDF">SHAOLYN</option>
+<option id="FONTNUM972" value="FONTS/SHAOLYNX.TDF">SHAOLYNX</option>
+<option id="FONTNUM973" value="FONTS/SHAOS.TDF">SHAOS</option>
+<option id="FONTNUM974" value="FONTS/SHAOSX.TDF">SHAOSX</option>
+<option id="FONTNUM975" value="FONTS/SHAOTIS.TDF">SHAOTIS</option>
+<option id="FONTNUM976" value="FONTS/SHEAVEN.TDF">SHEAVEN</option>
+<option id="FONTNUM977" value="FONTS/SHEAVENX.TDF">SHEAVENX</option>
+<option id="FONTNUM978" value="FONTS/SHELZNSH.TDF">SHELZNSH</option>
+<option id="FONTNUM979" value="FONTS/SHELZONE.TDF">SHELZONE</option>
+<option id="FONTNUM980" value="FONTS/SHLNVERT.TDF">SHLNVERT</option>
+<option id="FONTNUM981" value="FONTS/SHODANX.TDF">SHODANX</option>
+<option id="FONTNUM982" value="FONTS/SHRIMPX.TDF">SHRIMPX</option>
+<option id="FONTNUM983" value="FONTS/SHROOMS.TDF">SHROOMS</option>
+<option id="FONTNUM984" value="FONTS/SHSYSTEM.TDF">SHSYSTEM</option>
+<option id="FONTNUM985" value="FONTS/SIDEPOCK.TDF">SIDEPOCK</option>
+<option id="FONTNUM986" value="FONTS/SIDEPOKX.TDF">SIDEPOKX</option>
+<option id="FONTNUM987" value="FONTS/SILICON2.TDF">SILICON2</option>
+<option id="FONTNUM988" value="FONTS/SILICSHT.TDF">SILICSHT</option>
+<option id="FONTNUM989" value="FONTS/SILVER2.TDF">SILVER2</option>
+<option id="FONTNUM990" value="FONTS/SILVERX.TDF">SILVERX</option>
+<option id="FONTNUM991" value="FONTS/SIVERSX.TDF">SIVERSX</option>
+<option id="FONTNUM992" value="FONTS/SKILLION.TDF">SKILLION</option>
+<option id="FONTNUM993" value="FONTS/SKYLIGTX.TDF">SKYLIGTX</option>
+<option id="FONTNUM994" value="FONTS/SLOUP.TDF">SLOUP</option>
+<option id="FONTNUM995" value="FONTS/SMALLR.TDF">SMALLR</option>
+<option id="FONTNUM996" value="FONTS/SMAT.TDF">SMAT</option>
+<option id="FONTNUM997" value="FONTS/SMLISOM1.TDF">SMLISOM1</option>
+<option id="FONTNUM998" value="FONTS/SMLSLANT.TDF">SMLSLANT</option>
+<option id="FONTNUM999" value="FONTS/SOCIETYX.TDF">SOCIETYX</option>
+<option id="FONTNUM1000" value="FONTS/SODAPOP.TDF">SODAPOP</option>
+<option id="FONTNUM1001" value="FONTS/SOLE.TDF">SOLE</option>
+<option id="FONTNUM1002" value="FONTS/SONIC.TDF">SONIC</option>
+<option id="FONTNUM1003" value="FONTS/SONICX.TDF">SONICX</option>
+<option id="FONTNUM1004" value="FONTS/SPACELNK.TDF">SPACELNK</option>
+<option id="FONTNUM1005" value="FONTS/SPACELNX.TDF">SPACELNX</option>
+<option id="FONTNUM1006" value="FONTS/SPANISH.TDF">SPANISH</option>
+<option id="FONTNUM1007" value="FONTS/SPASTC4X.TDF">SPASTC4X</option>
+<option id="FONTNUM1008" value="FONTS/SPASTC5X.TDF">SPASTC5X</option>
+<option id="FONTNUM1009" value="FONTS/SPASTIC1.TDF">SPASTIC1</option>
+<option id="FONTNUM1010" value="FONTS/SPASTIC2.TDF">SPASTIC2</option>
+<option id="FONTNUM1011" value="FONTS/SPASTIC3.TDF">SPASTIC3</option>
+<option id="FONTNUM1012" value="FONTS/SPAWN.TDF">SPAWN</option>
+<option id="FONTNUM1013" value="FONTS/SPEDWAYX.TDF">SPEDWAYX</option>
+<option id="FONTNUM1014" value="FONTS/SPEEDWAY.TDF">SPEEDWAY</option>
+<option id="FONTNUM1015" value="FONTS/SPLAT.TDF">SPLAT</option>
+<option id="FONTNUM1016" value="FONTS/SPLATHOS.TDF">SPLATHOS</option>
+<option id="FONTNUM1017" value="FONTS/SPLOOGE.TDF">SPLOOGE</option>
+<option id="FONTNUM1018" value="FONTS/SPYRIT.TDF">SPYRIT</option>
+<option id="FONTNUM1019" value="FONTS/STAMPX.TDF">STAMPX</option>
+<option id="FONTNUM1020" value="FONTS/STANDARD.TDF">STANDARD</option>
+<option id="FONTNUM1021" value="FONTS/STAR.TDF">STAR</option>
+<option id="FONTNUM1022" value="FONTS/STAR2X.TDF">STAR2X</option>
+<option id="FONTNUM1023" value="FONTS/STAR3DX.TDF">STAR3DX</option>
+<option id="FONTNUM1024" value="FONTS/STARGATX.TDF">STARGATX</option>
+<option id="FONTNUM1025" value="FONTS/STARWARS.TDF">STARWARS</option>
+<option id="FONTNUM1026" value="FONTS/STASIS.TDF">STASIS</option>
+<option id="FONTNUM1027" value="FONTS/STATIC.TDF">STATIC</option>
+<option id="FONTNUM1028" value="FONTS/STATISX.TDF">STATISX</option>
+<option id="FONTNUM1029" value="FONTS/STATS.TDF">STATS</option>
+<option id="FONTNUM1030" value="FONTS/STATSRS.TDF">STATSRS</option>
+<option id="FONTNUM1031" value="FONTS/STEELX.TDF">STEELX</option>
+<option id="FONTNUM1032" value="FONTS/STNCIRC1.TDF">STNCIRC1</option>
+<option id="FONTNUM1033" value="FONTS/STNCIRC2.TDF">STNCIRC2</option>
+<option id="FONTNUM1034" value="FONTS/STORMX.TDF">STORMX</option>
+<option id="FONTNUM1035" value="FONTS/STRABERY.TDF">STRABERY</option>
+<option id="FONTNUM1036" value="FONTS/STRIPESX.TDF">STRIPESX</option>
+<option id="FONTNUM1037" value="FONTS/STRIPSSX.TDF">STRIPSSX</option>
+<option id="FONTNUM1038" value="FONTS/STUPIDX.TDF">STUPIDX</option>
+<option id="FONTNUM1039" value="FONTS/STURBO.TDF">STURBO</option>
+<option id="FONTNUM1040" value="FONTS/SUB-ZERO.TDF">SUB-ZERO</option>
+<option id="FONTNUM1041" value="FONTS/SUB.TDF">SUB</option>
+<option id="FONTNUM1042" value="FONTS/SUCCO2X.TDF">SUCCO2X</option>
+<option id="FONTNUM1043" value="FONTS/SUCCOX.TDF">SUCCOX</option>
+<option id="FONTNUM1044" value="FONTS/SUCKER.TDF">SUCKER</option>
+<option id="FONTNUM1045" value="FONTS/SUICIDAX.TDF">SUICIDAX</option>
+<option id="FONTNUM1046" value="FONTS/SUMMIT.TDF">SUMMIT</option>
+<option id="FONTNUM1047" value="FONTS/SUNRISE.TDF">SUNRISE</option>
+<option id="FONTNUM1048" value="FONTS/SUNSHNEX.TDF">SUNSHNEX</option>
+<option id="FONTNUM1049" value="FONTS/SUNYSHNE.TDF">SUNYSHNE</option>
+<option id="FONTNUM1050" value="FONTS/SUPER.TDF">SUPER</option>
+<option id="FONTNUM1051" value="FONTS/SUPERILU.TDF">SUPERILU</option>
+<option id="FONTNUM1052" value="FONTS/SUPREM2X.TDF">SUPREM2X</option>
+<option id="FONTNUM1053" value="FONTS/SUPREMCY.TDF">SUPREMCY</option>
+<option id="FONTNUM1054" value="FONTS/SUPREME.TDF">SUPREME</option>
+<option id="FONTNUM1055" value="FONTS/SUPREME2.TDF">SUPREME2</option>
+<option id="FONTNUM1056" value="FONTS/SWAMPLND.TDF">SWAMPLND</option>
+<option id="FONTNUM1057" value="FONTS/SWEET.TDF">SWEET</option>
+<option id="FONTNUM1058" value="FONTS/SYNDICAT.TDF">SYNDICAT</option>
+<option id="FONTNUM1059" value="FONTS/SYNDROME.TDF">SYNDROME</option>
+<option id="FONTNUM1060" value="FONTS/SYNERGY.TDF">SYNERGY</option>
+<option id="FONTNUM1061" value="FONTS/SYNRDSRX.TDF">SYNRDSRX</option>
+<option id="FONTNUM1062" value="FONTS/SYNRGISX.TDF">SYNRGISX</option>
+<option id="FONTNUM1063" value="FONTS/SYNTHICX.TDF">SYNTHICX</option>
+<option id="FONTNUM1064" value="FONTS/SYNTHMEM.TDF">SYNTHMEM</option>
+<option id="FONTNUM1065" value="FONTS/SYNTHTIC.TDF">SYNTHTIC</option>
+<option id="FONTNUM1066" value="FONTS/TALENT.TDF">TALENT</option>
+<option id="FONTNUM1067" value="FONTS/TALENT2.TDF">TALENT2</option>
+<option id="FONTNUM1068" value="FONTS/TCAX.TDF">TCAX</option>
+<option id="FONTNUM1069" value="FONTS/TDDX.TDF">TDDX</option>
+<option id="FONTNUM1070" value="FONTS/TDFONTS-2.TDF">TDFONTS-2</option>
+<option id="FONTNUM1071" value="FONTS/TDFONTS-3.TDF">TDFONTS-3</option>
+<option id="FONTNUM1072" value="FONTS/TDFONTS-4.TDF">TDFONTS-4</option>
+<option id="FONTNUM1073" value="FONTS/TDFONTS_ORG.TDF">TDFONTS_ORG</option>
+<option id="FONTNUM1074" value="FONTS/TDU.TDF">TDU</option>
+<option id="FONTNUM1075" value="FONTS/TEAPOTX.TDF">TEAPOTX</option>
+<option id="FONTNUM1076" value="FONTS/TECH.TDF">TECH</option>
+<option id="FONTNUM1077" value="FONTS/TENGWAR.TDF">TENGWAR</option>
+<option id="FONTNUM1078" value="FONTS/TERMITEX.TDF">TERMITEX</option>
+<option id="FONTNUM1079" value="FONTS/TFH.TDF">TFH</option>
+<option id="FONTNUM1080" value="FONTS/THENSTAX.TDF">THENSTAX</option>
+<option id="FONTNUM1081" value="FONTS/THEROADX.TDF">THEROADX</option>
+<option id="FONTNUM1082" value="FONTS/THESANCT.TDF">THESANCT</option>
+<option id="FONTNUM1083" value="FONTS/THE_EDGE.TDF">THE_EDGE</option>
+<option id="FONTNUM1084" value="FONTS/THICK.TDF">THICK</option>
+<option id="FONTNUM1085" value="FONTS/THICKO.TDF">THICKO</option>
+<option id="FONTNUM1086" value="FONTS/THIEVS2X.TDF">THIEVS2X</option>
+<option id="FONTNUM1087" value="FONTS/THIEVSML.TDF">THIEVSML</option>
+<option id="FONTNUM1088" value="FONTS/THIN2.TDF">THIN2</option>
+<option id="FONTNUM1089" value="FONTS/THINX.TDF">THINX</option>
+<option id="FONTNUM1090" value="FONTS/THIS!.TDF">THIS!</option>
+<option id="FONTNUM1091" value="FONTS/THIVSMLX.TDF">THIVSMLX</option>
+<option id="FONTNUM1092" value="FONTS/THSANCTX.TDF">THSANCTX</option>
+<option id="FONTNUM1093" value="FONTS/TIC.TDF">TIC</option>
+<option id="FONTNUM1094" value="FONTS/TICCOL.TDF">TICCOL</option>
+<option id="FONTNUM1095" value="FONTS/TICKS.TDF">TICKS</option>
+<option id="FONTNUM1096" value="FONTS/TICKSSLT.TDF">TICKSSLT</option>
+<option id="FONTNUM1097" value="FONTS/TIMSPIRX.TDF">TIMSPIRX</option>
+<option id="FONTNUM1098" value="FONTS/TINCANS.TDF">TINCANS</option>
+<option id="FONTNUM1099" value="FONTS/TINY.TDF">TINY</option>
+<option id="FONTNUM1100" value="FONTS/TOASTERX.TDF">TOASTERX</option>
+<option id="FONTNUM1101" value="FONTS/TOKYO.TDF">TOKYO</option>
+<option id="FONTNUM1102" value="FONTS/TOWER.TDF">TOWER</option>
+<option id="FONTNUM1103" value="FONTS/TOWER2.TDF">TOWER2</option>
+<option id="FONTNUM1104" value="FONTS/TOWNSMLX.TDF">TOWNSMLX</option>
+<option id="FONTNUM1105" value="FONTS/TOWNX.TDF">TOWNX</option>
+<option id="FONTNUM1106" value="FONTS/TOXIC.TDF">TOXIC</option>
+<option id="FONTNUM1107" value="FONTS/TRACES.TDF">TRACES</option>
+<option id="FONTNUM1108" value="FONTS/TRANQILX.TDF">TRANQILX</option>
+<option id="FONTNUM1109" value="FONTS/TREK.TDF">TREK</option>
+<option id="FONTNUM1110" value="FONTS/TRIBESX.TDF">TRIBESX</option>
+<option id="FONTNUM1111" value="FONTS/TRIBWRIT.TDF">TRIBWRIT</option>
+<option id="FONTNUM1112" value="FONTS/TRONICSX.TDF">TRONICSX</option>
+<option id="FONTNUM1113" value="FONTS/TROUTX.TDF">TROUTX</option>
+<option id="FONTNUM1114" value="FONTS/TUCX.TDF">TUCX</option>
+<option id="FONTNUM1115" value="FONTS/TUMOIL.TDF">TUMOIL</option>
+<option id="FONTNUM1116" value="FONTS/TUSSE.TDF">TUSSE</option>
+<option id="FONTNUM1117" value="FONTS/TWISTEDX.TDF">TWISTEDX</option>
+<option id="FONTNUM1118" value="FONTS/TWOYEARS.TDF">TWOYEARS</option>
+<option id="FONTNUM1119" value="FONTS/UDM1X.TDF">UDM1X</option>
+<option id="FONTNUM1120" value="FONTS/UDMFIRE.TDF">UDMFIRE</option>
+<option id="FONTNUM1121" value="FONTS/UGRNDFTR.TDF">UGRNDFTR</option>
+<option id="FONTNUM1122" value="FONTS/UNCHAINX.TDF">UNCHAINX</option>
+<option id="FONTNUM1123" value="FONTS/UNDER.TDF">UNDER</option>
+<option id="FONTNUM1124" value="FONTS/UNDERGD2.TDF">UNDERGD2</option>
+<option id="FONTNUM1125" value="FONTS/UNDERWLD.TDF">UNDERWLD</option>
+<option id="FONTNUM1126" value="FONTS/UNDRGDSX.TDF">UNDRGDSX</option>
+<option id="FONTNUM1127" value="FONTS/UNDRGRN2.TDF">UNDRGRN2</option>
+<option id="FONTNUM1128" value="FONTS/UNDRGRND.TDF">UNDRGRND</option>
+<option id="FONTNUM1129" value="FONTS/UNDRGRWN.TDF">UNDRGRWN</option>
+<option id="FONTNUM1130" value="FONTS/UNDRWLDX.TDF">UNDRWLDX</option>
+<option id="FONTNUM1131" value="FONTS/UNGRWING.TDF">UNGRWING</option>
+<option id="FONTNUM1132" value="FONTS/UNGRWNXX.TDF">UNGRWNXX</option>
+<option id="FONTNUM1133" value="FONTS/UNHOLYX.TDF">UNHOLYX</option>
+<option id="FONTNUM1134" value="FONTS/UNION.TDF">UNION</option>
+<option id="FONTNUM1135" value="FONTS/UNION2.TDF">UNION2</option>
+<option id="FONTNUM1136" value="FONTS/UNIVERS.TDF">UNIVERS</option>
+<option id="FONTNUM1137" value="FONTS/UNKNOWNX.TDF">UNKNOWNX</option>
+<option id="FONTNUM1138" value="FONTS/UNOX.TDF">UNOX</option>
+<option id="FONTNUM1139" value="FONTS/UNREAL.TDF">UNREAL</option>
+<option id="FONTNUM1140" value="FONTS/UNSANE.TDF">UNSANE</option>
+<option id="FONTNUM1141" value="FONTS/UNSANEX.TDF">UNSANEX</option>
+<option id="FONTNUM1142" value="FONTS/UNSNFATE.TDF">UNSNFATE</option>
+<option id="FONTNUM1143" value="FONTS/UNTX.TDF">UNTX</option>
+<option id="FONTNUM1144" value="FONTS/UPCORX.TDF">UPCORX</option>
+<option id="FONTNUM1145" value="FONTS/UPRISE.TDF">UPRISE</option>
+<option id="FONTNUM1146" value="FONTS/UPRISE2X.TDF">UPRISE2X</option>
+<option id="FONTNUM1147" value="FONTS/USAFLAG.TDF">USAFLAG</option>
+<option id="FONTNUM1148" value="FONTS/USER.TDF">USER</option>
+<option id="FONTNUM1149" value="FONTS/USER2.TDF">USER2</option>
+<option id="FONTNUM1150" value="FONTS/USERSTSX.TDF">USERSTSX</option>
+<option id="FONTNUM1151" value="FONTS/USEX.TDF">USEX</option>
+<option id="FONTNUM1152" value="FONTS/USFLGCOL.TDF">USFLGCOL</option>
+<option id="FONTNUM1153" value="FONTS/USFLGORG.TDF">USFLGORG</option>
+<option id="FONTNUM1154" value="FONTS/UTOPANX.TDF">UTOPANX</option>
+<option id="FONTNUM1155" value="FONTS/VALLEYX.TDF">VALLEYX</option>
+<option id="FONTNUM1156" value="FONTS/VAMPYREX.TDF">VAMPYREX</option>
+<option id="FONTNUM1157" value="FONTS/VASNIAKX.TDF">VASNIAKX</option>
+<option id="FONTNUM1158" value="FONTS/VDO_1.TDF">VDO_1</option>
+<option id="FONTNUM1159" value="FONTS/VENGANCX.TDF">VENGANCX</option>
+<option id="FONTNUM1160" value="FONTS/VIBRNTSX.TDF">VIBRNTSX</option>
+<option id="FONTNUM1161" value="FONTS/VINTAGE.TDF">VINTAGE</option>
+<option id="FONTNUM1162" value="FONTS/VIOLENT.TDF">VIOLENT</option>
+<option id="FONTNUM1163" value="FONTS/VIRTACXS.TDF">VIRTACXS</option>
+<option id="FONTNUM1164" value="FONTS/VISION2.TDF">VISION2</option>
+<option id="FONTNUM1165" value="FONTS/VISION3.TDF">VISION3</option>
+<option id="FONTNUM1166" value="FONTS/VISIONS.TDF">VISIONS</option>
+<option id="FONTNUM1167" value="FONTS/VISIONSX.TDF">VISIONSX</option>
+<option id="FONTNUM1168" value="FONTS/VISIONX.TDF">VISIONX</option>
+<option id="FONTNUM1169" value="FONTS/VISIONXX.TDF">VISIONXX</option>
+<option id="FONTNUM1170" value="FONTS/VOICES.TDF">VOICES</option>
+<option id="FONTNUM1171" value="FONTS/VOIDX.TDF">VOIDX</option>
+<option id="FONTNUM1172" value="FONTS/WALLX.TDF">WALLX</option>
+<option id="FONTNUM1173" value="FONTS/WARZONEX.TDF">WARZONEX</option>
+<option id="FONTNUM1174" value="FONTS/WATCHDGX.TDF">WATCHDGX</option>
+<option id="FONTNUM1175" value="FONTS/WATER.TDF">WATER</option>
+<option id="FONTNUM1176" value="FONTS/WEIRD.TDF">WEIRD</option>
+<option id="FONTNUM1177" value="FONTS/WELLFARE.TDF">WELLFARE</option>
+<option id="FONTNUM1178" value="FONTS/WETLETER.TDF">WETLETER</option>
+<option id="FONTNUM1179" value="FONTS/WHIMSY.TDF">WHIMSY</option>
+<option id="FONTNUM1180" value="FONTS/WHIRWINX.TDF">WHIRWINX</option>
+<option id="FONTNUM1181" value="FONTS/WHITE-BL.TDF">WHITE-BL</option>
+<option id="FONTNUM1182" value="FONTS/WHOX.TDF">WHOX</option>
+<option id="FONTNUM1183" value="FONTS/WICKED.TDF">WICKED</option>
+<option id="FONTNUM1184" value="FONTS/WILD.TDF">WILD</option>
+<option id="FONTNUM1185" value="FONTS/WILDCHLD.TDF">WILDCHLD</option>
+<option id="FONTNUM1186" value="FONTS/WILDSIDX.TDF">WILDSIDX</option>
+<option id="FONTNUM1187" value="FONTS/WPAINT.TDF">WPAINT</option>
+<option id="FONTNUM1188" value="FONTS/X-TREMEX.TDF">X-TREMEX</option>
+<option id="FONTNUM1189" value="FONTS/XENTRX1X.TDF">XENTRX1X</option>
+<option id="FONTNUM1190" value="FONTS/XFONTX.TDF">XFONTX</option>
+<option id="FONTNUM1191" value="FONTS/XMAS.TDF">XMAS</option>
+<option id="FONTNUM1192" value="FONTS/YAZOOX.TDF">YAZOOX</option>
+<option id="FONTNUM1193" value="FONTS/ZANE.TDF">ZANE</option>
+<option id="FONTNUM1194" value="FONTS/ZANEX.TDF">ZANEX</option>
+<option id="FONTNUM1195" value="FONTS/ZETRAX.TDF">ZETRAX</option>
+<option id="FONTNUM1196" value="FONTS/ZOOKX.TDF">ZOOKX</option>
     </select> (Hint : give the focus to this selector then use UP/DOWN keyboard arrow)
     <br><br>
     <table>
@@ -2246,6 +2253,11 @@
                 <center>
                     <div id="dl" style="display:none;"><button onclick="dl_img()">Download Image</button></div>
                     <div id="dltxt" style="display:none;"><button onclick="dl_txt()">Download text file (utf8)</button></div>
+		    <br>
+		    <br>
+		    <div id="curlink"></div>
+		    <br>
+		    <br>
                 </center>
             </td>
         </tr>
