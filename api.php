@@ -51,7 +51,7 @@ if($RUNENV == "WEB"){
 else if($RUNENV == "CLI"){
 	$mytxt=(isset($argv[1]) ? $argv[1] : "WAB");
 	$font=(isset($argv[2]) ? $argv[2] : 0);
-	$curspacing = (isset($arv[3]) ? $argv[3] : 2);
+	$curspacing = (isset($argv[3]) ? $argv[3] : 2);
 	$curspacesize = (isset($argv[4]) ? $argv[4] : 5);
 	$fnum=(isset($argv[5]) ? $argv[5] : 0);
 }
@@ -138,10 +138,10 @@ function text_renderer(){
         $CHARPOSX = 1;
 
 
-	if ($workvar->headers[$fnum]->fonttype == "oUTLINE") {
+	if (@$workvar->headers[$fnum]->fonttype == "oUTLINE") {
 		echo ("oUTLINE FONT TYPE \nis NOT SUPPORTED YET");
 	}
-	else if ($workvar->headers[$fnum]->fonttype == "cOLOR") {
+	else if (@$workvar->headers[$fnum]->fonttype == "cOLOR") {
 		for ($i = 0; $i < strlen($mytxt); $i++) {
                         if ((ord($mytxt[$i]) >= 33) && (ord($mytxt[$i]) < 126)) {
                                 $offset = $workvar->headers[$fnum]->lettersoffsets[ord($mytxt[$i]) - 33];
@@ -178,7 +178,7 @@ function text_renderer(){
                         }
                 }
 	}
-	else if ($workvar->headers[$fnum]->fonttype == "bLOCK") {
+	else if (@$workvar->headers[$fnum]->fonttype == "bLOCK") {
 
 		$FTCOL = 15;
                 $BGCOL = 0;
@@ -271,7 +271,7 @@ function eko(){
 		echo "\x1b[0m\n";
 		}
 	}
-	if ($workvar->headers[$fnum]->fonttype == "cOLOR") {
+	if (@$workvar->headers[$fnum]->fonttype == "cOLOR") {
 		echo "\x1b[0m";
 	}
 }
