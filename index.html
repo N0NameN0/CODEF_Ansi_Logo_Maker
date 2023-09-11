@@ -212,9 +212,15 @@
             fetch.send();
         }
 
+        function encodeHTMLEntities(text) {
+                var textArea = document.createElement('textarea');
+                textArea.innerText = text;
+                return textArea.innerHTML;
+        }
+
 	function dolink(fnum){
 		    document.getElementById("curlink").innerHTML="&nbsp;&nbsp;curl \"https://wab-ansi-logo-maker-api.santo.fr/api.php?text="+encodeURI(document.getElementById("mytext").value)+"&font="+document.getElementById("FONTS").selectedIndex+"&spacing="+document.getElementById("spacing").value+"&spacesize="+document.getElementById("spacesize").value+"&vary="+fnum+"\" > /etc/motd&nbsp;&nbsp;";
-		    document.getElementById("phplink").innerHTML="&nbsp;&nbsp;php api.php \""+document.getElementById("mytext").value+"\" "+document.getElementById("FONTS").selectedIndex+" "+document.getElementById("spacing").value+" "+document.getElementById("spacesize").value+" "+fnum+" > /etc/motd&nbsp;&nbsp;";
+		    document.getElementById("phplink").innerHTML="&nbsp;&nbsp;php api.php \""+encodeHTMLEntities(document.getElementById("mytext").value)+"\" "+document.getElementById("FONTS").selectedIndex+" "+document.getElementById("spacing").value+" "+document.getElementById("spacesize").value+" "+fnum+" > /etc/motd&nbsp;&nbsp;";
 	}
 
         function file_parser(binString) {
