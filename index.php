@@ -63,6 +63,11 @@
             font-size: 16px;
         }
         
+	#curlink,
+	#phplink {
+		color: blue;
+	}
+
         button {
             font-family: 'Perfect DOS VGA 437', sans-serif;
             font-family: 'Perfect DOS VGA 437 Win', sans-serif;
@@ -207,7 +212,8 @@
         }
 
 	function dolink(fnum){
-		    document.getElementById("curlink").innerHTML="curl \"https://wab-ansi-logo-maker-api.santo.fr/?text="+encodeURI(document.getElementById("mytext").value)+"&font="+document.getElementById("FONTS").selectedIndex+"&spacing="+document.getElementById("spacing").value+"&spacesize="+document.getElementById("spacesize").value+"&vary="+fnum+"\" > /etc/motd";
+		    document.getElementById("curlink").innerHTML="&nbsp;&nbsp;curl \"https://wab-ansi-logo-maker-api.santo.fr/api.php?text="+encodeURI(document.getElementById("mytext").value)+"&font="+document.getElementById("FONTS").selectedIndex+"&spacing="+document.getElementById("spacing").value+"&spacesize="+document.getElementById("spacesize").value+"&vary="+fnum+"\" > /etc/motd&nbsp;&nbsp;";
+		    document.getElementById("phplink").innerHTML="&nbsp;&nbsp;php api.php \""+document.getElementById("mytext").value+"\" "+document.getElementById("FONTS").selectedIndex+" "+document.getElementById("spacing").value+" "+document.getElementById("spacesize").value+" "+fnum+" > /etc/motd&nbsp;&nbsp;";
 	}
 
         function file_parser(binString) {
@@ -1064,7 +1070,11 @@
                     <div id="dltxt" style="display:none;"><button onclick="dl_txt()">Download text file (utf8)</button></div>
 		    <br>
 		    <br>
+		    <div>Using the "API" (remote/web) way : </div>
 		    <div id="curlink"></div>
+		    <br>
+		    <div>Using the "API" (local/php/cli) way : </div>
+		    <div id="phplink"></div>
 		    <br>
 		    <br>
                 </center>
