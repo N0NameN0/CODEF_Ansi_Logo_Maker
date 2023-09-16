@@ -261,19 +261,13 @@ function eko(){
 							echo $newcolconv;
                                 		    	$oldcolconv = $newcolconv;
                                 		}
-						else{
-							if($n==0){
-								echo $newcolconv;
-                                		    		$oldcolconv = $newcolconv;
-							}
-						}
-
 					}
 
 					echo iconv('IBM437', 'UTF8', $matrix[$i][$n]);
 				}
 			}
-			echo "\x1b[0m\n";
+			$oldcolconv = "\x1b[0m";
+                        echo $oldcolconv."\n";
 		}
 	}
 }
