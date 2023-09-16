@@ -261,18 +261,20 @@ function eko(){
 							echo $newcolconv;
                                 		    	$oldcolconv = $newcolconv;
                                 		}
+						else{
+							if($n==0){
+								echo $newcolconv;
+                                		    		$oldcolconv = $newcolconv;
+							}
+						}
 
 					}
 
 					echo iconv('IBM437', 'UTF8', $matrix[$i][$n]);
 				}
 			}
-
-		echo "\x1b[0m\n";
+			echo "\x1b[0m\n";
 		}
-	}
-	if (@$workvar->headers[$fnum]->fonttype == "cOLOR") {
-		echo "\x1b[0m";
 	}
 }
 
