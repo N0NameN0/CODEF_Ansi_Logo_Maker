@@ -218,7 +218,7 @@
 	}
 
 	function dolink(fnum){
-		    document.getElementById("curlink").innerHTML="&nbsp;&nbsp;curl \"https://wab-ansi-logo-maker-api.santo.fr/api.php?text="+encodeURI(document.getElementById("mytext").value)+"&font="+document.getElementById("FONTS").selectedIndex+"&spacing="+document.getElementById("spacing").value+"&spacesize="+document.getElementById("spacesize").value+"&vary="+fnum+"\" > /etc/motd&nbsp;&nbsp;";
+		    document.getElementById("curlink").innerHTML="&nbsp;&nbsp;curl \"https://codef-ansi-logo-maker-api.santo.fr/api.php?text="+encodeURI(document.getElementById("mytext").value)+"&font="+document.getElementById("FONTS").selectedIndex+"&spacing="+document.getElementById("spacing").value+"&spacesize="+document.getElementById("spacesize").value+"&vary="+fnum+"\" > /etc/motd&nbsp;&nbsp;";
 		    document.getElementById("phplink").innerHTML="&nbsp;&nbsp;php api.php \""+encodeHTMLEntities(document.getElementById("mytext").value)+"\" "+document.getElementById("FONTS").selectedIndex+" "+document.getElementById("spacing").value+" "+document.getElementById("spacesize").value+" "+fnum+" > /etc/motd&nbsp;&nbsp;";
 	}
 
@@ -495,7 +495,7 @@
         function dl_img() {
             var link = document.getElementById('link');
             var mydate = new Date();
-            link.setAttribute('download', 'WAB_LOGO_MAKER_' + mydate.getTime() + '.png');
+            link.setAttribute('download', 'CODEF_LOGO_MAKER_' + mydate.getTime() + '.png');
             link.setAttribute('href', myfinalcanvas.canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"));
             link.click();
         }
@@ -631,7 +631,7 @@
                 type: "text/plain;charset=utf-8"
             });
             var mydate = new Date();
-            saveAs(blob, 'WAB_LOGO_MAKER_' + mydate.getTime() + '.txt');
+            saveAs(blob, 'CODEF_LOGO_MAKER_' + mydate.getTime() + '.txt');
         }
 
         function init() {
@@ -1046,7 +1046,7 @@
                 </lu>
 
             </p>
-            <p><b>GitHub</b> : <a href="https://github.com/N0NameN0/WAB_Ansi_Logo_Maker" target="_blank">https://github.com/N0NameN0/WAB_Ansi_Logo_Maker</a></p>
+            <p><b>GitHub</b> : <a href="https://github.com/N0NameN0/CODEF_Ansi_Logo_Maker" target="_blank">https://github.com/N0NameN0/CODEF_Ansi_Logo_Maker</a></p>
         </div>
     </details>
     <p style="text-align: center;"><img src="IMG/logo.png" /></p>
