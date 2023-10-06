@@ -2,7 +2,7 @@
 
 A tiny web tool to use TDF (TheDraw font files) to create logo.
 
-CODEF-Ansi-Logo-Maker is using [CODEF](https://codef.santo.fr)
+CODEF_Ansi_Logo_Maker is using [CODEF](https://codef.santo.fr)
 
 ## Screenshot
 ![logo1](README_Medias/screenshot.png)
