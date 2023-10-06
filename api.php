@@ -42,14 +42,14 @@ $BGCOL = 0;
 $CHARPOSX = 1;
 
 if($RUNENV == "WEB"){
-	$mytxt=(isset($_GET["text"]) ? $_GET["text"] : exit("Please visite <a href=https://github.com/N0NameN0/WAB_Ansi_Logo_Maker>https://github.com/N0NameN0/WAB_Ansi_Logo_Maker</a>"));
+	$mytxt=(isset($_GET["text"]) ? $_GET["text"] : exit("Please visite <a href=https://github.com/N0NameN0/CODEF_Ansi_Logo_Maker>https://github.com/N0NameN0/CODEF_Ansi_Logo_Maker</a>"));
 	$font=(isset($_GET["font"]) ? $_GET["font"] : 0);
 	$curspacing = (isset($_GET["spacing"]) ? $_GET["spacing"] : 2);
 	$curspacesize = (isset($_GET["spacesize"]) ? $_GET["spacesize"] : 5);
 	$fnum=(isset($_GET["vary"]) ? $_GET["vary"] : 0);
 }
 else if($RUNENV == "CLI"){
-	$mytxt=(isset($argv[1]) ? $argv[1] : "WAB");
+	$mytxt=(isset($argv[1]) ? $argv[1] : "CODEF");
 	$font=(isset($argv[2]) ? $argv[2] : 0);
 	$curspacing = (isset($argv[3]) ? $argv[3] : 2);
 	$curspacesize = (isset($argv[4]) ? $argv[4] : 5);
