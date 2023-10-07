@@ -37,7 +37,7 @@
             font-weight: 400;
             src: local('Perfect DOS VGA 437'), url('CSS/Perfect DOS VGA 437.woff') format('woff');
         }
-        
+
         @font-face {
             font-family: 'Perfect DOS VGA 437 Win';
             font-style: normal;
@@ -54,44 +54,46 @@
             background-color: black;
             font-size: 16px;
         }
-        
-        input {
+
+		input {
             font-family: 'Perfect DOS VGA 437', sans-serif;
             font-family: 'Perfect DOS VGA 437 Win', sans-serif;
             color: white;
+			border: 0px;
             background-color: blue;
             font-size: 16px;
         }
-        
-	#curlink,
-	#phplink {
-		color: blue;
-	}
+
+		#curlink,
+        #phplink {
+                color: blue;
+        }
 
         button {
             font-family: 'Perfect DOS VGA 437', sans-serif;
             font-family: 'Perfect DOS VGA 437 Win', sans-serif;
             color: black;
-            /*background-color:grey;*/
+			border: 0px;
+			border-radius: 5px;
             font-size: 16px;
         }
-        
+
         table,
         td,
         th {
             border: 1px solid;
         }
-        
-        table {
+
+		table {
             /*width: 100%;*/
             border-collapse: collapse;
         }
-        
+
         td {
             text-align: center;
             vertical-align: middle;
         }
-        
+
         details {
             position: absolute;
             top: 0;
@@ -107,27 +109,27 @@
             z-index: 100;
             background-color: rgb(30, 30, 30);
         }
-        
+
         details>div {
             margin: 10px 0;
         }
-        
+
         details>summary {
             cursor: pointer;
             white-space: nowrap;
         }
         /* Firefox workaround */
-        
+
         .no-details details>summary:before {
             float: left;
             width: 15px;
             content: '\25B6';
         }
-        
+
         .no-details details.open>summary:before {
             content: '\25BC';
         }
-        
+
         a {
             color: rgb(85, 85, 255);
         }
@@ -211,24 +213,24 @@
             fetch.send();
         }
 
-	function encodeHTMLEntities(text) {
-		var textArea = document.createElement('textarea');
-		textArea.innerText = text;
-		return textArea.innerHTML;
-	}
+        function encodeHTMLEntities(text) {
+                var textArea = document.createElement('textarea');
+                textArea.innerText = text;
+                return textArea.innerHTML;
+        }
 
-	function dolink(fnum){
-		    document.getElementById("curlink").innerHTML="&nbsp;&nbsp;curl \"https://codef-ansi-logo-maker-api.santo.fr/api.php?text="+encodeURI(document.getElementById("mytext").value)+"&font="+document.getElementById("FONTS").selectedIndex+"&spacing="+document.getElementById("spacing").value+"&spacesize="+document.getElementById("spacesize").value+"&vary="+fnum+"\" > /etc/motd&nbsp;&nbsp;";
-		    document.getElementById("phplink").innerHTML="&nbsp;&nbsp;php api.php \""+encodeHTMLEntities(document.getElementById("mytext").value)+"\" "+document.getElementById("FONTS").selectedIndex+" "+document.getElementById("spacing").value+" "+document.getElementById("spacesize").value+" "+fnum+" > /etc/motd&nbsp;&nbsp;";
-	}
+		function dolink(fnum){
+			document.getElementById("curlink").innerHTML="curl \"https://codef-ansi-logo-maker-api.santo.fr/api.php?text="+encodeURI(document.getElementById("mytext").value)+"&font="+document.getElementById("FONTS").selectedIndex+"&spacing="+document.getElementById("spacing").value+"&spacesize="+document.getElementById("spacesize").value+"&vary="+fnum+"\" > /etc/motd";
+			document.getElementById("phplink").innerHTML="php api.php \""+encodeHTMLEntities(document.getElementById("mytext").value)+"\" "+document.getElementById("FONTS").selectedIndex+" "+document.getElementById("spacing").value+" "+document.getElementById("spacesize").value+" "+fnum+" > /etc/motd";
+		}
 
         function file_parser(binString) {
-            workvar.signature = binString.readBytesFromStart(1, 18); //TDF font file signature "TheDraw FONTS file"
-            workvar.size = binString.data.length;
+        	workvar.signature = binString.readBytesFromStart(1, 18); //TDF font file signature "TheDraw FONTS file"
+         	workvar.size = binString.data.length;
         }
 
         function font_parser(binString) {
-            startoffset = 0;
+        	startoffset = 0;
 
             while (startoffset + 20 < workvar.size) {
                 workvar.headers[workvar.fontnum] = new font_header;
@@ -260,7 +262,6 @@
         }
 
         function text_renderer(num, spsize) {
-
             for (var i = 0; i < 12; i++) {
                 matrix[i] = [];
                 FTmatrix[i] = [];
@@ -1026,8 +1027,17 @@
             }
             return String.fromCharCode(str);
         }
-    </script>
-</head>
+
+		function copyText(divname) {
+			var range = document.createRange();
+            range.selectNode(document.getElementById(divname));
+            window.getSelection().removeAllRanges();
+			window.getSelection().addRange(range);
+			document.execCommand("copy");
+			window.getSelection().removeAllRanges();
+		}
+	</script>
+	</head>
 
 <body onLoad='init();'>
     <details>
@@ -1053,41 +1063,39 @@
     <br> yOUR tEXT hERE : <input id="mytext" type="text" value="old school" onInput="text_renderer(curnum);"><br> fONT sPACING :
     <input type="range" id="spacing" min="0" max="5" oninput="curspacing=parseInt(this.value,10);text_renderer(curnum);"><br> "sPACE" sIZE : <input type="range" id="spacesize" value="5" min="0" max="15" oninput="curspacesize=parseInt(this.value,10);text_renderer(curnum);"><br>    tHE fONT :
     <select name="FONTS" id="FONTS" onChange="LoadTDF(this.value);">
-    <?php
-        $files=glob('FONTS/*.TDF', GLOB_BRACE);
-        for ($i = 0; $i < count($files); $i++){
-            echo '<option id="FONTNUM'.$i.'" value="'.$files[$i].'">'.substr($files[$i],6,-4).'</option>'."\n";
-        }
-    ?>
-    </select> (Hint : give the focus to this selector then use UP/DOWN keyboard arrow)
-    <br><br>
-    <table>
-        <tr>
-            <td>
-                <div id="infos"></div>
-            </td>
-            <td style="vertical-align: top;text-align:left">
-                <div id="main"></div><br>
-                <div id="createPNGButton">
-                    <a id="link"></a>
-                </div>
-                <center>
-                    <div id="dl" style="display:none;"><button onclick="dl_img()">Download Image</button></div>
-                    <div id="dltxt" style="display:none;"><button onclick="dl_txt()">Download text file (utf8)</button></div>
-		    <br>
-		    <br>
-		    <div>Using the "API" (remote/web) way : </div>
-		    <div id="curlink"></div>
-		    <br>
-		    <div>Using the "API" (local/php/cli) way : </div>
-		    <div id="phplink"></div>
-		    <br>
-		    <br>
-                </center>
-            </td>
-        </tr>
-    </table>
-</body>
-
+<?php
+	$files=glob('FONTS/*.TDF', GLOB_BRACE);
+	for ($i = 0; $i < count($files); $i++){
+		echo "\t\t".'<option id="FONTNUM'.$i.'" value="'.$files[$i].'">'.substr($files[$i],6,-4).'</option>'."\n";
+	}
+?>
+	</select> (Hint : give the focus to this selector then use UP/DOWN keyboard arrow)
+	<br><br>
+	<table>
+		<tr>
+			<td>
+				<div id="infos"></div>
+			</td>
+			<td style="vertical-align: top;text-align:left">
+				<div id="main"></div><br>
+				<div id="createPNGButton">
+					<a id="link"></a>
+				</div>
+				<center>
+					<div id="dl" style="display:none;"><button onclick="dl_img()">Download Image</button></div>
+					<div id="dltxt" style="display:none;"><button onclick="dl_txt()">Download text file (utf8)</button></div>
+					<br>
+					<br>
+					<div>Using the "API" (remote/web) way : <button onclick="copyText('curlink')">Copy</button></div>
+					<div>&nbsp;&nbsp;<curlink id="curlink"></curlink>&nbsp;&nbsp;</div>
+					<br>
+					<div>Using the "API" (local/php/cli) way : <button onclick="copyText('phplink')">Copy</button></div>
+					<div>&nbsp;&nbsp;<phplink id="phplink"></phplink>&nbsp;&nbsp;</div>
+					<br>
+					<br>
+				</center>
+			</td>
+		</tr>
+	</table>
+	</body>
 </html>
-<!--  -->
