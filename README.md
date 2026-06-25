@@ -1,3 +1,14 @@
+> [!WARNING]
+> **This project is no longer maintained.**
+> It has been replaced by **MALM (MOTD ANSI Logo Maker)**.
+>
+> - **Live app:** https://malm.santo.fr
+> - **GitHub repo:** https://github.com/N0NameN0/MOTD-ANSI-Logo-Maker
+>
+> MALM is a complete rewrite (1197 TheDraw `.TDF` fonts, pixel-perfect VGA/ANSI
+> rendering, PNG/ANSI export, one-click `curl`/`wget` to `/etc/motd`). This repo
+> is kept for archival purposes only.
+
 # CODEF_Ansi_Logo_Maker
 
 A tiny web tool to use TDF (TheDraw font files) to create logo.
